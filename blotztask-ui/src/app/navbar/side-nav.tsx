@@ -44,12 +44,28 @@ const guestItems = [
     title: "Home",
     url: "/home",
     icon: Home,
-  }
+  },
+];
+
+// Placeholder menu items during loading.
+const loadingItems = [
+  {
+    title: "Loading...",
+    url: "#",
+    icon: Home, // You can replace this with a skeleton icon or spinner
+  },
 ];
 
 export function AppSidebar() {
-  const { data: session } = useSession(); // Authentication session state
-  const items = session ? authenticatedItems : guestItems;
+  const { data: session, status } = useSession();
+
+  // Determine which items to show based on session status
+  const items =
+    status === "loading"
+      ? loadingItems // Placeholder items while session is loading
+      : session
+      ? authenticatedItems
+      : guestItems;
 
   return (
     <Sidebar>
