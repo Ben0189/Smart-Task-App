@@ -1,4 +1,5 @@
-import { CalendarDays, Inbox, Search, Settings } from "lucide-react"
+'use client';
+import { CalendarDays, Home, Inbox, Search, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -10,10 +11,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { useSession } from "next-auth/react";
 
-// Menu items.
-const items = [
+// Menu items for authenticated users.
+const authenticatedItems = [
   {
     title: "Today",
     url: "today",
@@ -34,9 +36,21 @@ const items = [
     url: "test-connection",
     icon: Settings,
   },
-]
+];
+
+// Menu items for guests.
+const guestItems = [
+  {
+    title: "Home",
+    url: "/home",
+    icon: Home,
+  }
+];
 
 export function AppSidebar() {
+  const { data: session } = useSession(); // Authentication session state
+  const items = session ? authenticatedItems : guestItems;
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -59,16 +73,24 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-          <SidebarMenu>
-            <SidebarMenuItem>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            {session ? (
               <SidebarMenuButton asChild>
                 <a href="/api/auth/signout">
                   <span>Sign Out</span>
                 </a>
               </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarFooter>
+            ) : (
+              <SidebarMenuButton asChild>
+                <a href="/signin">
+                  <span>Sign In</span>
+                </a>
+              </SidebarMenuButton>
+            )}
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
