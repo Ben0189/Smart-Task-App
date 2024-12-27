@@ -38,6 +38,7 @@ public class TaskService : ITaskService
                 {
                     Id = x.Id,
                     Title = x.Title,
+                    Description = x.Description,
                     Label = new LabelDTO { Name = x.Label.Name, Color = x.Label.Color }        
                 })
                 .ToListAsync();
