@@ -1,16 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { z } from 'zod';
-import { TaskDTO, taskDTOSchema } from './schema/schema';
 import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
+import { TaskDTO } from './schema/schema';
 
 export default function Today() {
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
-  
+
   useEffect(() => {
     loadIncompleteTasks();
   }, []);
@@ -18,15 +17,14 @@ export default function Today() {
   const loadIncompleteTasks = async () => {
     try {
       const data = await fetchTaskItemsDueToday();
-      const validatedTasks = z.array(taskDTOSchema).parse(data);
       // Filter tasks to only include those where isDone is false
-      const notDoneTasks = validatedTasks.filter((task) => !task.isDone);
+      const notDoneTasks = data.filter((task) => !task.isDone);
       setIncompleteTasks(notDoneTasks);
     } catch (error) {
       console.error('Error loading tasks:', error);
     }
   };
-  
+
   const handleCheckboxChange = async (taskId: number) => {
     await completeTask(taskId);
     loadIncompleteTasks();
@@ -35,7 +33,6 @@ export default function Today() {
   const completeTask = async (taskId: number) => {
     try {
       await completeTaskForToday(taskId);
-
     } catch (error) {
       console.error('Error completing task:', error);
     }
@@ -54,7 +51,7 @@ export default function Today() {
                   key={task.id}
                   task={task}
                   handleCheckboxChange={handleCheckboxChange}
-              />
+                />
               ))}
             </div>
           ) : (
@@ -65,4 +62,3 @@ export default function Today() {
     </>
   );
 }
-
