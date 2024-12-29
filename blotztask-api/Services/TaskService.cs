@@ -145,7 +145,7 @@ public class TaskService : ITaskService
         try
         {
             return await _dbContext.TaskItems
-                .Where(task => task.DueDate == date)
+                .Where(task => task.DueDate == date && task.UserId == userId)
                 .Select(task => new TaskItemDTO
                 {
                     Id = task.Id,
