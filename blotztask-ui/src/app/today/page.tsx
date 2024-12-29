@@ -7,6 +7,7 @@ import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
+import AddTaskCard from './components/add-task-card';
 
 export default function Today() {
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
@@ -45,7 +46,7 @@ export default function Today() {
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader />
-
+        <AddTaskCard />
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
             <div className="grid gap-6 w-full">
