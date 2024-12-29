@@ -42,11 +42,16 @@ export default function Today() {
     }
   };
 
+  const handleAddTask = (taskTitle) => {
+    console.log('Adding task:', taskTitle);
+    console.log("Implement the logic handle adding task here");
+  };
+
   return (
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader />
-        <AddTaskCard />
+        <AddTaskCard onAddTask={handleAddTask}/>
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
             <div className="grid gap-6 w-full">
