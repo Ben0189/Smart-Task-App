@@ -44,7 +44,7 @@ export default function Today() {
 
   const handleAddTask = (taskTitle) => {
     console.log('Adding task:', taskTitle);
-    console.log("Implement the logic handle adding task here");
+    // Implement add task logic here , going to api to add task
   };
 
   return (
