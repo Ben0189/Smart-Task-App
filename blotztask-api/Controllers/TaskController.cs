@@ -78,7 +78,6 @@ namespace BlotzTask.Controllers
         [HttpPut("CompleteTask/{id}")]
         public async Task<IActionResult> CompleteTask(int id)
         {
-            Console.WriteLine(id);
             var result = await _taskService.CompleteTask(id);
 
             return Ok($"Task {result} is done");
