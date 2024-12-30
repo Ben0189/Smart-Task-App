@@ -58,7 +58,7 @@ namespace BlotzTask.Controllers
                 throw new UnauthorizedAccessException("Could not find user id from Http Context");
             }
 
-            return Ok(await _taskService.GetTaskByDate(date));
+            return Ok(await _taskService.GetTaskByDate(date, userId));
         }
 
         [HttpPost]

@@ -14,7 +14,7 @@ public interface ITaskService
     public Task<bool> DeleteTaskByID(int Id);
     public Task<string> AddTask(AddTaskItemDTO addtaskItem);
     public Task<int> CompleteTask(int id);
-    public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date);
+    public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId);
     public Task<MonthlyStatDTO> GetMonthlyStats(string userId, int year, int month);
 }
 
@@ -140,7 +140,7 @@ public class TaskService : ITaskService
         return taskId;
     }
 
-    public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date)
+    public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId)
     {
         try
         {
