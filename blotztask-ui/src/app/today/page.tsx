@@ -10,7 +10,7 @@ import TaskCard from './components/task-card';
 
 export default function Today() {
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
-  
+
   useEffect(() => {
     loadIncompleteTasks();
   }, []);
@@ -26,7 +26,7 @@ export default function Today() {
       console.error('Error loading tasks:', error);
     }
   };
-  
+
   const handleCheckboxChange = async (taskId: number) => {
     await completeTask(taskId);
     loadIncompleteTasks();
@@ -35,7 +35,6 @@ export default function Today() {
   const completeTask = async (taskId: number) => {
     try {
       await completeTaskForToday(taskId);
-
     } catch (error) {
       console.error('Error completing task:', error);
     }
@@ -54,7 +53,7 @@ export default function Today() {
                   key={task.id}
                   task={task}
                   handleCheckboxChange={handleCheckboxChange}
-              />
+                />
               ))}
             </div>
           ) : (
@@ -65,4 +64,3 @@ export default function Today() {
     </>
   );
 }
-
