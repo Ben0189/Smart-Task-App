@@ -1,27 +1,15 @@
 import { H1, H5 } from '@/components/ui/heading-with-anchor';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Progress } from '@/components/ui/progress';
-import { fetchTaskItemsDueToday } from '@/services/taskService';
+import { TaskDTO } from '../schema/schema';
 
-const TodayHeader = () => {
-  const [completed, setCompleted] = useState(0);
-  const [total, setTotal] = useState(0);
+type TodayHeaderProps = {
+  tasks: TaskDTO[]; // All tasks
+};
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const tasks = await fetchTaskItemsDueToday();
-        // Calculate total tasks and completed tasks
-        setTotal(tasks.length); // Total number of tasks
-        setCompleted(tasks.filter((task) => task.isDone).length); // Number of completed tasks
-      } catch (error) {
-        console.error("Error fetching today's tasks:", error);
-      }
-    };
-
-    fetchTasks();
-  }, []);
-
+const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
+  const total = tasks.length; // Total number of tasks
+  const completed = tasks.filter((task) => task.isDone).length; // Number of completed tasks
   const progressValue = total > 0 ? (completed / total) * 100 : 0; // Avoid division by zero
 
   return (

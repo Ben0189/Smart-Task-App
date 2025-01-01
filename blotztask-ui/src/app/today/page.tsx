@@ -9,6 +9,7 @@ import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 
 export default function Today() {
+  const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function Today() {
     try {
       const data = await fetchTaskItemsDueToday();
       const validatedTasks = z.array(taskDTOSchema).parse(data);
-      // Filter tasks to only include those where isDone is false
+      setTasks(validatedTasks);
       const notDoneTasks = validatedTasks.filter((task) => !task.isDone);
       setIncompleteTasks(notDoneTasks);
     } catch (error) {
@@ -43,7 +44,7 @@ export default function Today() {
   return (
     <>
       <div className="flex flex-col gap-5">
-        <TodayHeader />
+        <TodayHeader tasks={tasks} />
 
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
