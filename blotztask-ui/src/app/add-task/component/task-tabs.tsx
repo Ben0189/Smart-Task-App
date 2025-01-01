@@ -2,30 +2,35 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import * as React from 'react';
-import { FieldErrors, UseFormRegister, UseFormSetValue, UseFormWatch } from 'react-hook-form';
+import {
+  FieldErrors,
+  UseFormRegister,
+  UseFormSetValue,
+  UseFormWatch,
+} from 'react-hook-form';
 import { AddTaskForm } from '../page';
 
 // Enum for task labels and their corresponding IDs
 enum TaskLabel {
-    WORK = 'work',
-    PERSONAL = 'personal',
-    ACADEMIC = 'academic',
-    OTHERS = 'others',
+  WORK = 'work',
+  PERSONAL = 'personal',
+  ACADEMIC = 'academic',
+  OTHERS = 'others',
 }
-  
+
 enum TaskLabelId {
-    WORK = 1,
-    PERSONAL = 2,
-    ACADEMIC = 3,
-    OTHERS = 4,
+  WORK = 6,
+  PERSONAL = 7,
+  ACADEMIC = 8,
+  OTHERS = 9,
 }
 
 // Map TaskLabel to TaskLabelId dynamically
 const labelIdMap: Record<TaskLabel, TaskLabelId> = {
-    [TaskLabel.WORK]: TaskLabelId.WORK,
-    [TaskLabel.PERSONAL]: TaskLabelId.PERSONAL,
-    [TaskLabel.ACADEMIC]: TaskLabelId.ACADEMIC,
-    [TaskLabel.OTHERS]: TaskLabelId.OTHERS,
+  [TaskLabel.WORK]: TaskLabelId.WORK,
+  [TaskLabel.PERSONAL]: TaskLabelId.PERSONAL,
+  [TaskLabel.ACADEMIC]: TaskLabelId.ACADEMIC,
+  [TaskLabel.OTHERS]: TaskLabelId.OTHERS,
 };
 
 interface TaskTabsProps {
@@ -36,26 +41,32 @@ interface TaskTabsProps {
 }
 
 const TaskTabs: React.FC<TaskTabsProps> = ({ register, setValue, errors }) => {
-  const [selectedTab, setSelectedTab] = React.useState<TaskLabel>(TaskLabel.WORK);
+  const [selectedTab, setSelectedTab] = React.useState<TaskLabel>(
+    TaskLabel.WORK
+  );
 
   React.useEffect(() => {
     setValue('labelId', labelIdMap[selectedTab]);
   }, [selectedTab, setValue]);
 
   return (
-    <Tabs value={selectedTab} onValueChange={(value) => setSelectedTab(value as TaskLabel)} className="w-full">
+    <Tabs
+      value={selectedTab}
+      onValueChange={(value) => setSelectedTab(value as TaskLabel)}
+      className="w-full"
+    >
       <TabsList className="grid w-full grid-cols-4 gap-2 px-2">
-      {Object.values(TaskLabel).map((tab) => (
+        {Object.values(TaskLabel).map((tab) => (
           <TabsTrigger
             key={tab}
             className={`${
               tab === TaskLabel.WORK
                 ? 'bg-add-task-work-label-bg text-add-task-work-label-text'
                 : tab === TaskLabel.PERSONAL
-                ? 'bg-add-task-personal-label-bg text-add-task-personal-label-text'
-                : tab === TaskLabel.ACADEMIC
-                ? 'bg-add-task-academic-label-bg text-add-task-academic-label-text'
-                : 'bg-add-task-others-label-bg text-add-task-others-label-text'
+                  ? 'bg-add-task-personal-label-bg text-add-task-personal-label-text'
+                  : tab === TaskLabel.ACADEMIC
+                    ? 'bg-add-task-academic-label-bg text-add-task-academic-label-text'
+                    : 'bg-add-task-others-label-bg text-add-task-others-label-text'
             }`}
             value={tab}
           >
@@ -73,10 +84,10 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ register, setValue, errors }) => {
                   tab === TaskLabel.WORK
                     ? 'bg-add-task-work-label-bg'
                     : tab === TaskLabel.PERSONAL
-                    ? 'bg-add-task-personal-label-bg'
-                    : tab === TaskLabel.ACADEMIC
-                    ? 'bg-add-task-academic-label-bg'
-                    : 'bg-add-task-others-label-bg'
+                      ? 'bg-add-task-personal-label-bg'
+                      : tab === TaskLabel.ACADEMIC
+                        ? 'bg-add-task-academic-label-bg'
+                        : 'bg-add-task-others-label-bg'
                 }`}
               >
                 <Textarea
@@ -84,10 +95,10 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ register, setValue, errors }) => {
                     tab === TaskLabel.WORK
                       ? 'bg-add-task-work-input-area-bg border-add-task-work-label-bg placeholder-add-task-work-label-text'
                       : tab === TaskLabel.PERSONAL
-                      ? 'bg-add-task-personal-input-area-bg border-add-task-personal-label-bg placeholder-add-task-personal-label-text'
-                      : tab === TaskLabel.ACADEMIC
-                      ? 'bg-add-task-academic-input-area-bg border-add-task-academic-label-bg placeholder-add-task-academic-label-bg'
-                      : 'bg-add-task-others-input-area-bg border-add-task-others-label-bg placeholder-add-task-others-label-text'
+                        ? 'bg-add-task-personal-input-area-bg border-add-task-personal-label-bg placeholder-add-task-personal-label-text'
+                        : tab === TaskLabel.ACADEMIC
+                          ? 'bg-add-task-academic-input-area-bg border-add-task-academic-label-bg placeholder-add-task-academic-label-bg'
+                          : 'bg-add-task-others-input-area-bg border-add-task-others-label-bg placeholder-add-task-others-label-text'
                   } placeholder:text-center placeholder:leading-[10rem]`}
                   rows={10}
                   placeholder="Type your message here."
