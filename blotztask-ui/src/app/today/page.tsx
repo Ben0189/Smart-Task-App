@@ -12,10 +12,10 @@ export default function Today() {
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
 
   useEffect(() => {
-    loadIncompleteTasks();
+    loadTasks();
   }, []);
 
-  const loadIncompleteTasks = async () => {
+  const loadTasks = async () => {
     try {
       const data = await fetchTaskItemsDueToday();
       const validatedTasks = z.array(taskDTOSchema).parse(data);
@@ -29,7 +29,7 @@ export default function Today() {
 
   const handleCheckboxChange = async (taskId: number) => {
     await completeTask(taskId);
-    loadIncompleteTasks();
+    loadTasks();
   };
 
   const completeTask = async (taskId: number) => {
