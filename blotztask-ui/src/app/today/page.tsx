@@ -7,6 +7,7 @@ import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
+import AddTaskCard from './components/add-task-card';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
@@ -41,11 +42,16 @@ export default function Today() {
     }
   };
 
+  const handleAddTask = (taskTitle) => {
+    console.log('Adding task:', taskTitle);
+    // Implement add task logic here , going to api to add task
+  };
+
   return (
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader tasks={tasks} />
-
+        <AddTaskCard onAddTask={handleAddTask}/>
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
             <div className="grid gap-6 w-full">

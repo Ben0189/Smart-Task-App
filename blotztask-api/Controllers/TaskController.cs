@@ -51,7 +51,14 @@ namespace BlotzTask.Controllers
         [HttpGet("due-date/{date}")]
         public async Task<IActionResult> GetTaskByDate(DateOnly date)
         {
-            return Ok(await _taskService.GetTaskByDate(date));
+            var userId = HttpContext.Items["UserId"] as string;
+
+            if (userId == null)
+            {
+                throw new UnauthorizedAccessException("Could not find user id from Http Context");
+            }
+
+            return Ok(await _taskService.GetTaskByDate(date, userId));
         }
 
         [HttpPost]
@@ -71,7 +78,6 @@ namespace BlotzTask.Controllers
         [HttpPut("CompleteTask/{id}")]
         public async Task<IActionResult> CompleteTask(int id)
         {
-            Console.WriteLine(id);
             var result = await _taskService.CompleteTask(id);
 
             return Ok($"Task {result} is done");

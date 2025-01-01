@@ -24,12 +24,9 @@ const config: Config = {
 			display: 'fantasy'
 		},
 		colors: {
-			'primary-light': '#DBE4E9',
+			'primary': '#1D48D7',
 			'primary-dark': '#2C3233',
-			// secondary: {
-			// 	DEFAULT: 'hsl(var(--secondary))',
-			// 	foreground: 'hsl(var(--secondary-foreground))'
-			// },
+			'default-text': 'var(--color-text)',
 			secondary: '#278291',
 			warn: '#F42F67',
 			'monthly-stats-personal-label': '#fffcc4',
@@ -67,10 +64,6 @@ const config: Config = {
 			popover: {
 				DEFAULT: 'hsl(var(--popover))',
 				foreground: 'hsl(var(--popover-foreground))'
-			},
-			primary: {
-				DEFAULT: 'hsl(var(--primary))',
-				foreground: 'hsl(var(--primary-foreground))'
 			},
 			muted: {
 				DEFAULT: 'hsl(var(--muted))',

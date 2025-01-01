@@ -6,6 +6,7 @@ using BlotzTask.Data.Entities;
 using BlotzTask.Models.Validators;
 using BlotzTask.Services;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Azure.Services.AppAuthentication;
@@ -44,6 +45,17 @@ builder.Services.AddIdentityApiEndpoints<User>()
 
 builder.Services.AddAuthorization();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.Cookie.Name = "YourAppCookieName";
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromDays(7);
+    options.LoginPath = "/Identity/Account/Login";
+    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+    options.SlidingExpiration = true;
+});
+
 builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
     loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
 
@@ -56,9 +68,7 @@ if (builder.Environment.IsDevelopment())
 if (builder.Environment.IsProduction())
 {
     var keyVaultEndpoint = builder.Configuration.GetSection("KeyVault").GetValue<string>("VaultURI");
-
-    var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(new AzureServiceTokenProvider().KeyVaultTokenCallback));
-
+    
     builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultKeyVaultSecretManager());
 
     var client = new SecretClient(new Uri(keyVaultEndpoint), new DefaultAzureCredential());

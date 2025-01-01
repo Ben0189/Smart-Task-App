@@ -1,5 +1,6 @@
-import { CalendarDays, Inbox, Search, Settings } from "lucide-react"
+'use client';
 
+import { CalendarDays, Home, Inbox, Search, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -8,35 +9,35 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+  SidebarMenuButton,
+} from "@/components/ui/sidebar";
+import { useSession } from "next-auth/react";
+import { SidebarAuthButton } from "./components/side-auth-button";
 
-// Menu items.
-const items = [
-  {
-    title: "Today",
-    url: "today",
-    icon: CalendarDays,
-  },
-  {
-    title: "Task List",
-    url: "task-list",
-    icon: Inbox,
-  },
-  {
-    title: "Monthly Stats",
-    url: "monthly-stats",
-    icon: Search,
-  },
-  {
-    title: "Test Connection",
-    url: "test-connection",
-    icon: Settings,
-  },
-]
+const authenticatedItems = [
+  { title: "Today", url: "today", icon: CalendarDays },
+  { title: "Task List", url: "task-list", icon: Inbox },
+  { title: "Monthly Stats", url: "monthly-stats", icon: Search },
+  { title: "Test Connection", url: "test-connection", icon: Settings },
+];
+
+const guestItems = [{ title: "Home", url: "/home", icon: Home }];
+
+const loadingItems = [{ title: "Loading...", url: "#", icon: Home }];
 
 export function AppSidebar() {
+  const { data: session, status } = useSession();
+
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    window.location.href = "/api/auth/signout";
+  };
+
+  // Determine which items to show based on session status
+  const items =
+    status === "loading" ? loadingItems : session ? authenticatedItems : guestItems;
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -59,16 +60,10 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <a href="/api/auth/signout">
-                  <span>Sign Out</span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarFooter>
+        <SidebarMenu>
+          <SidebarAuthButton session={session} onSignOut={handleSignOut} />
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
