@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import * as React from 'react';
 import { DatePicker } from './component/calendar';
 import { Button } from '@/components/ui/button';
-import { number, string, z } from 'zod';
+import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import TaskTabs from './component/task-tabs';
