@@ -9,7 +9,7 @@ import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
 
 export default function Today() {
-  const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
+  const [tasks] = useState<TaskDTO[]>([]); // Store all tasks here
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
 
   useEffect(() => {
