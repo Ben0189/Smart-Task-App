@@ -1,20 +1,36 @@
 import React, { useState } from "react";
 import AddTaskForm from "./add-task-form";
+import { PlusIcon } from "@radix-ui/react-icons";
 
 const AddTaskCard = ({ onAddTask }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div
-      className="p-4 border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100"
-      onClick={() => setIsFormVisible(true)}
-    >
-      {!isFormVisible ? (
-        <p>Click here to add today task</p>
-      ) : (
+    <div className="flex items-center gap-4">
+      <input
+        type="checkbox"
+        className="w-6 h-6 border border-black rounded-full appearance-none checked:bg-blue-400 checked:border-blue-400"
+        checked={isChecked}
+        onChange={() => setIsChecked(!isChecked)}
+      />
+      <div className="ml-3 w-1 h-10 bg-gray-400 rounded"></div>
+      <div
+        className="flex items-center gap-2 cursor-pointer"
+        onClick={() => setIsFormVisible(true)}
+      >
+        {!isFormVisible ? (
+          <>
+            <PlusIcon className="w-6 h-6 text-blue-400" />
+            <span className="text-blue-400 font-semibold text-lg">Add a task</span>
+          </>
+        ) : null}
+      </div>
+
+      {isFormVisible && (
         <AddTaskForm
-          onSubmit={(taskTitle) => {
-            onAddTask(taskTitle); 
+          onSubmit={(taskTitle: string) => {
+            onAddTask(taskTitle);
             setIsFormVisible(false);
           }}
         />
