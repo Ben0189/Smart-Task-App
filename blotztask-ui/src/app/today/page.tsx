@@ -9,13 +9,14 @@ import { TaskDTO } from './schema/schema';
 
 
 export default function Today() {
+  const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
 
   useEffect(() => {
-    loadIncompleteTasks();
+    loadTasks();
   }, []);
 
-  const loadIncompleteTasks = async () => {
+  const loadTasks = async () => {
     try {
       const data = await fetchTaskItemsDueToday();
       // Filter tasks to only include those where isDone is false
@@ -28,7 +29,7 @@ export default function Today() {
 
   const handleCheckboxChange = async (taskId: number) => {
     await completeTask(taskId);
-    loadIncompleteTasks();
+    loadTasks();
   };
 
   const completeTask = async (taskId: number) => {
@@ -47,7 +48,7 @@ export default function Today() {
   return (
     <>
       <div className="flex flex-col gap-5">
-        <TodayHeader />
+        <TodayHeader tasks={tasks} />
         <AddTaskCard onAddTask={handleAddTask}/>
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (

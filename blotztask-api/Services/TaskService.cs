@@ -14,7 +14,7 @@ public interface ITaskService
     public Task<bool> DeleteTaskByID(int Id);
     public Task<string> AddTask(AddTaskItemDTO addtaskItem);
     public Task<int> CompleteTask(int id);
-    public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date);
+    public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId);
     public Task<MonthlyStatDTO> GetMonthlyStats(string userId, int year, int month);
 }
 
@@ -38,6 +38,7 @@ public class TaskService : ITaskService
                 {
                     Id = x.Id,
                     Title = x.Title,
+                    Description = x.Description,
                     Label = new LabelDTO { Name = x.Label.Name, Color = x.Label.Color }        
                 })
                 .ToListAsync();
@@ -140,12 +141,12 @@ public class TaskService : ITaskService
         return taskId;
     }
 
-    public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date)
+    public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId)
     {
         try
         {
             return await _dbContext.TaskItems
-                .Where(task => task.DueDate == date)
+                .Where(task => task.DueDate == date && task.UserId == userId)
                 .Select(task => new TaskItemDTO
                 {
                     Id = task.Id,
