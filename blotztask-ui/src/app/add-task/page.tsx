@@ -8,6 +8,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import TaskTabs from './component/task-tabs';
 import { AddTaskItem } from '@/services/taskService';
+import { AddTaskTtemDTO } from '@/model/add-task-item-dto';
 
 export type AddTaskForm = z.infer<typeof AddTaskFormSchema>;
 
@@ -17,13 +18,6 @@ const AddTaskFormSchema = z.object({
   dueDate: z.date(),
   labelId: z.number(),
 });
-
-export interface AddTaskTtemDTO {
-  title: string;
-  description: string;
-  dueDate: string;
-  labelId: number;
-}
 
 export default function Home() {
   const {
@@ -51,8 +45,6 @@ export default function Home() {
       labelId: data.labelId,
     };
     AddTaskItem(response);
-    console.log('Task Added');
-    console.log('Request Body:', JSON.stringify(response));
   };
 
   return (

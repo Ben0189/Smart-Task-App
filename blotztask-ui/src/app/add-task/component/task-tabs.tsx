@@ -2,6 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import {
   FieldErrors,
   UseFormRegister,
@@ -41,11 +42,9 @@ interface TaskTabsProps {
 }
 
 const TaskTabs: React.FC<TaskTabsProps> = ({ register, setValue, errors }) => {
-  const [selectedTab, setSelectedTab] = React.useState<TaskLabel>(
-    TaskLabel.WORK
-  );
+  const [selectedTab, setSelectedTab] = useState<TaskLabel>(TaskLabel.WORK);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue('labelId', labelIdMap[selectedTab]);
   }, [selectedTab, setValue]);
 
