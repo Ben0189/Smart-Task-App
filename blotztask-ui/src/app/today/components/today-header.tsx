@@ -5,11 +5,11 @@ import { TaskDTO } from '../schema/schema';
 import { format } from "date-fns";
 
 type TodayHeaderProps = {
-  tasks: TaskDTO[]; // All tasks
+  tasks: TaskDTO[]; 
 };
 
 const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
-  const total = tasks.length; // Total number of tasks
+  const total = tasks.length;
   const completed = tasks.filter((task) => task.isDone).length; // Number of completed tasks
   const progressValue = total > 0 ? (completed / total) * 100 : 0; // Avoid division by zero
   const todayDate = format(new Date(), "EEEE, d MMMM");
@@ -21,10 +21,8 @@ const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
           Day<span className="heading-secondary">View</span>
         </H1>
         <div className="flex items-center gap-2">
-          {/* Label for progress bar */}
           <span className="text-sm font-medium">Completed</span>
           <Progress value={progressValue} className="w-[200px]" />
-          {/* Label for task progress */}
           <span className="text-gray-500 text-sm font-medium">
             {completed} / {total}
           </span>
