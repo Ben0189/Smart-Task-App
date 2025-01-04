@@ -50,7 +50,7 @@ export default function Today() {
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader tasks={tasks} />
-        <AddTaskCard onAddTask={handleAddTask}/>
+        <AddTaskCard onAddTask={handleAddTask} />
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
             <div className="grid gap-6 w-full">
