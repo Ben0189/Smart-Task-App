@@ -2,6 +2,7 @@ import { H1, H5 } from '@/components/ui/heading-with-anchor';
 import React from 'react';
 import { Progress } from '@/components/ui/progress';
 import { TaskDTO } from '../schema/schema';
+import { format } from "date-fns";
 
 type TodayHeaderProps = {
   tasks: TaskDTO[]; // All tasks
@@ -11,6 +12,7 @@ const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
   const total = tasks.length; // Total number of tasks
   const completed = tasks.filter((task) => task.isDone).length; // Number of completed tasks
   const progressValue = total > 0 ? (completed / total) * 100 : 0; // Avoid division by zero
+  const todayDate = format(new Date(), "EEEE, d MMMM");
 
   return (
     <div className="flex flex-col gap-5">
@@ -28,6 +30,7 @@ const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
           </span>
         </div>
       </div>
+      <H5 className="text-gray-500 text-sm">{todayDate}</H5>
       <H5>List of today&apos;s tasks</H5>
     </div>
   );
