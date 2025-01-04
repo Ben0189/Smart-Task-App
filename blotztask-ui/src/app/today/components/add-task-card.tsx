@@ -4,16 +4,10 @@ import { PlusIcon } from "@radix-ui/react-icons";
 
 const AddTaskCard = ({ onAddTask }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
 
   return (
     <div className="flex items-center gap-4">
-      <input
-        type="checkbox"
-        className="w-6 h-6 border border-black rounded-full appearance-none checked:bg-blue-400 checked:border-blue-400"
-        checked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
-      />
+      <div className="w-6 h-6 border border-gray-400 rounded-full border-dashed"></div>
       <div className="ml-3 w-1 h-10 bg-gray-400 rounded"></div>
       <div
         className="flex items-center gap-2 cursor-pointer"
