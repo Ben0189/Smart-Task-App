@@ -6,18 +6,20 @@ import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
+import AddTaskCard from './components/add-task-card';
 
 export default function Today() {
+  const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
 
   useEffect(() => {
-    loadIncompleteTasks();
+    loadTasks();
   }, []);
 
-  const loadIncompleteTasks = async () => {
+  const loadTasks = async () => {
     try {
       const data = await fetchTaskItemsDueToday();
-
+      setTasks(data);
       // Filter tasks to only include those where isDone is false
       const notDoneTasks = data.filter((task) => !task.isDone);
       setIncompleteTasks(notDoneTasks);
@@ -28,7 +30,7 @@ export default function Today() {
 
   const handleCheckboxChange = async (taskId: number) => {
     await completeTask(taskId);
-    loadIncompleteTasks();
+    loadTasks();
   };
 
   const completeTask = async (taskId: number) => {
@@ -39,11 +41,16 @@ export default function Today() {
     }
   };
 
+  const handleAddTask = (taskTitle) => {
+    console.log('Adding task:', taskTitle);
+    // Implement add task logic here , going to api to add task
+  };
+
   return (
     <>
       <div className="flex flex-col gap-5">
-        <TodayHeader tasks={incompleteTasks} />
-
+        <TodayHeader tasks={tasks} />
+        <AddTaskCard onAddTask={handleAddTask}/>
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
             <div className="grid gap-6 w-full">
