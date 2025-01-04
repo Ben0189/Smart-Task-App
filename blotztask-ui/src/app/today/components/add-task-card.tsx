@@ -18,17 +18,13 @@ const AddTaskCard = ({ onAddTask }) => {
             <PlusIcon className="w-6 h-6 text-blue-400" />
             <span className="text-blue-400 font-semibold text-lg">Add a task</span>
           </>
-        ) : null}
+        ) : (<AddTaskForm
+        onSubmit={(taskTitle: string) => {
+          onAddTask(taskTitle);
+          setIsFormVisible(false);
+        }}
+      />)}
       </div>
-
-      {isFormVisible && (
-        <AddTaskForm
-          onSubmit={(taskTitle: string) => {
-            onAddTask(taskTitle);
-            setIsFormVisible(false);
-          }}
-        />
-      )}
     </div>
   );
 };
