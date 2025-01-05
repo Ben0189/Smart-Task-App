@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useSession } from "next-auth/react";
 import { SidebarAuthButton } from "./components/side-auth-button";
+import { LabelDTO } from "./models/label-dto";
 
 const authenticatedItems = [
   { title: "Today", url: "today", icon: CalendarDays },
@@ -25,6 +26,26 @@ const authenticatedItems = [
 const guestItems = [{ title: "Home", url: "/home", icon: Home }];
 
 const loadingItems = [{ title: "Loading...", url: "#", icon: Home }];
+
+// Mock labels for the sidebar will be replaced with actual data from the API
+export const mockLabels: LabelDTO[] = [
+  {
+    name: "Personal",
+    color: "#FF5733", 
+    description: "Tasks related to personal activities and errands.",
+  },
+  {
+    name: "Work",
+    color: "#3498DB",
+    description: "Tasks related to work projects and office responsibilities.",
+  },
+  {
+    name: "Others",
+    color: "#2ECC71", 
+    description: "Tasks that don't fall under specific categories.",
+  },
+];
+
 
 export function AppSidebar() {
   const { data: session, status } = useSession();
