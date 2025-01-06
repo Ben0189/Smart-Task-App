@@ -7,6 +7,8 @@ import { H1, H5 } from '@/components/ui/heading-with-anchor';
 import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { Checkbox } from '@/components/ui/checkbox';
 import { completeTaskForToday } from '@/services/taskService';
+import SectionHeader from './components/SectionHeader';
+import SectionFooter from './components/SectionFooter';
 
 export default function Dayview() {
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
@@ -94,7 +96,13 @@ export default function Dayview() {
               ))}
             </div>
           ) : (
-            <p>No incomplete tasks for today!</p>
+            <div>
+              <div>
+              <p>No incomplete tasks for today!</p>
+              <SectionHeader/>
+              <SectionFooter/>
+            </div>
+            </div>
           )}
         </div>
       </div>

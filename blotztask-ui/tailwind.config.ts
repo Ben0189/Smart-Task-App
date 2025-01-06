@@ -14,6 +14,7 @@ const config: Config = {
       fontFamily: {
         satoshi: ['Satoshi', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+        hind: ["Hind Vadodara", "sans-serif"],
         display: 'fantasy',
       },
       colors: {
