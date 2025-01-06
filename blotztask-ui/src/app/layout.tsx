@@ -1,16 +1,11 @@
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
-import { Inter as FontSans } from 'next/font/google';
 import '../styles/globals.css';
-import { MainNav } from './navbar/main-nav';
 import Provider from './provider';
 import { Toaster } from '@/components/ui/sonner';
-
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { AppSidebar } from './navbar/side-nav';
 
 export const metadata: Metadata = {
   title: 'Blotz Task App',
@@ -27,7 +22,6 @@ export default function RootLayout({
       <body
         className={cn(
           'min-h-screen font-sans antialiased h-screen',
-          fontSans.variable
         )}
       >
         <Provider>
@@ -37,10 +31,13 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <MainNav />
-            <section className="container mx-auto px-12 pt-8 h-5/6">
-              {children}
-            </section>
+            <SidebarProvider>
+              <AppSidebar />
+                <SidebarTrigger />
+                  <section className="container mx-auto px-12 pt-8 h-5/6">
+                    {children}
+                  </section>
+            </SidebarProvider>
             <Toaster />
           </ThemeProvider>
         </Provider>

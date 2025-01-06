@@ -12,9 +12,9 @@ public interface ITaskService
     public Task<TaskItemDTO> GetTaskByID(int Id);
     public Task<int> EditTask(int Id, EditTaskItemDTO editTaskItem);
     public Task<bool> DeleteTaskByID(int Id);
-    public Task<string> AddTask(AddTaskItemDTO addtaskItem);
+    public Task<string> AddTask(AddTaskItemDTO addtaskItem, String userId);
     public Task<int> CompleteTask(int id);
-    public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date);
+    public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId);
     public Task<MonthlyStatDTO> GetMonthlyStats(string userId, int year, int month);
 }
 
@@ -38,6 +38,7 @@ public class TaskService : ITaskService
                 {
                     Id = x.Id,
                     Title = x.Title,
+                    Description = x.Description,
                     Label = new LabelDTO { Name = x.Label.Name, Color = x.Label.Color }        
                 })
                 .ToListAsync();
@@ -85,15 +86,17 @@ public class TaskService : ITaskService
         return true;
     }
 
-    public async Task<string> AddTask(AddTaskItemDTO addtaskItem)
+    public async Task<string> AddTask(AddTaskItemDTO addtaskItem, String userId)
     {
         var addtask = new TaskItem
         {
             Title = addtaskItem.Title,
             Description = addtaskItem.Description,
-            CreatedAt = DateTime.UtcNow, 
-            UpdatedAt = DateTime.UtcNow,
+            DueDate = addtaskItem.DueDate,
             LabelId = addtaskItem.LabelId,
+            UserId = userId,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         };
 
         _dbContext.TaskItems.Add(addtask);
@@ -140,12 +143,12 @@ public class TaskService : ITaskService
         return taskId;
     }
 
-    public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date)
+    public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId)
     {
         try
         {
             return await _dbContext.TaskItems
-                .Where(task => task.DueDate == date)
+                .Where(task => task.DueDate == date && task.UserId == userId)
                 .Select(task => new TaskItemDTO
                 {
                     Id = task.Id,
