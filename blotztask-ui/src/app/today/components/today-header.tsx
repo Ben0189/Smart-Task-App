@@ -29,7 +29,6 @@ const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
         </div>
       </div>
       <H5 className="text-gray-500 text-sm">{todayDate}</H5>
-      <H5>List of today&apos;s tasks</H5>
     </div>
   );
 };
