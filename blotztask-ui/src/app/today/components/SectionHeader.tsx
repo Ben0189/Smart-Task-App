@@ -1,4 +1,4 @@
-import SectionSepreator from '../SectionSepreator';
+import SectionSepreator from './SectionSepreator';
 
 const SectionHeader = () => {
   return (

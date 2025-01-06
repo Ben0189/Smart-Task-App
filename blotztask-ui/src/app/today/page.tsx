@@ -8,6 +8,8 @@ import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import AddTaskCard from './components/add-task-card';
+import SectionHeader from './components/SectionHeader';
+import SectionFooter from './components/section-footer';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
@@ -51,20 +53,24 @@ export default function Today() {
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader tasks={tasks} />
+        <SectionHeader/>
         <AddTaskCard onAddTask={handleAddTask}/>
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
-            <div className="grid gap-6 w-full">
-              {incompleteTasks.map((task) => (
-                <TaskCard
-                  key={task.id}
-                  task={task}
-                  handleCheckboxChange={handleCheckboxChange}
-                />
-              ))}
-            </div>
+            <>
+              <div className="grid gap-6 w-full">
+                {incompleteTasks.map((task) => (
+                  <TaskCard
+                    key={task.id}
+                    task={task}
+                    handleCheckboxChange={handleCheckboxChange}
+                  />
+                ))}
+              </div>
+              <SectionFooter/>
+            </>
           ) : (
-            <p>No incomplete tasks for today!</p>
+              <p>No incomplete tasks for today!</p>
           )}
         </div>
       </div>
