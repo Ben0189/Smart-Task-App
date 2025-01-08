@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useSession } from "next-auth/react";
 import { SidebarAuthButton } from "./components/side-auth-button";
+import { cn } from "@/lib/utils";
 
 const authenticatedItems = [
   { title: "Today", url: "today", icon: CalendarDays },
@@ -49,7 +50,8 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
-                      <item.icon />
+                      <item.icon
+                       className={cn("bg-primary","text-white p-1 rounded")} />
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
