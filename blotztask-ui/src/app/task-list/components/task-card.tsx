@@ -18,8 +18,19 @@ export function TaskCard({ tasks, handleCheckboxChange }) {
                      ml-8 px-6
                      border-l-4 border-primary"
           >
-            <div>
+            <div className="flex flex-row justify-between w-full">
               <p className="font-bold">{task.title}</p>
+              <div className="flex items-center justify-center bg-gray-200 w-[155px] text-xs text-gray-500 rounded-full">
+                <p className="text-center font-bold">
+                  {' '}
+                  Due day -{' '}
+                  {new Date(task.dueDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })}
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-row w-full text-sm text-gray-500 mt-2">
