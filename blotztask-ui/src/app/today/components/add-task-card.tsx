@@ -8,7 +8,7 @@ const AddTaskCard = ({ onAddTask }) => {
   return (
     <div className="flex items-center gap-4">
       <div className="w-6 h-6 border border-gray-400 rounded-full border-dashed"></div>
-      <div className="ml-3 w-1 h-10 bg-gray-400 rounded"></div>
+      <div className="ml-3 w-1 h-10 bg-primary rounded"></div>
       <div
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => setIsFormVisible(true)}
