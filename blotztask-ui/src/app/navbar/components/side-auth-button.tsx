@@ -6,13 +6,13 @@ export function SidebarAuthButton({ session, onSignOut }) {
   return (
     <SidebarMenuItem>
       {session ? (
-        <SidebarMenuButton asChild>
+        <SidebarMenuButton asChild className="bg-primary text-white">
           <a href="#" onClick={onSignOut}>
             <span>Sign Out</span>
           </a>
         </SidebarMenuButton>
       ) : (
-        <SidebarMenuButton asChild>
+        <SidebarMenuButton asChild className="bg-primary text-white">
           <a href="/signin">
             <span>Sign In</span>
           </a>
