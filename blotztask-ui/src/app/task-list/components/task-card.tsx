@@ -19,22 +19,32 @@ export function TaskCard({ tasks, handleCheckboxChange }) {
             />
           </div>
 
-          <Card
-            className="w-full"
-            style={{ backgroundColor: task.label.color }}
+          <div
+            className="flex flex-col w-full
+                     bg-transparent
+                     ml-8 px-6
+                     border-l-4 border-primary"
           >
-            <CardHeader className="flex-row ml-5 ">
-              <div>
-                <Separator className="bg-gray-500" orientation="vertical" />
+            <div>
+              <p className="font-bold">{task.title}</p>
+            </div>
+
+            <div className="flex flex-row w-full text-sm text-gray-500 mt-2">
+              <div className="flex flex-col w-full">
+                <p>{task.description}</p>
               </div>
-              <div className="flex flex-col space-y-1 p-2">
-                <CardTitle>{task.title}</CardTitle>
-                <CardDescription>
-                  {task?.description || 'NO Description'}
-                </CardDescription>
+
+              <div className="flex items-start ml-4 w-32">
+                <div
+                  className="h-4 w-4 rounded-full"
+                  style={{ backgroundColor: task.label.color || 'gray' }}
+                ></div>
+                <span className="ml-2 font-bold">
+                  {task.label?.name || 'No label name'}
+                </span>
               </div>
-            </CardHeader>
-          </Card>
+            </div>
+          </div>
         </div>
       ))}
     </div>
