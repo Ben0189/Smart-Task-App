@@ -24,7 +24,7 @@ const config: Config = {
 			display: 'fantasy'
 		},
 		colors: {
-			'primary': '#1D48D7',
+			'primary': '#4380FD',
 			'primary-dark': '#2C3233',
 			'default-text': 'var(--color-text)',
 			secondary: '#278291',
