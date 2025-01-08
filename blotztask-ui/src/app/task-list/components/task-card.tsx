@@ -4,23 +4,21 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Separator } from '@/components/ui/separator';
 
-export function TaskCard({ tasks }) {
+export function TaskCard({ tasks, handleCheckboxChange }) {
   return (
     <div className="flex flex-col mt-10 w-full">
       {tasks.map((task) => (
         <div key={task.id} className="flex mt-5">
-          <Card
-            className="w-1/3 mr-3 flex justify-center items-center"
-            style={{ backgroundColor: task.label.color }}
-          >
-            <CardHeader>
-              <CardTitle className="text-center">
-                {task.label?.name || 'No Label'}
-              </CardTitle>
-            </CardHeader>
-          </Card>
+          <div className="flex flex-row justify-start items-center space-x-4">
+            <Checkbox
+              onCheckedChange={() => handleCheckboxChange(task.id)}
+              className="h-6 w-6 mr-6 rounded-full border-2 border-black"
+            />
+          </div>
+
           <Card
             className="w-full"
             style={{ backgroundColor: task.label.color }}
