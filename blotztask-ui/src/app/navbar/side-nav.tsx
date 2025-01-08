@@ -1,6 +1,6 @@
 'use client';
-import { CalendarDays, Home, Inbox, Search, Settings } from "lucide-react";
 
+import { CalendarDays, Home, Inbox, Search, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -9,63 +9,34 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { useSession } from "next-auth/react";
+import { SidebarAuthButton } from "./components/side-auth-button";
 
-// Menu items for authenticated users.
 const authenticatedItems = [
-  {
-    title: "Today",
-    url: "today",
-    icon: CalendarDays,
-  },
-  {
-    title: "Task List",
-    url: "task-list",
-    icon: Inbox,
-  },
-  {
-    title: "Monthly Stats",
-    url: "monthly-stats",
-    icon: Search,
-  },
-  {
-    title: "Test Connection",
-    url: "test-connection",
-    icon: Settings,
-  },
+  { title: "Today", url: "today", icon: CalendarDays },
+  { title: "Task List", url: "task-list", icon: Inbox },
+  { title: "Monthly Stats", url: "monthly-stats", icon: Search },
+  { title: "Test Connection", url: "test-connection", icon: Settings },
 ];
 
-// Menu items for guests.
-const guestItems = [
-  {
-    title: "Home",
-    url: "/home",
-    icon: Home,
-  },
-];
+const guestItems = [{ title: "Home", url: "/home", icon: Home }];
 
-// Placeholder menu items during loading.
-const loadingItems = [
-  {
-    title: "Loading...",
-    url: "#",
-    icon: Home, // You can replace this with a skeleton icon or spinner
-  },
-];
+const loadingItems = [{ title: "Loading...", url: "#", icon: Home }];
 
 export function AppSidebar() {
   const { data: session, status } = useSession();
 
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    window.location.href = "/api/auth/signout";
+  };
+
   // Determine which items to show based on session status
   const items =
-    status === "loading"
-      ? loadingItems // Placeholder items while session is loading
-      : session
-      ? authenticatedItems
-      : guestItems;
+    status === "loading" ? loadingItems : session ? authenticatedItems : guestItems;
 
   return (
     <Sidebar>
@@ -90,21 +61,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarMenuItem>
-            {session ? (
-              <SidebarMenuButton asChild>
-                <a href="/api/auth/signout">
-                  <span>Sign Out</span>
-                </a>
-              </SidebarMenuButton>
-            ) : (
-              <SidebarMenuButton asChild>
-                <a href="/signin">
-                  <span>Sign In</span>
-                </a>
-              </SidebarMenuButton>
-            )}
-          </SidebarMenuItem>
+          <SidebarAuthButton session={session} onSignOut={handleSignOut} />
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
