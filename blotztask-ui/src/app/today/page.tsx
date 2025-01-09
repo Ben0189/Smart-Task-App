@@ -7,10 +7,12 @@ import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
+import { H5 } from '@/components/ui/heading-with-anchor';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
+  const [completedTasks, setCompletedTasks] = useState<TaskDTO[]>([]);
 
   useEffect(() => {
     loadTasks();
@@ -23,6 +25,8 @@ export default function Today() {
       // Filter tasks to only include those where isDone is false
       const notDoneTasks = data.filter((task) => !task.isDone);
       setIncompleteTasks(notDoneTasks);
+      const doneTask = data.filter((task) => task.isDone);
+      setCompletedTasks(doneTask);
     } catch (error) {
       console.error('Error loading tasks:', error);
     }
@@ -64,6 +68,23 @@ export default function Today() {
             </div>
           ) : (
             <p>No incomplete tasks for today!</p>
+          )}
+        </div>
+
+        <H5>Completed tasks</H5>
+        <div className="grid gap-6 w-full">
+          {completedTasks.length > 0 ? (
+            <div className="grid gap-6 w-full">
+              {completedTasks.map((task) => (
+                <TaskCard
+                  key={task.id}
+                  task={task}
+                  handleCheckboxChange={handleCheckboxChange}
+                />
+              ))}
+            </div>
+          ) : (
+            <p>No completed tasks for today!</p>
           )}
         </div>
       </div>
