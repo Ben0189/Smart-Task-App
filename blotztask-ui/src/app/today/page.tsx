@@ -1,12 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { z } from 'zod';
-import { TaskDTO, taskDTOSchema } from './schema/schema';
 import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
+import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
 import TodoDivider from './components/todo-divider';
 import DoneDivider from './components/done-divider';
@@ -22,9 +21,9 @@ export default function Today() {
   const loadTasks = async () => {
     try {
       const data = await fetchTaskItemsDueToday();
-      const validatedTasks = z.array(taskDTOSchema).parse(data);
-      setTasks(validatedTasks);
-      const notDoneTasks = validatedTasks.filter((task) => !task.isDone);
+      setTasks(data);
+      // Filter tasks to only include those where isDone is false
+      const notDoneTasks = data.filter((task) => !task.isDone);
       setIncompleteTasks(notDoneTasks);
     } catch (error) {
       console.error('Error loading tasks:', error);

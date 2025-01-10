@@ -24,7 +24,7 @@ const config: Config = {
 			display: 'fantasy'
 		},
 		colors: {
-			'primary': '#1D48D7',
+			'primary': '#4380FD',
 			'primary-dark': '#2C3233',
 			'default-text': 'var(--color-text)',
 			secondary: '#278291',
@@ -88,7 +88,7 @@ const config: Config = {
 				'5': 'hsl(var(--chart-5))'
 			},
 			sidebar: {
-				DEFAULT: 'hsl(var(--sidebar-background))',
+				DEFAULT: '#EFF3FF',
 				foreground: 'hsl(var(--sidebar-foreground))',
 				primary: 'hsl(var(--sidebar-primary))',
 				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
