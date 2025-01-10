@@ -1,13 +1,15 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import React from 'react';
 
+import { TaskItemDTO } from '@/model/task-Item-dto';
+
 const TaskCard = ({
   task,
   handleCheckboxChange,
   children,
 }: {
-  task: any;
-  handleCheckboxChange: any;
+  task: TaskItemDTO;
+  handleCheckboxChange: (taskId: number) => Promise<void>;
   children?: React.ReactNode;
 }) => {
   return (

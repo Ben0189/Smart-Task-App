@@ -1,5 +1,9 @@
+import { LabelDTO } from './label-dto';
+
 export interface TaskItemDTO {
-    id: number;
-    title: string;
-    isDone: boolean;
-}   
+  id: number;
+  description: string;
+  title: string;
+  isDone: boolean;
+  label: LabelDTO;
+}
