@@ -1,5 +1,4 @@
 import { Checkbox } from '@/components/ui/checkbox';
-import { Separator } from '@radix-ui/react-separator';
 import React from 'react';
 
 const TaskCard = ({ task, handleCheckboxChange, children }) => {
