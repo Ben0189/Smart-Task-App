@@ -1,7 +1,15 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import React from 'react';
 
-const TaskCard = ({ task, handleCheckboxChange, children }) => {
+const TaskCard = ({
+  task,
+  handleCheckboxChange,
+  children,
+}: {
+  task: any;
+  handleCheckboxChange: any;
+  children?: React.ReactNode;
+}) => {
   return (
     <div key={task.id} className="w-full">
       <div className="flex flex-row space-x-4">
