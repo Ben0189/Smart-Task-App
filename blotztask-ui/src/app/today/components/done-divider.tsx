@@ -1,6 +1,6 @@
-import SectionSepreator from './SectionSepreator';
+import SectionSepreator from './section-seperator';
 
-const SectionFooter = () => {
+const DoneDivider = () => {
   return (
     <div className="flex items-center space-x-[34px]">
       <p className="font-hind font-semibold text-[40px] leading-[48px] text-primary-dark -tracking-[0.41]">
@@ -11,4 +11,4 @@ const SectionFooter = () => {
   );
 };
 
-export default SectionFooter;
+export default DoneDivider;
