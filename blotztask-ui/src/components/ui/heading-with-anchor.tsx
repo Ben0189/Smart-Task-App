@@ -42,7 +42,7 @@ const Anchor = ({
   );
 };
 
-const headingVariants = cva('font-bold text-primary', {
+const headingVariants = cva('font-bold text-primary-dark', {
   variants: {
     variant: {
       h1: 'leading-14 text-4xl lg:text-5xl',
