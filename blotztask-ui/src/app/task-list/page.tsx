@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Trash } from 'lucide-react';
 import { DeleteDialog } from './components/delete-confirmation-dialog';
 import { H1 } from '@/components/ui/heading-with-anchor';
-import { TaskCard } from './components/task-card';
+import { TaskList } from './components/task-card';
 import {
   completeTaskForToday,
   fetchAllTaskItems,
@@ -89,7 +89,7 @@ export default function Page() {
         setDialogOpen={setDialogOpen}
         onClose={handleDialogClose}
       />
-      <TaskCard tasks={taskList} handleCheckboxChange={handleCheckboxChange} />
+      <TaskList tasks={taskList} handleCheckboxChange={handleCheckboxChange} />
     </div>
   );
 }

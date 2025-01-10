@@ -1,7 +1,8 @@
 import { Checkbox } from '@/components/ui/checkbox';
+import { Separator } from '@radix-ui/react-separator';
 import React from 'react';
 
-const TaskCard = ({ task, handleCheckboxChange }) => {
+const TaskCard = ({ task, handleCheckboxChange, children }) => {
   return (
     <div key={task.id} className="w-full">
       <div className="flex flex-row space-x-4">
@@ -18,8 +19,11 @@ const TaskCard = ({ task, handleCheckboxChange }) => {
                      ml-8 px-6
                      border-l-4 border-primary"
         >
-          <div>
-            <p className="font-bold">{task.title}</p>
+          <div className="flex flex-row justify-between">
+            <div>
+              <p className="font-bold">{task.title}</p>
+            </div>
+            <div className="border-l-0">{children && children}</div>
           </div>
 
           <div className="flex flex-row w-full text-sm text-gray-500 mt-2">
