@@ -15,7 +15,7 @@ import {
 import { useSession } from "next-auth/react";
 import { SidebarAuthButton } from "./components/side-auth-button";
 import { cn } from "@/lib/utils";
-
+import { Categories } from "./categories";
 const authenticatedItems = [
   { title: "Today", url: "today", icon: CalendarDays },
   { title: "Task List", url: "task-list", icon: Inbox },
@@ -39,13 +39,6 @@ export function AppSidebar() {
   const items =
     status === "loading" ? loadingItems : session ? authenticatedItems : guestItems;
 
-    const taskCategories = [
-      { name: "Personal", color: "bg-yellow-500" },
-      { name: "Academic", color: "bg-cyan-500" },
-      { name: "Others", color: "bg-blue-500" },
-      { name: "Work", color: "bg-purple-500" },
-    ];
-
   return (
     <Sidebar>
       <SidebarContent>
@@ -67,24 +60,7 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-//change here
-        <SidebarGroup>
-          <SidebarGroupLabel>Task Categories</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <ul className="space-y-2">
-              {taskCategories.map((category, index) => (
-                <li key={index} className="flex items-center space-x-2">
-                  <span
-                    className={`h-4 w-4 rounded-full ${category.color}`}
-                    aria-hidden="true"
-                  ></span>
-                  <span className="text-gray-700">{category.name}</span>
-                </li>
-              ))}
-            </ul>
-          </SidebarGroupContent>
-        </SidebarGroup>
-//end change
+        <div className="mt-80 pl-6"><Categories /></div>
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
