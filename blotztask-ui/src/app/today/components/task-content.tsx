@@ -8,7 +8,7 @@ export default function TaskContent({ task }: { task: TaskDTO }) {
         <p className="font-bold">{task?.title}</p>
       </div>
 
-      <div className="flex flex-row w-full text-sm text-gray-500 mt-2">
+      <div className="flex w-full text-sm text-gray-500 mt-2">
         <div className="flex flex-col w-full">
           <p>{task?.description}</p>
         </div>
