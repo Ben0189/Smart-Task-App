@@ -5,18 +5,15 @@ import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Trash } from 'lucide-react';
-import { DeleteDialog } from './components/delete-confirmation-dialog';
 import { H1 } from '@/components/ui/heading-with-anchor';
 import { TaskList } from './components/task-card';
 import {
-  completeTaskForToday,
   fetchAllTaskItems,
 } from '@/services/taskService';
 import { TaskItemDTO } from '@/model/task-Item-dto';
 
 export default function Page() {
   const [taskList, setTaskList] = useState<TaskItemDTO[]>([]);
-  const [isDialogOpen, setDialogOpen] = useState(false);
 
   const loadTasks = async () => {
     const data = await fetchAllTaskItems();
@@ -30,28 +27,15 @@ export default function Page() {
    */
   useEffect(() => {
     loadTasks();
-  }, []); // Runs on the first render using [] parameter and rerun when state changes, e.g add task
+  }, []); 
 
   const toggleDeleteTrigger = () => {
     setIsDeleteTriggered((prev) => !prev);
   };
 
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-    setIsDeleteTriggered(false);
-  };
-
-  const completeTask = async (taskId: number) => {
-    try {
-      await completeTaskForToday(taskId);
-    } catch (error) {
-      console.error('Error completing task:', error);
-    }
-  };
-
   const handleCheckboxChange = async (taskId: number) => {
-    await completeTask(taskId);
-    loadTasks();
+    console.log('Handle checkbox change still under implement');
+    console.log('Task ID:', taskId);
   };
 
   return (
@@ -76,19 +60,12 @@ export default function Page() {
           ) : (
             <Button
               className="bg-all-task-delete-button-bg text-white border-2"
-              onClick={() => setDialogOpen(true)}
             >
               Delete Task
             </Button>
           )}
         </div>
       </div>
-
-      <DeleteDialog
-        isDialogOpen={isDialogOpen}
-        setDialogOpen={setDialogOpen}
-        onClose={handleDialogClose}
-      />
       <TaskList tasks={taskList} handleCheckboxChange={handleCheckboxChange} />
     </div>
   );

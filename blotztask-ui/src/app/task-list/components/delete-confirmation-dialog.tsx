@@ -7,6 +7,7 @@ import {
   } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 
+//TODO : Refactor to new dete dialog as per the design
 export function DeleteDialog({ isDialogOpen, setDialogOpen, onClose }){
   
   return(
