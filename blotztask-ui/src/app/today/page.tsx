@@ -7,7 +7,6 @@ import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
-import TaskContent from './components/task-content';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
@@ -51,18 +50,15 @@ export default function Today() {
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader tasks={tasks} />
-        <TaskCard>
-          <AddTaskCard onAddTask={handleAddTask} />
-        </TaskCard>
+        <AddTaskCard onAddTask={handleAddTask} />
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
             incompleteTasks.map((task) => (
               <TaskCard
                 key={task.id}
-                taskId={task.id}
+                task={task}
                 handleCheckboxChange={handleCheckboxChange}
               >
-                <TaskContent task={task} />
               </TaskCard>
             ))
           ) : (
