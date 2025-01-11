@@ -13,8 +13,8 @@ const TaskCard = <T,>({
   handleCheckboxChange,
 }: TaskCardProps<T>) => {
   return (
-    <div className="flex flex-row space-x-4">
-      <div className="flex flex-row justify-start items-center pr-6 space-x-4  border-r-4 border-primary">
+    <div className="flex flex-row">
+      <div className="flex flex-row justify-start items-center">
         {handleCheckboxChange && taskId ? (
           <Checkbox
             onCheckedChange={() => handleCheckboxChange(taskId)}

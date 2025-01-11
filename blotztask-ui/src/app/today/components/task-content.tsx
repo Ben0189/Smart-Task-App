@@ -5,7 +5,8 @@ export default function TaskContent({ task }: { task: TaskDTO }) {
     <div
       className="flex flex-col w-full
          bg-transparent
-         ml-8 px-6
+         px-6
+         border-l-4 border-primary
         "
     >
       <div>
