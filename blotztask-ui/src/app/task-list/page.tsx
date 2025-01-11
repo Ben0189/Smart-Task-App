@@ -41,7 +41,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-end mt-5">
-      <div className="flex w-full justify-between">
+      <div className="text-primary-dark flex w-full justify-between">
         <H1>All Task</H1>
         <div className="flex items-center gap-3">
           <Link href="/add-task">
