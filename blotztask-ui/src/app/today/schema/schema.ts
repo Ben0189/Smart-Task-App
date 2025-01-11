@@ -7,4 +7,5 @@ export interface TaskDTO {
   title: string;
   isDone: boolean;
   label: LabelDTO;
+  description: string;
 }
