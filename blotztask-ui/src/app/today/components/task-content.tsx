@@ -3,12 +3,7 @@ import { TaskDTO } from '../schema/schema';
 export default function TaskContent({ task }: { task: TaskDTO }) {
   return (
     <div
-      className="flex flex-col w-full
-         bg-transparent
-         px-6
-         border-l-4 border-primary
-        "
-    >
+      className="flex flex-col w-full bg-transparent px-6 border-l-4 border-primary">
       <div>
         <p className="font-bold">{task?.title}</p>
       </div>
