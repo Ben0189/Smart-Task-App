@@ -64,7 +64,13 @@ namespace BlotzTask.Controllers
         [HttpPost]
         public async Task<IActionResult> AddTask([FromBody] AddTaskItemDTO addtaskItem)
         {
-            return Ok(await _taskService.AddTask(addtaskItem));
+            var userId = HttpContext.Items["UserId"] as string;
+
+            if (userId == null)
+            {
+                throw new UnauthorizedAccessException("Could not find user id from Http Context");
+            }
+            return Ok(await _taskService.AddTask(addtaskItem, userId));
         }
 
         [HttpPut("{id}")]

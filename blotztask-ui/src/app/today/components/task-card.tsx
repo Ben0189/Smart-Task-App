@@ -1,25 +1,17 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import React from "react";
+import { Checkbox } from '@/components/ui/checkbox';
+import React from 'react';
+import TaskContent from './task-content';
 
 const TaskCard = ({ task, handleCheckboxChange }) => {
   return (
-    <div key={task.id} className="w-full">
-      <div className="flex flex-row space-x-4">
-        <div className="flex flex-row justify-start items-center space-x-4">
+    <div className="flex">
+      <div className="flex justify-start items-center">
           <Checkbox
             onCheckedChange={() => handleCheckboxChange(task.id)}
-            className="h-8 w-8 rounded-md border-transparent bg-gray-400"
+            className="h-6 w-6 mr-6 rounded-full border-2 border-black"
           />
-        </div>
-
-        <div className="flex justify-center items-center rounded-xl bg-monthly-stats-work-label mr-2 w-1/3 p-4">
-          <p>{task.title}</p>
-        </div>
-
-        <div className="flex justify-center items-center rounded-xl bg-monthly-stats-work-label grow">
-          <p>{task.description}</p>
-        </div>
       </div>
+      <TaskContent task={task} />
     </div>
   );
 };
