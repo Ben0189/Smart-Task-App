@@ -7,7 +7,8 @@ import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
-import { ShowCompletedTask } from './components/show-completed-task';
+import { CompletedTaskViewer } from './components/show-completed-task';
+import { uncompleteTaskForToday } from '@/services/taskService';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
@@ -37,11 +38,24 @@ export default function Today() {
     loadTasks();
   };
 
+  const handleCompletedCheckboxChange = async (taskId: number) => {
+    await uncompleteTask(taskId);
+    loadTasks();
+  };
+
   const completeTask = async (taskId: number) => {
     try {
       await completeTaskForToday(taskId);
     } catch (error) {
       console.error('Error completing task:', error);
+    }
+  };
+
+  const uncompleteTask = async (taskId: number) => {
+    try {
+      await uncompleteTaskForToday(taskId);
+    } catch (error) {
+      console.error('Error uncompleting task:', error);
     }
   };
 
@@ -69,9 +83,9 @@ export default function Today() {
           )}
         </div>
 
-        <ShowCompletedTask
+        <CompletedTaskViewer
           completedTasks={completedTasks}
-          handleCheckboxChange={handleCheckboxChange}
+          handleCompletedCheckboxChange={handleCompletedCheckboxChange}
         />
       </div>
     </>

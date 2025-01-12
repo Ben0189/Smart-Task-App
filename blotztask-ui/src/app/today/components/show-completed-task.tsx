@@ -1,7 +1,10 @@
 import { H5 } from '@/components/ui/heading-with-anchor';
 import TaskCard from './task-card';
 
-export function ShowCompletedTask({ completedTasks, handleCheckboxChange }) {
+export function CompletedTaskViewer({
+  completedTasks,
+  handleCompletedCheckboxChange,
+}) {
   return (
     <div>
       <H5>Completed tasks</H5>
@@ -12,7 +15,7 @@ export function ShowCompletedTask({ completedTasks, handleCheckboxChange }) {
               <TaskCard
                 key={task.id}
                 task={task}
-                handleCheckboxChange={handleCheckboxChange}
+                handleCheckboxChange={handleCompletedCheckboxChange}
               />
             ))}
           </div>
