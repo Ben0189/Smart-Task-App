@@ -8,6 +8,7 @@ import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
 import { H5 } from '@/components/ui/heading-with-anchor';
+import { ShowCompletedTask } from './components/show-completed-task';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
@@ -62,30 +63,17 @@ export default function Today() {
                 key={task.id}
                 task={task}
                 handleCheckboxChange={handleCheckboxChange}
-              >
-              </TaskCard>
+              ></TaskCard>
             ))
           ) : (
             <p>No incomplete tasks for today!</p>
           )}
         </div>
 
-        <H5>Completed tasks</H5>
-        <div className="grid gap-6 w-full">
-          {completedTasks.length > 0 ? (
-            <div className="grid gap-6 w-full">
-              {completedTasks.map((task) => (
-                <TaskCard
-                  key={task.id}
-                  task={task}
-                  handleCheckboxChange={handleCheckboxChange}
-                />
-              ))}
-            </div>
-          ) : (
-            <p>No completed tasks for today!</p>
-          )}
-        </div>
+        <ShowCompletedTask
+          completedTasks={completedTasks}
+          handleCheckboxChange={handleCheckboxChange}
+        />
       </div>
     </>
   );
