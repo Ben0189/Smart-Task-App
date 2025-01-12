@@ -7,7 +7,6 @@ import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
-import { H5 } from '@/components/ui/heading-with-anchor';
 import { ShowCompletedTask } from './components/show-completed-task';
 
 export default function Today() {
