@@ -1,5 +1,4 @@
 import { TaskDTO } from '../schema/schema';
-import { format } from 'date-fns';
 import DueDayTag from './due-day-tag';
 
 export default function TaskContent({ task }: { task: TaskDTO }) {
