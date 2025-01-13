@@ -1,3 +1,3 @@
-import { TaskDetailDTO } from "@/app/today/models/task-detail-dto";
+import { TaskDetailDTO } from "@/model/task-detail-dto";
 
 export type TaskListItemDTO = Pick<TaskDetailDTO, 'id' | 'title' | 'isDone'>;
