@@ -5,7 +5,7 @@ import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
-import { TaskDetailDTO } from '../../model/task-detail-dto';
+import { TaskDetailDTO } from '../task-list/models/task-detail-dto';
 import AddTaskCard from './components/add-task-card';
 
 export default function Today() {

@@ -1,7 +1,7 @@
 import { H1, H5 } from '@/components/ui/heading-with-anchor';
 import React from 'react';
 import { Progress } from '@/components/ui/progress';
-import { TaskDetailDTO } from '../../../model/task-detail-dto';
+import { TaskDetailDTO } from '../../task-list/models/task-detail-dto';
 import { format } from 'date-fns';
 
 type TodayHeaderProps = {
