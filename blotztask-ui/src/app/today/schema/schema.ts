@@ -2,7 +2,7 @@
 
 import { LabelDTO } from '@/model/label-dto';
 
-export interface TaskDetailDTO {
+export interface TaskDTO {
   id: number;
   description: string;
   title: string;

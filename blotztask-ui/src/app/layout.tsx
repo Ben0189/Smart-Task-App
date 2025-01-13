@@ -19,13 +19,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn('min-h-screen font-sans antialiased h-screen')}>
+      <body
+        className={cn(
+          'min-h-screen font-sans antialiased h-screen',
+        )}
+      >
         <Provider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <SidebarProvider>
               <AppSidebar />
-              <SidebarTrigger />
-              <section className="container mx-auto px-12 pt-8 h-5/6">{children}</section>
+                <SidebarTrigger />
+                  <section className="container mx-auto px-12 pt-8 h-5/6">
+                    {children}
+                  </section>
             </SidebarProvider>
             <Toaster />
           </ThemeProvider>

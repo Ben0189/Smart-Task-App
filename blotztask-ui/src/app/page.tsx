@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -6,7 +6,12 @@ export default function Home() {
       <p className="mb-6 font-arial text-[32px] font-bold leading-[48px] tracking-[-0.41px] text-center text-secondary">
         Welcome to the new age note taking web
       </p>
-      <Image src="/assets/images/homePageNewPicture.png" alt="an incredable image" width={600} height={400} />
+      <Image
+        src="/assets/images/homePageNewPicture.png"
+        alt="an incredable image"
+        width={600}
+        height={400}
+      />
     </main>
   );
 }

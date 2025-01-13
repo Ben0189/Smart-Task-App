@@ -8,10 +8,10 @@ import { Trash } from 'lucide-react';
 import { H1 } from '@/components/ui/heading-with-anchor';
 import { TaskList } from './components/task-list';
 import { fetchAllTaskItems } from '@/services/taskService';
-import { TaskListItemDTO } from '@/model/task-list-Item-dto';
+import { TaskItemDTO } from '@/model/task-Item-dto';
 
 export default function Page() {
-  const [taskList, setTaskList] = useState<TaskListItemDTO[]>([]);
+  const [taskList, setTaskList] = useState<TaskItemDTO[]>([]);
 
   const loadTasks = async () => {
     const data = await fetchAllTaskItems();
@@ -56,7 +56,9 @@ export default function Page() {
               <Trash />
             </Button>
           ) : (
-            <Button className="bg-all-task-delete-button-bg text-white border-2">Delete Task</Button>
+            <Button className="bg-all-task-delete-button-bg text-white border-2">
+              Delete Task
+            </Button>
           )}
         </div>
       </div>

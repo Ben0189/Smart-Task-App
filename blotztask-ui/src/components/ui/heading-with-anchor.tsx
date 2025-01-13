@@ -12,7 +12,11 @@ type AnchorProps = {
   disableCopyToClipboard?: boolean;
 };
 
-const Anchor = ({ anchor, disableCopyToClipboard = false, anchorVisibility = 'always' }: AnchorProps) => {
+const Anchor = ({
+  anchor,
+  disableCopyToClipboard = false,
+  anchorVisibility = 'always',
+}: AnchorProps) => {
   function copyToClipboard() {
     if (disableCopyToClipboard) return;
     const currentUrl = window.location.href.replace(/#.*$/, '');

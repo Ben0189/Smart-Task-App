@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.heading-primary {
-  @apply text-primary-dark;
+.heading-primary{
+  @apply text-primary-dark
 }
 
-.heading-secondary {
-  @apply text-secondary;
+.heading-secondary{
+  @apply text-secondary ;
 }
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --color-text: 0, 0%, 0%;
+    --color-text: 0,0%,0%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -40,7 +40,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --sidebar-foreground: 201.4, 24.1%, 88.6%;
+    --sidebar-foreground: 201.4,24.1%,88.6%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
@@ -49,7 +49,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --color-text: 0, 0%, 100%;
+    --color-text: 0,0%,100%;
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;

@@ -1,11 +1,11 @@
 import { H1, H5 } from '@/components/ui/heading-with-anchor';
 import React from 'react';
 import { Progress } from '@/components/ui/progress';
-import { TaskDetailDTO } from '../../task-list/models/task-detail-dto';
+import { TaskDTO } from '../schema/schema';
 import { format } from 'date-fns';
 
 type TodayHeaderProps = {
-  tasks: TaskDetailDTO[]; // All tasks
+  tasks: TaskDTO[]; // All tasks
 };
 
 const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
@@ -20,8 +20,10 @@ const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
       <div className="flex justify-between items-center">
         <H5 className="text-gray-500 text-sm">{todayDate}</H5>
         <div className="flex items-center gap-2">
+          {/* Label for progress bar */}
           <span className="text-sm font-medium">Completed</span>
           <Progress value={progressValue} className="w-[200px]" />
+          {/* Label for task progress */}
           <span className="text-gray-500 text-sm font-medium">
             {completed} / {total}
           </span>
