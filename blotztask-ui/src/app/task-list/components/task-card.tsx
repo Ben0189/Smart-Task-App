@@ -2,17 +2,16 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import { Checkbox } from '@/components/ui/checkbox';
 import { Separator } from '@/components/ui/separator';
 import { useState } from 'react';
+import { TaskDetailDTO } from '../models/task-detail-dto';
 
 interface TaskCardProps {
-  tasks: any[];
+  tasks: TaskDetailDTO[];
   onTaskToggle: (taskId: number, isDone: boolean) => void;
 }
 
 export function TaskCard({ tasks, onTaskToggle }: TaskCardProps) {
-  // 使用本地状态来跟踪每个任务的完成状态
-  const [checkedTasks, setCheckedTasks] = useState<{ [key: number]: boolean }>(() => {
-    // 初始化状态，使用任务的 isDone 属性
-    const initial: { [key: number]: boolean } = {};
+  const [checkedTasks, setCheckedTasks] = useState<Record<number, boolean>>(() => {
+    const initial: Record<number, boolean> = {};
     tasks.forEach((task) => {
       initial[task.id] = task.isDone;
     });
@@ -20,9 +19,7 @@ export function TaskCard({ tasks, onTaskToggle }: TaskCardProps) {
   });
 
   const handleCheckboxChange = async (taskId: number, checked: boolean) => {
-    // 立即更新本地状态以获得即时反馈
     setCheckedTasks((prev) => ({ ...prev, [taskId]: checked }));
-    // 调用父组件的处理函数
     await onTaskToggle(taskId, checked);
   };
 
@@ -50,10 +47,7 @@ export function TaskCard({ tasks, onTaskToggle }: TaskCardProps) {
                 <CardDescription className="flex ml-3">
                   <div className="justify-start">{task.description || 'NO Description'}</div>
                   <div className="flex items-center justify-end ml-auto">
-                    <div
-                      className="w-4 h-4 rounded-full mr-2"
-                      style={{ backgroundColor: task.label?.color }}
-                    />
+                    <div className="w-4 h-4 rounded-full" style={{ backgroundColor: task.label?.color }} />
                     <p className="ml-2">{task.label?.name}</p>
                   </div>
                 </CardDescription>

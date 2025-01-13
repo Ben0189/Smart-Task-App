@@ -7,6 +7,7 @@ import { TaskCard } from './components/task-card';
 
 import { fetchAllTaskItems, updateTaskStatus } from '@/services/taskService';
 import { TaskListItemDTO } from '@/model/task-list-Item-dto';
+import { TaskDetailDTO } from '../models/task-detail-dto';
 
 export default function Page() {
   const [taskList, setTaskList] = useState<TaskListItemDTO[]>([]);
@@ -39,7 +40,7 @@ export default function Page() {
         <H1>All Tasks</H1>
       </div>
 
-      <TaskCard tasks={taskList} onTaskToggle={handleTaskToggle} />
+      <TaskCard tasks={taskList as TaskDetailDTO[]} onTaskToggle={handleTaskToggle} />
     </div>
   );
 }
