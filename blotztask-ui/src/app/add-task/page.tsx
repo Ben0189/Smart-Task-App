@@ -49,10 +49,7 @@ export default function Home() {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-10 mx-24"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10 mx-24">
         <Input
           className="bg-add-task-title-bg text-center text-add-task-title-text placeholder-add-task-title-placeholder"
           placeholder="Write Your Title Here"
@@ -60,12 +57,7 @@ export default function Home() {
         />
         {errors.title && <p className="text-red-500">{errors.title.message}</p>}
 
-        <TaskTabs
-          register={register}
-          setValue={setValue}
-          watch={watch}
-          errors={errors}
-        />
+        <TaskTabs register={register} setValue={setValue} watch={watch} errors={errors} />
 
         {/* Date Picker (Controlled via react-hook-form) */}
         <div className="flex justify-between items-center w-full">
