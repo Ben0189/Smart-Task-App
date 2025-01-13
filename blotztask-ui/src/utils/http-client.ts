@@ -5,33 +5,24 @@ export async function fetchWithErrorHandling<T>(url: string, options: RequestIni
   try {
     const response = await fetch(url, options);
 
-    if (response.ok) {
-      // check if the content is empty, if not the .json() will return error
-      return response.headers.get('content-length') !== '0' ? await response.json() : null;
-    }
+    const jsonResponse = await response.json();
 
-    // Check for JSON content type
-    const contentType = response.headers.get('Content-Type');
-
-    if (contentType && contentType.includes('application/problem+json')) {
-      const json = await response.json();
-
+    if (jsonResponse.error) {
+      // Handle specific error codes
       if (response.status === 400) {
-        throw new BadRequestError(json.title || 'Bad Request', json || null);
+        throw new BadRequestError(jsonResponse.error.message || 'Bad Request', jsonResponse.error);
       }
       if (response.status >= 500) {
-        throw new ServerError(json.errors.title || 'Server Error', json || null);
+        throw new ServerError(jsonResponse.error.message || 'Server Error', jsonResponse.error);
       }
-      console.error('Uncaught exception', json);
-      // For other errors, throw a generic error with the JSON message
-      throw new Error(json || 'Uncaught exception');
+      throw new Error(jsonResponse.error.message || 'Unknown error occurred');
     }
 
-    throw new Error('Uncaught Error with no Json result');
+    return jsonResponse;
   } catch (error) {
-    // Handle any other errors (like network errors)
+    // Handle parsing or network errors
     if (error instanceof SyntaxError) {
-      console.error(error.message);
+      console.error('Failed to parse JSON:', error.message);
     }
     throw error;
   }
