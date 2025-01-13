@@ -3,10 +3,9 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { H1 } from '@/components/ui/heading-with-anchor';
-import { TaskCard } from './components/task-card';
-import { TaskDetailDTO } from '@/app/task-list/models/task-detail-dto';
 import { fetchAllTaskItems, updateTaskStatus } from '@/services/taskService';
 import { TaskListItemDTO } from '@/model/task-list-Item-dto';
+import { TaskList } from './components/task-list';
 
 export default function Page() {
   const [taskList, setTaskList] = useState<TaskListItemDTO[]>([]); // 改为 TaskDetailDTO
@@ -16,9 +15,9 @@ export default function Page() {
     setTaskList(data);
   };
 
-  const handleTaskToggle = async (taskId: number, isDone: boolean) => {
+  const handleTaskToggle = async (taskId: number) => {
     try {
-      await updateTaskStatus(taskId, isDone);
+      await updateTaskStatus(taskId);
     } catch (error) {
       console.error('Failed to update task status:', error);
     }
@@ -36,7 +35,7 @@ export default function Page() {
         <H1>All Tasks</H1>
       </div>
 
-      <TaskCard tasks={taskList as unknown as TaskDetailDTO[]} onTaskToggle={handleTaskToggle} />
+      <TaskList tasks={taskList} handleCheckboxChange={handleTaskToggle} />
     </div>
   );
 }

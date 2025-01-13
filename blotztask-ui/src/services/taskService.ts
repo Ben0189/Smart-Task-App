@@ -68,13 +68,21 @@ export const AddTaskItem = async (addTaskForm: AddTaskTtemDTO): Promise<AddTaskT
   return result;
 };
 
-export const updateTaskStatus = async (taskId: number, isDone: boolean): Promise<void> => {
-    console.log('update task status endpoint is not ready yet taskId:', taskId, 'isDone:', isDone);
-    // await fetchWithAuth(`${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/UpdateStatus/${taskId}`, {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ isDone }),
-    // });
+export const updateTaskStatus = async (taskId: number): Promise<string> => {
+  try {
+    const result = await fetchWithAuth<string>(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/CompleteTask/${taskId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    return result;
+  } catch (error) {
+    console.error('Error completing task:', error);
+    return 'Error completing task.';
+  }
 };
