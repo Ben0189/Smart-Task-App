@@ -11,10 +11,10 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-} from "@/components/ui/sidebar";
-import { useSession } from "next-auth/react";
-import { SidebarAuthButton } from "./components/side-auth-button";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/sidebar';
+import { useSession } from 'next-auth/react';
+import { SidebarAuthButton } from './components/side-auth-button';
+import { cn } from '@/lib/utils';
 
 
 const authenticatedItems = [
@@ -37,6 +37,7 @@ export function AppSidebar() {
   };
 
   // Determine which items to show based on session status
+
   const items =
     status === 'loading'
       ? loadingItems
@@ -55,8 +56,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
-                      <item.icon
-                       className={cn("bg-primary","text-white p-1 rounded")} />
+                      <item.icon className={cn('bg-primary', 'text-white p-1 rounded')} />
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>

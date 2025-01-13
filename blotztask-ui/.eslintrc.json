@@ -6,9 +6,5 @@
     "@typescript-eslint/no-unused-vars": "error",
     "camelcase": "warn"
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "next/core-web-vitals"
-  ]
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "next/core-web-vitals"]
 }
