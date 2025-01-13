@@ -6,10 +6,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Trash } from 'lucide-react';
 import { H1 } from '@/components/ui/heading-with-anchor';
-import { TaskList } from './components/task-card';
-import {
-  fetchAllTaskItems,
-} from '@/services/taskService';
+import { TaskList } from './components/task-list';
+import { fetchAllTaskItems } from '@/services/taskService';
 import { TaskItemDTO } from '@/model/task-Item-dto';
 
 export default function Page() {
@@ -27,7 +25,7 @@ export default function Page() {
    */
   useEffect(() => {
     loadTasks();
-  }, []); 
+  }, []);
 
   const toggleDeleteTrigger = () => {
     setIsDeleteTriggered((prev) => !prev);
@@ -58,9 +56,7 @@ export default function Page() {
               <Trash />
             </Button>
           ) : (
-            <Button
-              className="bg-all-task-delete-button-bg text-white border-2"
-            >
+            <Button className="bg-all-task-delete-button-bg text-white border-2">
               Delete Task
             </Button>
           )}
