@@ -19,11 +19,8 @@ export default function Page() {
   const handleTaskToggle = async (taskId: number, isDone: boolean) => {
     try {
       await updateTaskStatus(taskId, isDone);
-      // 更新本地状态
-      setTaskList((prevTasks) => prevTasks.map((task) => (task.id === taskId ? { ...task, isDone } : task)));
     } catch (error) {
       console.error('Failed to update task status:', error);
-      // 可以在这里添加错误处理，比如显示一个错误提示
     }
   };
   /**
