@@ -67,3 +67,18 @@ export const AddTaskItem = async (addTaskForm: AddTaskTtemDTO): Promise<AddTaskT
 
   return result;
 };
+
+export const updateTaskStatus = async (taskId: number, isDone: boolean): Promise<void> => {
+  try {
+    await fetchWithAuth(`${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/UpdateStatus/${taskId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isDone }),
+    });
+  } catch (error) {
+    console.error('Error updating task status:', error);
+    throw new Error('Failed to update task status');
+  }
+};

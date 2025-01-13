@@ -5,17 +5,27 @@ import { useEffect } from 'react';
 import { H1 } from '@/components/ui/heading-with-anchor';
 import { TaskCard } from './components/task-card';
 
-import { fetchAllTaskItems } from '@/services/taskService';
+import { fetchAllTaskItems, updateTaskStatus } from '@/services/taskService';
 import { TaskListItemDTO } from '@/model/task-list-Item-dto';
 
 export default function Page() {
-  const [taskList, setTaskList] = useState<TaskItemDTO[]>([]);
+  const [taskList, setTaskList] = useState<TaskListItemDTO[]>([]);
 
   const loadTasks = async () => {
     const data = await fetchAllTaskItems();
     setTaskList(data);
   };
 
+  const handleTaskToggle = async (taskId: number, isDone: boolean) => {
+    try {
+      await updateTaskStatus(taskId, isDone);
+      // 更新本地状态
+      setTaskList((prevTasks) => prevTasks.map((task) => (task.id === taskId ? { ...task, isDone } : task)));
+    } catch (error) {
+      console.error('Failed to update task status:', error);
+      // 可以在这里添加错误处理，比如显示一个错误提示
+    }
+  };
   /**
    * Fetch the tasks once and set the hook on the first rendering
    */
@@ -29,7 +39,7 @@ export default function Page() {
         <H1>All Tasks</H1>
       </div>
 
-      <TaskCard tasks={taskList} />
+      <TaskCard tasks={taskList} onTaskToggle={handleTaskToggle} />
     </div>
   );
 }
