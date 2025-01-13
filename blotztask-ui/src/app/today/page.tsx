@@ -5,12 +5,12 @@ import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
-import { TaskDTO } from './models/task-dto';
+import { TaskDetailDTO } from './models/task-dto';
 import AddTaskCard from './components/add-task-card';
 
 export default function Today() {
-  const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
-  const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
+  const [tasks, setTasks] = useState<TaskDetailDTO[]>([]); // Store all tasks here
+  const [incompleteTasks, setIncompleteTasks] = useState<TaskDetailDTO[]>([]);
 
   useEffect(() => {
     loadTasks();

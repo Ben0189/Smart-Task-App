@@ -1,8 +1,8 @@
-import { TaskItemDTO } from '@/model/task-Item-dto';
+import { TaskListItemDTO } from '@/model/task-Item-dto';
 import React from 'react';
 
 interface TodoListProps {
-  tasks: TaskItemDTO[];
+  tasks: TaskListItemDTO[];
 }
 
 const TaskList: React.FC<TodoListProps> = ({ tasks }) => {

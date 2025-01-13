@@ -1,4 +1,4 @@
-export interface TaskItemDTO {
+export interface TaskListItemDTO {
   id: number;
   title: string;
   isDone: boolean;

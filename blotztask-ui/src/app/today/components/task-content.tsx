@@ -1,8 +1,8 @@
 import { Separator } from '@/components/ui/separator';
-import { TaskDTO } from '../models/task-dto';
+import { TaskDetailDTO } from '../models/task-dto';
 import DueDateTag from './due-date-tag';
 
-export default function TaskContent({ task }: { task: TaskDTO }) {
+export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   return (
     <div className="flex flex-row w-full bg-transparent">
       <Separator

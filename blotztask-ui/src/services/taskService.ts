@@ -1,10 +1,10 @@
-import { TaskDTO } from '@/app/today/models/task-dto';
-import { TaskItemDTO } from '@/model/task-Item-dto';
+import { TaskDetailDTO } from '@/app/today/models/task-dto';
+import { TaskListItemDTO } from '@/model/task-Item-dto';
 import { fetchWithAuth } from '@/utils/fetch-with-auth';
 import { AddTaskTtemDTO } from '@/model/add-task-item-dto';
 
-export const fetchAllTaskItems = async (): Promise<TaskItemDTO[]> => {
-  const result = await fetchWithAuth<TaskItemDTO[]>(
+export const fetchAllTaskItems = async (): Promise<TaskListItemDTO[]> => {
+  const result = await fetchWithAuth<TaskListItemDTO[]>(
     `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/alltask`,
     {
       method: 'GET',
@@ -17,11 +17,11 @@ export const fetchAllTaskItems = async (): Promise<TaskItemDTO[]> => {
   return result;
 };
 
-export const fetchTaskItemsDueToday = async (): Promise<TaskDTO[]> => {
+export const fetchTaskItemsDueToday = async (): Promise<TaskDetailDTO[]> => {
   //Converting today's date to ISO String format
   const date = new Date().toISOString().split('T')[0];
 
-  const result = await fetchWithAuth<TaskDTO[]>(
+  const result = await fetchWithAuth<TaskDetailDTO[]>(
     `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/due-date/${date}`,
     {
       method: 'GET',
