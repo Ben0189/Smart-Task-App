@@ -1,4 +1,4 @@
-import { TaskDetailDTO } from '@/app/today/models/task-dto';
+import { TaskDetailDTO } from '@/app/today/models/task-details-dto';
 import { TaskListItemDTO } from '@/model/task-list-Item-dto';
 import { fetchWithAuth } from '@/utils/fetch-with-auth';
 import { AddTaskTtemDTO } from '@/model/add-task-item-dto';

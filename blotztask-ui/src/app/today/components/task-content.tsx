@@ -1,5 +1,5 @@
 import { Separator } from '@/components/ui/separator';
-import { TaskDetailDTO } from '../models/task-dto';
+import { TaskDetailDTO } from '../models/task-details-dto';
 import DueDateTag from './due-date-tag';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
