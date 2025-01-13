@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { H1 } from '@/components/ui/heading-with-anchor';
 import { TaskCard } from './components/task-card';
+
 import { fetchAllTaskItems } from '@/services/taskService';
-import { TaskItemDTO } from '@/model/task-Item-dto';
+import { TaskListItemDTO } from '@/model/task-list-Item-dto';
 
 export default function Page() {
   const [taskList, setTaskList] = useState<TaskItemDTO[]>([]);
@@ -20,7 +21,7 @@ export default function Page() {
    */
   useEffect(() => {
     loadTasks();
-  }, []); // Runs on the first render using [] parameter and rerun when state changes, e.g add task
+  }, []);
 
   return (
     <div className="flex flex-col items-end mt-5">
