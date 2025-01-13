@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { H1, H3 } from '@/components/ui/heading-with-anchor';
-import { TaskListItemDTO } from '@/model/task-Item-dto';
+import { TaskListItemDTO } from '@/model/task-list-Item-dto';
 import Link from 'next/link';
 import { useState } from 'react';
 import TaskList from './components/task-list';

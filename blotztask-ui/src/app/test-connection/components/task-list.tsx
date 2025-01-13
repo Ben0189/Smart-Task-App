@@ -1,4 +1,4 @@
-import { TaskListItemDTO } from '@/model/task-Item-dto';
+import { TaskListItemDTO } from '@/model/task-list-Item-dto';
 import React from 'react';
 
 interface TodoListProps {

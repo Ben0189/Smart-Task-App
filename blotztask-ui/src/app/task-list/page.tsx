@@ -8,7 +8,7 @@ import { Trash } from 'lucide-react';
 import { H1 } from '@/components/ui/heading-with-anchor';
 import { TaskList } from './components/task-list';
 import { fetchAllTaskItems } from '@/services/taskService';
-import { TaskListItemDTO } from '@/model/task-Item-dto';
+import { TaskListItemDTO } from '@/model/task-list-Item-dto';
 
 export default function Page() {
   const [taskList, setTaskList] = useState<TaskListItemDTO[]>([]);
