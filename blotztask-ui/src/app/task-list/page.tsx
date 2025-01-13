@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { H1 } from '@/components/ui/heading-with-anchor';
 import { TaskCard } from './components/task-card';
-
+import { TaskDetailDTO } from '@/app/task-list/models/task-detail-dto';
 import { fetchAllTaskItems, updateTaskStatus } from '@/services/taskService';
 import { TaskListItemDTO } from '@/model/task-list-Item-dto';
 
 export default function Page() {
-  const [taskList, setTaskList] = useState<TaskListItemDTO[]>([]);
+  const [taskList, setTaskList] = useState<TaskListItemDTO[]>([]); // 改为 TaskDetailDTO
 
   const loadTasks = async () => {
     const data = await fetchAllTaskItems();
@@ -39,7 +39,7 @@ export default function Page() {
         <H1>All Tasks</H1>
       </div>
 
-      <TaskCard tasks={taskList as TaskDetailDTO[]} onTaskToggle={handleTaskToggle} />
+      <TaskCard tasks={taskList as unknown as TaskDetailDTO[]} onTaskToggle={handleTaskToggle} />
     </div>
   );
 }

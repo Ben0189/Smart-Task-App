@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { TaskDetailDTO } from '../models/task-detail-dto';
 
 interface TaskCardProps {
-  tasks: TaskDetailDTO[];
+  tasks: TaskDetailDTO[]; // 改为 TaskDetailDTO
   onTaskToggle: (taskId: number, isDone: boolean) => void;
 }
 
