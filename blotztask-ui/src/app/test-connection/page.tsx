@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col gap-5 p-12 md:items-center md:p-28">
-      <H1 className='heading-primary'>⚒️ Test Server Connection</H1>
+      <H1 className="heading-primary">⚒️ Test Server Connection</H1>
       <H3 className="text-lg font-light text-muted-foreground sm:text-xl heading-secondary">
         Click the button to fetch the current list of todo items.
       </H3>
@@ -58,9 +58,7 @@ export default function Home() {
       {tasks.length > 0 && (
         <Card className="mt-8 max-w-sm p-6 text-center bg-[#1A202C] text-white">
           <CardHeader>
-            <CardTitle className="text-2xl">
-              ✅Successfully fetched todos
-            </CardTitle>
+            <CardTitle className="text-2xl">✅Successfully fetched todos</CardTitle>
           </CardHeader>
           <CardContent>
             <TaskList tasks={tasks} />

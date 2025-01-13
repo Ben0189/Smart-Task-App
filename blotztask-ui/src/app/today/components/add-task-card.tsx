@@ -8,15 +8,14 @@ const AddTaskCard = ({ onAddTask }) => {
   return (
     <div className="flex">
       <div className="w-6 h-6 mr-6 border border-gray-400 rounded-full border-dashed"></div>
-      <div className="flex items-center gap-2 cursor-pointe border-l-4 border-primary px-6"
+      <div
+        className="flex items-center gap-2 cursor-pointe border-l-4 border-primary px-6"
         onClick={() => setIsFormVisible(true)}
       >
         {!isFormVisible ? (
           <>
             <PlusIcon className="w-6 h-6 text-blue-400" />
-            <span className="text-blue-400 font-semibold text-lg">
-              Add a task
-            </span>
+            <span className="text-blue-400 font-semibold text-lg">Add a task</span>
           </>
         ) : (
           <AddTaskForm

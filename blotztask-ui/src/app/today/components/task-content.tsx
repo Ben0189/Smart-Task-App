@@ -4,7 +4,6 @@ import DueDateTag from './due-date-tag';
 
 export default function TaskContent({ task }: { task: TaskDTO }) {
   return (
-
     <div className="flex flex-row w-full bg-transparent">
       <Separator
         orientation="vertical"
@@ -14,10 +13,10 @@ export default function TaskContent({ task }: { task: TaskDTO }) {
       />
 
       <div className="flex flex-col w-full bg-transparent px-6">
-       <div className="flex flex-row justify-between w-full">
-        <p className="font-bold">{task?.title}</p>
-        <DueDateTag task={task} />
-       </div>
+        <div className="flex flex-row justify-between w-full">
+          <p className="font-bold">{task?.title}</p>
+          <DueDateTag task={task} />
+        </div>
 
         <div className="flex w-full text-sm text-gray-500 mt-2">
           <div className="flex flex-col w-full">
@@ -29,9 +28,7 @@ export default function TaskContent({ task }: { task: TaskDTO }) {
               className="h-4 w-4 rounded-full"
               style={{ backgroundColor: task.label.color || 'gray' }}
             ></div>
-            <span className="ml-2 font-bold">
-              {task.label?.name || 'No label name'}
-            </span>
+            <span className="ml-2 font-bold">{task.label?.name || 'No label name'}</span>
           </div>
         </div>
       </div>

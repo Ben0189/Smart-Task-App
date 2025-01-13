@@ -56,9 +56,7 @@ export default function Page() {
               <Trash />
             </Button>
           ) : (
-            <Button className="bg-all-task-delete-button-bg text-white border-2">
-              Delete Task
-            </Button>
+            <Button className="bg-all-task-delete-button-bg text-white border-2">Delete Task</Button>
           )}
         </div>
       </div>

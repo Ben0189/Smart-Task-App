@@ -53,9 +53,7 @@ export const completeTaskForToday = async (taskId: number): Promise<string> => {
   }
 };
 
-export const AddTaskItem = async (
-  addTaskForm: AddTaskTtemDTO
-): Promise<AddTaskTtemDTO> => {
+export const AddTaskItem = async (addTaskForm: AddTaskTtemDTO): Promise<AddTaskTtemDTO> => {
   const result = await fetchWithAuth<AddTaskTtemDTO>(
     `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task`,
     {
