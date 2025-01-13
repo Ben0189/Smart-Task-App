@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { Trash } from 'lucide-react';
 import { DeleteDialog } from './components/delete-confirmation-dialog';
 import { H1 } from '@/components/ui/heading-with-anchor';
-
 import { TaskCard } from './components/task-card';
 import { fetchAllTaskItems } from '@/services/taskService';
 import { TaskItemDTO } from '@/model/task-Item-dto';
@@ -42,7 +41,7 @@ export default function Page() {
   return (
     <div className="flex flex-col items-end mt-5">
       <div className="text-primary-dark flex w-full justify-between">
-        <H1>All Task</H1>
+        <H1>All Tasks</H1>
         <div className="flex items-center gap-3">
           <Link href="/add-task">
             <Button className="bg-all-task-add-button-bg text-all-task-add-button-text border-2 border-all-task-add-button-border">
