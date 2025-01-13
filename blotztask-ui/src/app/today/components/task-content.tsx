@@ -1,6 +1,6 @@
 import { Separator } from '@/components/ui/separator';
 import { TaskDTO } from '../models/task-dto';
-import DueDayTag from './due-day-tag';
+import DueDateTag from './due-date-tag';
 
 export default function TaskContent({ task }: { task: TaskDTO }) {
   return (
@@ -16,7 +16,7 @@ export default function TaskContent({ task }: { task: TaskDTO }) {
       <div className="flex flex-col w-full bg-transparent px-6">
        <div className="flex flex-row justify-between w-full">
         <p className="font-bold">{task?.title}</p>
-        <DueDayTag task={task} />
+        <DueDateTag task={task} />
        </div>
 
         <div className="flex w-full text-sm text-gray-500 mt-2">

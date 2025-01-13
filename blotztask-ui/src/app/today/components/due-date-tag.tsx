@@ -1,7 +1,7 @@
 import { format } from 'node_modules/date-fns/format';
 import { TaskDTO } from '../models/task-dto';
 
-const DueDayTag = ({ task }: { task: TaskDTO }) => {
+const DueDateTag = ({ task }: { task: TaskDTO }) => {
   return (
     <div
       className="flex items-center justify-center bg-gray-200 w-40 
@@ -12,4 +12,4 @@ const DueDayTag = ({ task }: { task: TaskDTO }) => {
   );
 };
 
-export default DueDayTag;
+export default DueDateTag;
