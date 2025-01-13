@@ -18,6 +18,7 @@ export default function Page() {
   const handleTaskToggle = async (taskId: number) => {
     try {
       await updateTaskStatus(taskId);
+      await loadTasks();
     } catch (error) {
       console.error('Failed to update task status:', error);
     }
