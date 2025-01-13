@@ -1,5 +1,5 @@
 import { format } from 'node_modules/date-fns/format';
-import { TaskDTO } from '../schema/schema';
+import { TaskDTO } from '../models/task-dto';
 
 const DueDayTag = ({ task }: { task: TaskDTO }) => {
   return (
