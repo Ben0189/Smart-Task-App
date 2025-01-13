@@ -1,6 +1,6 @@
 'use client';
 
-import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import { SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 
 export function SidebarAuthButton({ session, onSignOut }) {
   return (
