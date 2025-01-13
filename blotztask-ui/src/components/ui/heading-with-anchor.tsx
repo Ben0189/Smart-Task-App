@@ -5,6 +5,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { LinkIcon } from 'lucide-react';
 import Link from 'next/link';
+import '@/styles/globals.css';
 
 type AnchorProps = {
   anchor?: string;
@@ -38,7 +39,7 @@ const Anchor = ({ anchor, disableCopyToClipboard = false, anchorVisibility = 'al
   );
 };
 
-const headingVariants = cva('font-bold text-primary', {
+const headingVariants = cva('[&]:!text-[#2C3233] font-bold', {
   variants: {
     variant: {
       h1: 'leading-14 text-4xl lg:text-5xl',
