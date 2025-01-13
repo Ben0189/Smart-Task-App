@@ -4,7 +4,7 @@ import TaskContent from './task-content';
 
 const TaskCard = ({ task, handleCheckboxChange }) => {
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <div className="flex justify-start items-center">
         <Checkbox
           onCheckedChange={() => handleCheckboxChange(task.id)}
