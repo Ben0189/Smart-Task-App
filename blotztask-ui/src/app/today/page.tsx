@@ -5,14 +5,16 @@ import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
-import { TaskDTO } from './schema/schema';
+import { TaskDetailDTO } from '../task-list/models/task-detail-dto';
 import AddTaskCard from './components/add-task-card';
 import { CompletedTaskViewer } from './components/completed-task-viewer';
 
 export default function Today() {
+
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
   const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
   const [completedTasks, setCompletedTasks] = useState<TaskDTO[]>([]);
+
 
   useEffect(() => {
     loadTasks();
@@ -66,11 +68,7 @@ export default function Today() {
         <div className="flex flex-col gap-6 w-full">
           {incompleteTasks.length > 0 ? (
             incompleteTasks.map((task) => (
-              <TaskCard
-                key={task.id}
-                task={task}
-                handleCheckboxChange={handleCheckboxChange}
-              ></TaskCard>
+              <TaskCard key={task.id} task={task} handleCheckboxChange={handleCheckboxChange}></TaskCard>
             ))
           ) : (
             <p>No incomplete tasks for today!</p>
