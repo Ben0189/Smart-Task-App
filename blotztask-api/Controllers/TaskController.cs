@@ -88,14 +88,6 @@ namespace BlotzTask.Controllers
 
             return Ok($"Task {result} is not done");
         }
-        [HttpPut("unCompleteTask/{id}")]
-        public async Task<IActionResult> UncompleteTask(int id)
-        {
-            var result = await _taskService.uncompleteTask(id);
-
-            return Ok($"Task {result} is not done");
-        }
-
 
 
         [HttpDelete("{id}")]

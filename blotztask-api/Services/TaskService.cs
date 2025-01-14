@@ -14,7 +14,6 @@ public interface ITaskService
     public Task<bool> DeleteTaskByID(int Id);
     public Task<string> AddTask(AddTaskItemDTO addtaskItem, String userId);
     public Task<int> CompleteTask(int id);
-    public Task<int> uncompleteTask(int id);
     public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId);
     public Task<MonthlyStatDTO> GetMonthlyStats(string userId, int year, int month);
 }
@@ -137,23 +136,6 @@ public class TaskService : ITaskService
         }
 
         task.IsDone = true;
-
-        _dbContext.TaskItems.Update(task);
-        await _dbContext.SaveChangesAsync();
-
-        return taskId;
-    }
-
-    public async Task<int> uncompleteTask(int taskId)
-    {
-        var task = await _dbContext.TaskItems.FindAsync(taskId);
-
-        if (task == null)
-        {
-            throw new NotFoundException($"Task with ID {taskId} was not found.");
-        }
-
-        task.IsDone = false;
 
         _dbContext.TaskItems.Update(task);
         await _dbContext.SaveChangesAsync();

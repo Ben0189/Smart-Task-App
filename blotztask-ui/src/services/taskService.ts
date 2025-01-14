@@ -53,27 +53,6 @@ export const completeTaskForToday = async (taskId: number): Promise<string> => {
   }
 };
 
-export const uncompleteTaskForToday = async (
-  taskId: number
-): Promise<string> => {
-  try {
-    const result = await fetchWithAuth<string>(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/uncompleteTask/${taskId}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    return result;
-  } catch (error) {
-    console.error('Error uncompleting task:', error);
-    return 'Error uncompleting task.';
-  }
-};
-
 export const AddTaskItem = async (
   addTaskForm: AddTaskTtemDTO
 ): Promise<AddTaskTtemDTO> => {

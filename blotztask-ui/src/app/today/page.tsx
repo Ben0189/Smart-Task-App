@@ -7,7 +7,7 @@ import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
-import { CompletedTaskViewer } from './components/show-completed-task';
+import { CompletedTaskViewer } from './components/completed-task-viewer';
 import { uncompleteTaskForToday } from '@/services/taskService';
 
 export default function Today() {
@@ -39,8 +39,7 @@ export default function Today() {
   };
 
   const handleCompletedCheckboxChange = async (taskId: number) => {
-    await uncompleteTask(taskId);
-    loadTasks();
+    console.log('Uncompleting task:', taskId);
   };
 
   const completeTask = async (taskId: number) => {
@@ -52,11 +51,7 @@ export default function Today() {
   };
 
   const uncompleteTask = async (taskId: number) => {
-    try {
-      await uncompleteTaskForToday(taskId);
-    } catch (error) {
-      console.error('Error uncompleting task:', error);
-    }
+    // waiting to finish the implementation
   };
 
   const handleAddTask = (taskTitle) => {
