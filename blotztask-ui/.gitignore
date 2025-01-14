@@ -37,3 +37,6 @@ next-env.d.ts
 
 # vscode
 .vscode
+
+# Ignore material icons
+**/material-icons

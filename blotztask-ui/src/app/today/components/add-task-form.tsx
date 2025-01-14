@@ -4,7 +4,6 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { format } from 'date-fns';
-import { CalendarIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -13,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import Icon from '@/components/ui/icon';
 
 const taskSchema = z.object({
   title: z.string(), // Simple string without validation rules
@@ -60,14 +60,21 @@ const AddTaskForm = ({ onSubmit }) => {
         <Popover>
           <PopoverTrigger asChild>
             <Button
-              variant={'outline'}
+              variant={'secondary'}
               className={cn(
-                'w-[160px] justify-start text-left font-normal',
-                !date && 'text-muted-foreground'
+                'bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200'
+                // 'w-[160px] justify-start text-left font-normal',
+                // !date && 'text-muted-foreground'
               )}
             >
-              <CalendarIcon />
-              {date ? format(date, 'PPP') : <span>Select due date</span>}
+              <Icon
+                name="calendar_month"
+                size="md"
+                className="fill-gray-600  mr-2"
+              />
+              <span>Add Date</span>
+              {/* <CalendarIcon />
+              {date ? format(date, 'PPP') : <span>Add Date</span>} */}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
@@ -83,7 +90,12 @@ const AddTaskForm = ({ onSubmit }) => {
           variant="secondary"
           className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200"
         >
-          Add Tag
+          <Icon
+            name="sell"
+            size="md"
+            className="fill-gray-600 origin-center rotate-90 mr-2"
+          />
+          <span>Add Label</span>
         </Button>
       </div>
     </form>
