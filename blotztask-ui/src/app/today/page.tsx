@@ -8,7 +8,6 @@ import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
 import { CompletedTaskViewer } from './components/completed-task-viewer';
-import { uncompleteTaskForToday } from '@/services/taskService';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
