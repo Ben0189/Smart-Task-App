@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import AddTaskForm from './add-task-form';
 import { PlusIcon } from '@radix-ui/react-icons';
 import TaskSeparator from '../shared/task-separator';
+import { useClickAway } from 'react-use';
 
 const AddTaskCard = ({ onAddTask }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const formRef = useRef(null);
+
+  useClickAway(formRef, () => {
+    if (isFormVisible) setIsFormVisible(false);
+  });
 
   return (
     <div className="flex">
@@ -18,12 +24,14 @@ const AddTaskCard = ({ onAddTask }) => {
             <span className="text-blue-400 font-semibold text-lg">Add a task</span>
           </>
         ) : (
-          <AddTaskForm
-            onSubmit={(taskTitle: string) => {
-              onAddTask(taskTitle);
-              setIsFormVisible(false);
-            }}
-          />
+          <div ref={formRef}>
+            <AddTaskForm
+              onSubmit={(taskTitle: string) => {
+                onAddTask(taskTitle);
+                setIsFormVisible(false);
+              }}
+            />
+          </div>
         )}
       </div>
     </div>
