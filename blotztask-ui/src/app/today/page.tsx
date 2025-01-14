@@ -10,11 +10,9 @@ import AddTaskCard from './components/add-task-card';
 import { CompletedTaskViewer } from './components/completed-task-viewer';
 
 export default function Today() {
-
-  const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
-  const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
-  const [completedTasks, setCompletedTasks] = useState<TaskDTO[]>([]);
-
+  const [tasks, setTasks] = useState<TaskDetailDTO[]>([]); // Store all tasks here
+  const [incompleteTasks, setIncompleteTasks] = useState<TaskDetailDTO[]>([]);
+  const [completedTasks, setCompletedTasks] = useState<TaskDetailDTO[]>([]);
 
   useEffect(() => {
     loadTasks();
@@ -51,9 +49,9 @@ export default function Today() {
     }
   };
 
-  // const uncompleteTask = async (taskId: number) => {
-  //   // waiting to finish the implementation
-  // };
+  const uncompleteTask = async (taskId: number) => {
+    // waiting to finish the implementation
+  };
 
   const handleAddTask = (taskTitle) => {
     console.log('Adding task:', taskTitle);
