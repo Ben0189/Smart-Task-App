@@ -1,18 +1,44 @@
 import { Checkbox } from '@/components/ui/checkbox';
-import React from 'react';
+import React, { useState } from 'react';
 import TaskContent from './task-content';
+import { Calendar } from '@/components/ui/calendar';
+import LabelGroup from '../shared/label-group';
 
 const TaskCard = ({ task, handleCheckboxChange }) => {
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showTaskTab, setTaskTab] = useState(false);
+
+  const handleShowCalendar = () => {
+    setShowCalendar(!showCalendar);
+  };
+
+  const handleShowTaskTab = () => {
+    setTaskTab(!showTaskTab);
+  };
+
   return (
-    <div className="flex w-full">
-      <div className="flex justify-start items-center">
-        <Checkbox
-          checked={task.isDone}
-          onCheckedChange={() => handleCheckboxChange(task.id)}
-          className="h-6 w-6 mr-6 rounded-full border-2 border-black"
-        />
+    <div>
+      <div className="flex w-full">
+        <div className="flex justify-start items-center">
+          <Checkbox
+            checked={task.isDone}
+            onCheckedChange={() => handleCheckboxChange(task.id)}
+            className="h-6 w-6 mr-6 rounded-full border-2 border-black"
+          />
+        </div>
+        <TaskContent task={task} onShowCalendar={handleShowCalendar} onShowTaskTabs={handleShowTaskTab} />
       </div>
-      <TaskContent task={task} />
+      {showCalendar && (
+        <div>
+          <Calendar className="border-2 rounded-2xl w-64"></Calendar>
+        </div>
+      )}
+
+      {showTaskTab && (
+        <div>
+          <LabelGroup />
+        </div>
+      )}
     </div>
   );
 };
