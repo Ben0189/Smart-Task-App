@@ -9,11 +9,11 @@ export function Categories() {
   ];
 
   return (
-    <div className="task-categories">
-      <h2 className="text-lg font-semibold mb-2">Task Categories</h2>
+    <div>
+    <h2 className="text-lg font-semibold mb-2">Task Categories</h2>
       <ul className="space-y-2">
         {categories.map((category, index) => (
-          <li key={index} className="flex items-center space-x-2">
+          <li key={category.name} className="flex items-center space-x-2">
             <span
               className={`h-4 w-4 rounded-full ${category.color}`}
               aria-hidden="true"
