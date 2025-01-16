@@ -2,8 +2,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
-// import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -55,16 +53,10 @@ const AddTaskForm = ({ onSubmit }) => {
           <PopoverTrigger asChild>
             <Button
               variant={'secondary'}
-              className={cn(
-                'bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200'
-                // 'w-[160px] justify-start text-left font-normal',
-                // !date && 'text-muted-foreground'
-              )}
+              className={cn('bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200')}
             >
               <CalendarIcon className="fill-gray-600  mr-2" />
               <span>Add Date</span>
-              {/* <CalendarIcon />
-              {date ? format(date, 'PPP') : <span>Add Date</span>} */}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
@@ -75,7 +67,6 @@ const AddTaskForm = ({ onSubmit }) => {
           variant="secondary"
           className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200"
         >
-          {/* <Icon name="sell" size="md" className="fill-gray-600 origin-center rotate-90 mr-2" /> */}
           <IoPricetagOutline className="fill-gray-600 mr-2" />
           <span>Add Label</span>
         </Button>
