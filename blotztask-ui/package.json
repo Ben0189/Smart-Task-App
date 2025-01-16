@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write .",
-    "copy-material-icons": "ts-node ./scripts/copy-material-icons.ts"
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@faker-js/faker": "^8.2.0",
@@ -61,11 +60,10 @@
     "react-day-picker": "^8.7.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.44.3",
-    "react-inlinesvg": "^4.1.5",
+    "react-icons": "^5.4.0",
     "react-resizable-panels": "^0.0.55",
     "recharts": "2.12.7",
     "sonner": "^1.2.3",
-    "symlink-dir": "^6.0.4",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "0.9.0",
@@ -82,7 +80,6 @@
     "postcss": "^8.4.39",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.6",
-    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

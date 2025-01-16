@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AddTaskForm from './add-task-form';
-import Icon from '@/components/ui/icon';
+import { PlusIcon } from '@radix-ui/react-icons';
 
 const AddTaskCard = ({ onAddTask }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -15,8 +15,7 @@ const AddTaskCard = ({ onAddTask }) => {
       <div className="flex items-center gap-2 cursor-pointer" onClick={() => setIsFormVisible(true)}>
         {!isFormVisible ? (
           <>
-            <Icon name="add" size="md" className="fill-blue-400" />
-            {/* <PlusIcon className="w-6 h-6 text-blue-400" /> */}
+            <PlusIcon className="w-6 h-6 text-blue-400" />
             <span className="text-blue-400 font-semibold text-lg">Add a task</span>
           </>
         ) : (
