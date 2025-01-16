@@ -8,11 +8,15 @@ import { format } from 'date-fns';
 export default function TaskContent({
   task,
   onShowCalendar,
+  showCalendar,
   onShowTaskTabs,
+  showTaskTab,
 }: {
   task: TaskDetailDTO;
   onShowCalendar?: () => void;
+  showCalendar: boolean;
   onShowTaskTabs?: () => void;
+  showTaskTab: boolean;
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [dateButtonBlue, setDateButtonBlue] = useState(false);
@@ -88,11 +92,8 @@ export default function TaskContent({
                 <button
                   className={`flex flex-row
                              items-center mr-4 bg-blue-100 rounded-full px-3 py-1 
-                             ${dateButtonBlue ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
-                  onClick={() => {
-                    toggleDateButtonColor();
-                    onShowCalendar();
-                  }}
+                             ${showCalendar ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
+                  onClick={() => onShowCalendar()}
                 >
                   <CalendarDays className="mr-1" size={16} />
                   <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
@@ -100,11 +101,8 @@ export default function TaskContent({
                 <button
                   className={`flex flex-row items-center 
                             rounded-full px-3 py-1 
-                            ${labelButtonBlue ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
-                  onClick={() => {
-                    toggleLabelButtonBlue();
-                    onShowTaskTabs();
-                  }}
+                            ${showTaskTab ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
+                  onClick={() => onShowTaskTabs()}
                 >
                   <Tag className="mr-1" size={16} />
                   <span className="text-xs">{task.label?.name || 'No label name'}</span>
