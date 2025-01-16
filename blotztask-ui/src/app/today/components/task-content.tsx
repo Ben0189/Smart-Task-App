@@ -19,11 +19,6 @@ export default function TaskContent({
   showTaskTab: boolean;
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [dateButtonBlue, setDateButtonBlue] = useState(false);
-  const [labelButtonBlue, setLabelButtonBlue] = useState(false);
-
-  const toggleDateButtonColor = () => setDateButtonBlue(!dateButtonBlue);
-  const toggleLabelButtonBlue = () => setLabelButtonBlue(!labelButtonBlue);
 
   const handleEditState = () => setIsEditing(!isEditing);
 

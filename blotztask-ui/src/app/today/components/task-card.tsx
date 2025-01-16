@@ -1,5 +1,5 @@
 import { Checkbox } from '@/components/ui/checkbox';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import TaskContent from './task-content';
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
@@ -8,6 +8,9 @@ const TaskCard = ({ task, handleCheckboxChange }) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [showTaskTab, setTaskTab] = useState(false);
 
+  const calendarRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+
   const handleShowCalendar = () => {
     setShowCalendar(!showCalendar);
   };
@@ -15,6 +18,26 @@ const TaskCard = ({ task, handleCheckboxChange }) => {
   const handleShowTaskTab = () => {
     setTaskTab(!showTaskTab);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+        handleShowCalendar();
+      }
+
+      if (labelRef.current && !labelRef.current.contains(event.target as Node)) {
+        handleShowTaskTab();
+      }
+    };
+
+    if (showCalendar || showTaskTab) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showCalendar, showTaskTab]);
 
   return (
     <div>
@@ -35,7 +58,7 @@ const TaskCard = ({ task, handleCheckboxChange }) => {
         />
       </div>
       {showCalendar && (
-        <div>
+        <div ref={calendarRef}>
           <Calendar
             className="border-2 rounded-2xl w-64"
             classNames={{ caption_label: 'bg-blue-100 rounded-md px-3 py-1' }}
@@ -44,7 +67,7 @@ const TaskCard = ({ task, handleCheckboxChange }) => {
       )}
 
       {showTaskTab && (
-        <div>
+        <div ref={labelRef}>
           <LabelGroup />
         </div>
       )}
