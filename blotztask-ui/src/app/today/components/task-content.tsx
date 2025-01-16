@@ -88,7 +88,7 @@ export default function TaskContent({
                 <button
                   className={`flex flex-row
                              items-center mr-4 bg-blue-100 rounded-full px-3 py-1 
-                             ${dateButtonBlue ? 'bg-gray-300 text-neutral-700' : 'bg-primary text-white'}`}
+                             ${dateButtonBlue ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
                   onClick={() => {
                     toggleDateButtonColor();
                     onShowCalendar();
