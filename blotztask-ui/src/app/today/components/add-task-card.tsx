@@ -12,17 +12,12 @@ const AddTaskCard = ({ onAddTask }) => {
         className="ml-3 w-1 bg-gray-400 rounded"
         style={{ height: isFormVisible ? '130px' : '40px' }} // Change height dynamically if needed
       ></div>
-      <div
-        className="flex items-center gap-2 cursor-pointer"
-        onClick={() => setIsFormVisible(true)}
-      >
+      <div className="flex items-center gap-2 cursor-pointer" onClick={() => setIsFormVisible(true)}>
         {!isFormVisible ? (
           <>
             <Icon name="add" size="md" className="fill-blue-400" />
             {/* <PlusIcon className="w-6 h-6 text-blue-400" /> */}
-            <span className="text-blue-400 font-semibold text-lg">
-              Add a task
-            </span>
+            <span className="text-blue-400 font-semibold text-lg">Add a task</span>
           </>
         ) : (
           <AddTaskForm

@@ -1,17 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { z } from 'zod';
-import { TaskDTO, taskDTOSchema } from './schema/schema';
 import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
+import { TaskDetailDTO } from '../task-list/models/task-detail-dto';
 import AddTaskCard from './components/add-task-card';
 
 export default function Today() {
-  const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
-  const [incompleteTasks, setIncompleteTasks] = useState<TaskDTO[]>([]);
+  const [tasks, setTasks] = useState<TaskDetailDTO[]>([]); // Store all tasks here
+  const [incompleteTasks, setIncompleteTasks] = useState<TaskDetailDTO[]>([]);
 
   useEffect(() => {
     loadTasks();
@@ -20,9 +19,9 @@ export default function Today() {
   const loadTasks = async () => {
     try {
       const data = await fetchTaskItemsDueToday();
-      const validatedTasks = z.array(taskDTOSchema).parse(data);
-      setTasks(validatedTasks);
-      const notDoneTasks = validatedTasks.filter((task) => !task.isDone);
+      setTasks(data);
+      // Filter tasks to only include those where isDone is false
+      const notDoneTasks = data.filter((task) => !task.isDone);
       setIncompleteTasks(notDoneTasks);
     } catch (error) {
       console.error('Error loading tasks:', error);
@@ -51,18 +50,12 @@ export default function Today() {
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader tasks={tasks} />
-        <AddTaskCard onAddTask={handleAddTask}/>
-        <div className="grid gap-6 w-full">
+        <AddTaskCard onAddTask={handleAddTask} />
+        <div className="flex flex-col gap-6 w-full">
           {incompleteTasks.length > 0 ? (
-            <div className="grid gap-6 w-full">
-              {incompleteTasks.map((task) => (
-                <TaskCard
-                  key={task.id}
-                  task={task}
-                  handleCheckboxChange={handleCheckboxChange}
-                />
-              ))}
-            </div>
+            incompleteTasks.map((task) => (
+              <TaskCard key={task.id} task={task} handleCheckboxChange={handleCheckboxChange}></TaskCard>
+            ))
           ) : (
             <p>No incomplete tasks for today!</p>
           )}
