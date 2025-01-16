@@ -30,7 +30,10 @@ const TaskCard = ({ task, handleCheckboxChange }) => {
       </div>
       {showCalendar && (
         <div>
-          <Calendar className="border-2 rounded-2xl w-64"></Calendar>
+          <Calendar
+            className="border-2 rounded-2xl w-64"
+            classNames={{ caption_label: 'bg-blue-100 rounded-md px-3 py-1' }}
+          />
         </div>
       )}
 
