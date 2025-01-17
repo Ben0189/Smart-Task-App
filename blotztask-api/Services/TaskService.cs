@@ -138,7 +138,7 @@ public class TaskService : ITaskService
         }
 
         task.IsDone = !task.IsDone;
-
+        task.UpdatedAt = DateTime.UtcNow;
         _dbContext.TaskItems.Update(task);
         await _dbContext.SaveChangesAsync();
 
