@@ -13,7 +13,7 @@ public interface ITaskService
     public Task<int> EditTask(int Id, EditTaskItemDTO editTaskItem);
     public Task<bool> DeleteTaskByID(int Id);
     public Task<string> AddTask(AddTaskItemDTO addtaskItem, String userId);
-    public Task<int> CompleteTask(int id);
+    public Task<(int, bool)> CompleteTask(int id);
     public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId);
     public Task<MonthlyStatDTO> GetMonthlyStats(string userId, int year, int month);
 }
@@ -128,7 +128,7 @@ public class TaskService : ITaskService
         return id;
     }
 
-    public async Task<int> CompleteTask(int taskId)
+    public async Task<(int, bool)> CompleteTask(int taskId)
     {
         var task = await _dbContext.TaskItems.FindAsync(taskId);
 
@@ -137,12 +137,12 @@ public class TaskService : ITaskService
             throw new NotFoundException($"Task with ID {taskId} was not found.");
         }
 
-        task.IsDone = true;
+        task.IsDone = !task.IsDone;
 
         _dbContext.TaskItems.Update(task);
         await _dbContext.SaveChangesAsync();
 
-        return taskId;
+        return (taskId, task.IsDone);
     }
 
     public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId)
