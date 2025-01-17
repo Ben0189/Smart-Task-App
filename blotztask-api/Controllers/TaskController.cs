@@ -85,9 +85,11 @@ namespace BlotzTask.Controllers
         public async Task<IActionResult> CompleteTask(int id)
         {
             var result = await _taskService.CompleteTask(id);
+            return Ok(new ResponseWrapper<int>(result, $"Task {result} is done", true));
 
-            return Ok($"Task {result} is done");
         }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTaskByID(int id)
         {

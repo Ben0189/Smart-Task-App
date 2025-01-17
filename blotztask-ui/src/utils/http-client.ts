@@ -1,43 +1,29 @@
-import { BadRequestError } from "@/model/error/bad-request-error";
-import { ServerError } from "@/model/error/server-error";
+import { BadRequestError } from '@/model/error/bad-request-error';
+import { ServerError } from '@/model/error/server-error';
 
-export async function fetchWithErrorHandling<T>(
-    url: string,
-    options: RequestInit = {}
-  ): Promise<T> {
-    try {
-      const response = await fetch(url, options);
+export async function fetchWithErrorHandling<T>(url: string, options: RequestInit = {}): Promise<T> {
+  try {
+    const response = await fetch(url, options);
 
-      if (response.ok) {
-        // check if the content is empty, if not the .json() will return error
-        return response.headers.get("content-length") !== "0" ? await response.json() : null;
+    const jsonResponse = await response.json();
+
+    if (jsonResponse.error) {
+      // Handle specific error codes
+      if (response.status === 400) {
+        throw new BadRequestError(jsonResponse.error.message || 'Bad Request', jsonResponse.error);
       }
-
-      // Check for JSON content type
-      const contentType = response.headers.get('Content-Type');
-
-      if (contentType && contentType.includes('application/problem+json')) {
-          const json = await response.json();
-
-          if (response.status === 400) {
-              throw new BadRequestError(json.title || "Bad Request", json || null);
-          }
-          if (response.status >= 500) {
-              throw new ServerError(json.errors.title || "Server Error", json || null);
-          }
-          console.error("Uncaught exception", json)
-          // For other errors, throw a generic error with the JSON message
-          throw new Error(json || 'Uncaught exception');
+      if (response.status >= 500) {
+        throw new ServerError(jsonResponse.error.message || 'Server Error', jsonResponse.error);
       }
-
-      throw new Error('Uncaught Error with no Json result');
-
-    } catch (error) {
-        // Handle any other errors (like network errors)
-        if (error instanceof SyntaxError) {
-            console.error(error.message);
-        }
-        throw error;
+      throw new Error(jsonResponse.error.message || 'Unknown error occurred');
     }
+
+    return jsonResponse;
+  } catch (error) {
+    // Handle parsing or network errors
+    if (error instanceof SyntaxError) {
+      console.error('Failed to parse JSON:', error.message);
+    }
+    throw error;
   }
-  
+}

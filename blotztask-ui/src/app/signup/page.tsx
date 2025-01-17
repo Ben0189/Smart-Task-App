@@ -22,14 +22,11 @@ const SignUpPage = () => {
     setError(null);
 
     try {
-      await fetchWithErrorHandling(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/register`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      await fetchWithErrorHandling(`${process.env.NEXT_PUBLIC_API_BASE_URL}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
       handleSuccess();
     } catch (error) {
       handleError(error);
@@ -43,14 +40,14 @@ const SignUpPage = () => {
       setError(error.details ? Object.values(error.details.errors).flat().join(' ') : error.message);
     } else {
       console.error('Unexpected error during registration:', error);
-      setError("An unexpected error occurred. Please try again later.");
+      setError('An unexpected error occurred. Please try again later.');
     }
   };
 
   const handleSuccess = () => {
     router.push('/signin');
-    toast("Account registered", {
-      description: "You can now login with the registered account",
+    toast('Account registered', {
+      description: 'You can now login with the registered account',
       duration: 3000,
       position: 'top-center',
     });
@@ -60,17 +57,12 @@ const SignUpPage = () => {
     event.preventDefault();
     handleRegister();
   };
-  
+
   return (
     <div className="h-full justify-center flex flex-col items-center">
       <div className="flex flex-col gap-4 bg-white p-5 rounded-lg shadow-md w-4/12">
         <h1 className={styles.title}>User Sign Up</h1>
-        {error &&
-          <AlertDestructive 
-            title="Error" 
-            description={error}
-          />
-        }
+        {error && <AlertDestructive title="Error" description={error} />}
         <form onSubmit={handleSubmit}>
           <div className={styles.input_group}>
             <label className={styles.label}>Email:</label>
