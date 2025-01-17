@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
+import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -75,7 +76,12 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                     </button>
                   </PopoverTrigger>
                   <PopoverContent onCloseAutoFocus={handleCalendarClose}>
-                    <Calendar />
+                    <Calendar
+                      classNames={{
+                        caption_label: 'bg-blue-100 px-2 py-1 rounded-md',
+                        row: 'flex w-full',
+                      }}
+                    />
                   </PopoverContent>
                 </Popover>
                 <Popover>
