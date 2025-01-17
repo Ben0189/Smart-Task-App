@@ -4,33 +4,19 @@ import TaskSeparator from '../shared/task-separator';
 import { Pencil, Trash2, CalendarDays, Tag } from 'lucide-react';
 import { useState } from 'react';
 import { format } from 'date-fns';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+import LabelGroup from '../shared/label-group';
 
-export default function TaskContent({
-  task,
-  onShowCalendar,
-  showCalendar,
-  onShowTaskTabs,
-  showTaskTab,
-}: {
-  task: TaskDetailDTO;
-  onShowCalendar?: () => void;
-  showCalendar: boolean;
-  onShowTaskTabs?: () => void;
-  showTaskTab: boolean;
-}) {
+export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showLabel, setShowLabel] = useState(false);
 
   const handleEditState = () => setIsEditing(!isEditing);
 
-  function handleTitleChange(event) {
-    console.log(event);
-    // setTaskTitle(event.target.value)
-  }
-
-  function handleDescriptionChange(event) {
-    console.log(event);
-    // setTaskDescription(event.target.value)
-  }
+  const handleCalendarClose = () => setShowCalendar(false);
+  const handleLabelClose = () => setShowLabel(false);
 
   return (
     <div className="flex flex-col w-full">
@@ -39,22 +25,14 @@ export default function TaskContent({
 
         <div className="flex flex-col w-full bg-transparent px-6">
           <div className="flex flex-row justify-between w-full">
-            {!isEditing ? (
-              <p className="font-bold">{task?.title}</p>
-            ) : (
-              <input value={task.title} onChange={handleTitleChange}></input>
-            )}
+            <p className="font-bold">{task?.title}</p>
 
             <DueDateTag task={task} />
           </div>
 
           <div className="flex w-full text-base text-gray-500 mt-2">
             <div className="flex flex-col w-full">
-              {!isEditing ? (
-                <p>{task?.description}</p>
-              ) : (
-                <input value={task.description} onChange={handleDescriptionChange}></input>
-              )}
+              <p>{task?.description}</p>
             </div>
 
             <div className="flex items-start ml-4 w-32 group-hover:hidden">
@@ -84,24 +62,38 @@ export default function TaskContent({
           {isEditing && (
             <div className="flex flex-row inline-block justify-between mt-4 mb-2">
               <div className="flex flex-row items-center">
-                <button
-                  className={`flex flex-row
-                             items-center mr-4 bg-blue-100 rounded-full px-3 py-1 
-                             ${showCalendar ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
-                  onClick={() => onShowCalendar()}
-                >
-                  <CalendarDays className="mr-1" size={16} />
-                  <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
-                </button>
-                <button
-                  className={`flex flex-row items-center 
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button
+                      className={`flex flex-row
+                                items-center mr-4 bg-blue-100 rounded-full px-3 py-1 
+                                ${showCalendar ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
+                      onClick={() => setShowCalendar((prev) => !prev)}
+                    >
+                      <CalendarDays className="mr-1" size={16} />
+                      <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent onCloseAutoFocus={handleCalendarClose}>
+                    <Calendar />
+                  </PopoverContent>
+                </Popover>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button
+                      className={`flex flex-row items-center 
                             rounded-full px-3 py-1 
-                            ${showTaskTab ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
-                  onClick={() => onShowTaskTabs()}
-                >
-                  <Tag className="mr-1" size={16} />
-                  <span className="text-xs">{task.label?.name || 'No label name'}</span>
-                </button>
+                            ${showLabel ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
+                      onClick={() => setShowLabel((prev) => !prev)}
+                    >
+                      <Tag className="mr-1" size={16} />
+                      <span className="text-xs">{task.label?.name || 'No label name'}</span>
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent onCloseAutoFocus={handleLabelClose} className="w-32">
+                    <LabelGroup />
+                  </PopoverContent>
+                </Popover>
               </div>
               <div className="flex flex-row ">
                 <button

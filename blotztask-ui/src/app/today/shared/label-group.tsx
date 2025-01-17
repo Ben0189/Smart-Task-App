@@ -1,6 +1,6 @@
 const LabelGroup = () => {
   return (
-    <div className="text-xs border-2 bg-transparent rounded-2xl w-32 place-items-start ml-36">
+    <div className="text-xs bg-transparent rounded-2xl w-32">
       <button className="flex flex-row px-4 py-2">
         <div className="h-4 w-4 rounded-full bg-amber-400 mr-2"></div>
         <span className="text-gray-500">Personal</span>
