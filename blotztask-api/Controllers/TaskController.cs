@@ -84,8 +84,11 @@ namespace BlotzTask.Controllers
         [HttpPut("CompleteTask/{id}")]
         public async Task<IActionResult> CompleteTask(int id)
         {
-            var result = await _taskService.CompleteTask(id);
-            return Ok(new ResponseWrapper<int>(result, $"Task {result} is done", true));
+            var (taskId, isDone) = await _taskService.CompleteTask(id);
+
+            var message = isDone ? $"Task {taskId} is done" : $"Task {taskId} is undone";
+
+            return Ok(new ResponseWrapper<int>(taskId, message, true));
 
         }
 
