@@ -7,7 +7,6 @@ import { format } from 'date-fns';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
-import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
