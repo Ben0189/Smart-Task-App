@@ -130,25 +130,30 @@ public class TaskService : ITaskService
 
     public async Task<TaskStatusResultDTO> TaskStatusUpdate(int taskId)
     {
-        var task = await _dbContext.TaskItems.FindAsync(taskId);
+        try{
+            var task = await _dbContext.TaskItems.FindAsync(taskId);
 
-        if (task == null)
-        {
-            throw new NotFoundException($"Task with ID {taskId} was not found.");
+            if (task == null)
+            {
+                throw new NotFoundException($"Task with ID {taskId} was not found.");
+            }
+            
+            // If task.IsDone is null, set it to be false, otherwise, toggle the task.IsDone
+            task.IsDone = (task.IsDone == null) ? false : !task.IsDone;
+
+            task.UpdatedAt = DateTime.UtcNow;
+            _dbContext.TaskItems.Update(task);
+            await _dbContext.SaveChangesAsync();
+
+            return new TaskStatusResultDTO{
+                Id = task.Id,
+                UpdatedAt = task.UpdatedAt,
+                Message = task.IsDone ? "Task marked as completed." : "Task marked as incomplete."
+            };
+        }catch(Exception){
+            throw;
         }
         
-        // If task.IsDone is null, set it to be false, otherwise, toggle the task.IsDone
-        task.IsDone = (task.IsDone == null) ? false : !task.IsDone;
-
-        task.UpdatedAt = DateTime.UtcNow;
-        _dbContext.TaskItems.Update(task);
-        await _dbContext.SaveChangesAsync();
-
-        return new TaskStatusResultDTO{
-            Id = task.Id,
-            UpdatedAt = task.UpdatedAt,
-            Message = task.IsDone ? "Task marked as completed." : "Task marked as incomplete."
-        };
     }
 
     public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId)
