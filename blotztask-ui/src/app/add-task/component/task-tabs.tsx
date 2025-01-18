@@ -3,12 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import {
-  FieldErrors,
-  UseFormRegister,
-  UseFormSetValue,
-  UseFormWatch,
-} from 'react-hook-form';
+import { FieldErrors, UseFormRegister, UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import { AddTaskForm } from '../page';
 
 // Enum for task labels and their corresponding IDs
@@ -108,9 +103,7 @@ const TaskTabs: React.FC<TaskTabsProps> = ({ register, setValue, errors }) => {
           </div>
         </TabsContent>
       ))}
-      {errors.description && (
-        <p className="text-red-500">{errors.description.message}</p>
-      )}
+      {errors.description && <p className="text-red-500">{errors.description.message}</p>}
     </Tabs>
   );
 };
