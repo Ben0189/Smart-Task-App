@@ -7,8 +7,7 @@ import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import { TaskDTO } from './schema/schema';
 import AddTaskCard from './components/add-task-card';
-import TodoDivider from './components/todo-divider';
-import DoneDivider from './components/done-divider';
+import Divider from './components/divider';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDTO[]>([]); // Store all tasks here
@@ -52,7 +51,7 @@ export default function Today() {
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader tasks={tasks} />
-        <TodoDivider />
+        <Divider text="To do" />
         <AddTaskCard onAddTask={handleAddTask} />
         <div className="grid gap-6 w-full">
           {incompleteTasks.length > 0 ? (
@@ -71,7 +70,7 @@ export default function Today() {
             <p>No incomplete tasks for today!</p>
           )}
         </div>
-        <DoneDivider/>
+        <Divider text="Done" />
       </div>
     </>
   );
