@@ -13,7 +13,7 @@ public interface ITaskService
     public Task<int> EditTask(int Id, EditTaskItemDTO editTaskItem);
     public Task<bool> DeleteTaskByID(int Id);
     public Task<string> AddTask(AddTaskItemDTO addtaskItem, String userId);
-    public Task<(int, bool)> CompleteTask(int id);
+    public Task<TaskStatusResultDTO> TaskStatusUpdate(int id);
     public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId);
     public Task<MonthlyStatDTO> GetMonthlyStats(string userId, int year, int month);
 }
@@ -128,7 +128,7 @@ public class TaskService : ITaskService
         return id;
     }
 
-    public async Task<(int, bool)> CompleteTask(int taskId)
+    public async Task<TaskStatusResultDTO> TaskStatusUpdate(int taskId)
     {
         var task = await _dbContext.TaskItems.FindAsync(taskId);
 
@@ -136,13 +136,19 @@ public class TaskService : ITaskService
         {
             throw new NotFoundException($"Task with ID {taskId} was not found.");
         }
+        
+        // If task.IsDone is null, set it to be false, otherwise, toggle the task.IsDone
+        task.IsDone = (task.IsDone == null) ? false : !task.IsDone;
 
-        task.IsDone = !task.IsDone;
         task.UpdatedAt = DateTime.UtcNow;
         _dbContext.TaskItems.Update(task);
         await _dbContext.SaveChangesAsync();
 
-        return (taskId, task.IsDone);
+        return new TaskStatusResultDTO{
+            Id = task.Id,
+            UpdatedAt = task.UpdatedAt,
+            Message = task.IsDone ? "Task marked as completed." : "Task marked as incomplete."
+        };
     }
 
     public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId)
