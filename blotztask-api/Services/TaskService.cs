@@ -13,7 +13,7 @@ public interface ITaskService
     public Task<int> EditTask(int Id, EditTaskItemDTO editTaskItem);
     public Task<bool> DeleteTaskByID(int Id);
     public Task<string> AddTask(AddTaskItemDTO addtaskItem, String userId);
-    public Task<int> CompleteTask(int id);
+    public Task<TaskStatusResultDTO> TaskStatusUpdate(int id, bool? isDone = null);
     public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId);
     public Task<MonthlyStatDTO> GetMonthlyStats(string userId, int year, int month);
 }
@@ -128,21 +128,32 @@ public class TaskService : ITaskService
         return id;
     }
 
-    public async Task<int> CompleteTask(int taskId)
+    public async Task<TaskStatusResultDTO> TaskStatusUpdate(int taskId, bool? isDone=null)
     {
-        var task = await _dbContext.TaskItems.FindAsync(taskId);
+        try{
+            var task = await _dbContext.TaskItems.FindAsync(taskId);
 
-        if (task == null)
-        {
-            throw new NotFoundException($"Task with ID {taskId} was not found.");
+            if (task == null)
+            {
+                throw new NotFoundException($"Task with ID {taskId} was not found.");
+            }
+            
+            // If task.IsDone is null, set it to be false, otherwise, toggle the task.IsDone
+            task.IsDone = isDone ?? !task.IsDone;
+
+            task.UpdatedAt = DateTime.UtcNow;
+            _dbContext.TaskItems.Update(task);
+            await _dbContext.SaveChangesAsync();
+
+            return new TaskStatusResultDTO{
+                Id = task.Id,
+                UpdatedAt = task.UpdatedAt,
+                Message = task.IsDone ? "Task marked as completed." : "Task marked as incomplete."
+            };
+        }catch(Exception){
+            throw;
         }
-
-        task.IsDone = true;
-
-        _dbContext.TaskItems.Update(task);
-        await _dbContext.SaveChangesAsync();
-
-        return taskId;
+        
     }
 
     public async Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId)
