@@ -16,11 +16,6 @@ export function SidebarAuthButton({ session, onSignOut }) {
     <SidebarMenuItem>
       {session ? (
         <NavUser user={mockusers} onSignOut={onSignOut}/>
-        // <SidebarMenuButton asChild className="bg-primary text-white">
-        //   <a href="#" onClick={onSignOut}>
-        //     <span>Sign Out</span>
-        //   </a>
-        // </SidebarMenuButton>
       ) : (
         <SidebarMenuButton asChild className="bg-primary text-white">
           <a href="/signin">
