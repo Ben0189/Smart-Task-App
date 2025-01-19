@@ -16,6 +16,7 @@ import { useSession } from 'next-auth/react';
 import { SidebarAuthButton } from './components/side-auth-button';
 import { cn } from '@/lib/utils';
 
+
 const authenticatedItems = [
   { title: 'Today', url: 'today', icon: CalendarDays },
   { title: 'Task List', url: 'task-list', icon: Inbox },
@@ -36,7 +37,13 @@ export function AppSidebar() {
   };
 
   // Determine which items to show based on session status
-  const items = status === 'loading' ? loadingItems : session ? authenticatedItems : guestItems;
+
+  const items =
+    status === 'loading'
+      ? loadingItems
+      : session
+        ? authenticatedItems
+        : guestItems;
 
   return (
     <Sidebar>
@@ -60,7 +67,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarMenu>
+        <SidebarMenu className="bg-primary text-[hsl(var(--primary-foreground))] rounded-md font-bold flex items-center justify-center">
           <SidebarAuthButton session={session} onSignOut={handleSignOut} />
         </SidebarMenu>
       </SidebarFooter>
