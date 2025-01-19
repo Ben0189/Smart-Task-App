@@ -67,7 +67,7 @@ const AddTaskForm = ({ onSubmit }) => {
           variant="secondary"
           className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200"
         >
-          <IoPricetagOutline className="fill-gray-600 mr-2" {...({} as React.ComponentProps<'svg'>)}/>
+          <IoPricetagOutline className="fill-gray-600 mr-2" />
           <span>Add Label</span>
         </Button>
       </div>
