@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { IoPricetagOutline } from 'react-icons/io5';
+import { Tag } from 'lucide-react';
 
 const taskSchema = z.object({
   title: z.string(), // Simple string without validation rules
@@ -67,7 +67,7 @@ const AddTaskForm = ({ onSubmit }) => {
           variant="secondary"
           className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200"
         >
-          <IoPricetagOutline className="fill-gray-600 mr-2" />
+          <Tag className="mr-2"/>
           <span>Add Label</span>
         </Button>
       </div>
