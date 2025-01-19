@@ -13,7 +13,7 @@ public interface ITaskService
     public Task<int> EditTask(int Id, EditTaskItemDTO editTaskItem);
     public Task<bool> DeleteTaskByID(int Id);
     public Task<string> AddTask(AddTaskItemDTO addtaskItem, String userId);
-    public Task<TaskStatusResultDTO> TaskStatusUpdate(int id, bool? isDone);
+    public Task<TaskStatusResultDTO> TaskStatusUpdate(int id, bool? isDone = null);
     public Task<List<TaskItemDTO>> GetTaskByDate(DateOnly date, string userId);
     public Task<MonthlyStatDTO> GetMonthlyStats(string userId, int year, int month);
 }
