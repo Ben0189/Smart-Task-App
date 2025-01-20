@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/sidebar';
 import { useSession } from 'next-auth/react';
 import { SidebarAuthButton } from './components/side-auth-button';
+import { Categories } from './categories';
 import { cn } from '@/lib/utils';
 
 const authenticatedItems = [
@@ -53,6 +54,14 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-lg font-semibold mb-2">Task Categories</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <Categories />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
