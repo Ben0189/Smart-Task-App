@@ -1,8 +1,8 @@
 import { H1, H5 } from '@/components/ui/heading-with-anchor';
 import React from 'react';
 import { Progress } from '@/components/ui/progress';
-import { TaskDetailDTO } from '../../task-list/models/task-detail-dto';
 import { format } from 'date-fns';
+import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
 
 type TodayHeaderProps = {
   tasks: TaskDetailDTO[]; // All tasks
@@ -27,7 +27,6 @@ const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
           </span>
         </div>
       </div>
-      <H5>List of today&apos;s tasks</H5>
     </div>
   );
 };

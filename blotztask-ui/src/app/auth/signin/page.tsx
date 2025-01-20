@@ -41,7 +41,7 @@ const LoginPage = () => {
           message: 'Login Failed. Please check you credential',
         });
       } else {
-        router.push('/today');
+        router.push('/dashboard');
       }
     } catch (error) {
       console.error('Login failed:', error);
@@ -53,7 +53,7 @@ const LoginPage = () => {
 
   return (
     <div className="h-full justify-center flex flex-col items-center">
-      <div className="flex flex-col gap-4 bg-white p-5 rounded-lg shadow-md w-4/12">
+      <div className="flex flex-col gap-4 bg-white p-5 rounded-lg shadow-md w-96">
         <h1 className={styles.title}>User Login</h1>
         {errors.root && <AlertDestructive title="Error" description={errors.root.message} />}
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -83,7 +83,7 @@ const LoginPage = () => {
         </form>
         <p className={styles.registerPrompt}>
           Don’t have an account?
-          <a href="/signup" className={styles.registerLink}>
+          <a href="/auth/signup" className={styles.registerLink}>
             Register here
           </a>
         </p>

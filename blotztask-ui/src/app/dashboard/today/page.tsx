@@ -5,10 +5,10 @@ import { fetchTaskItemsDueToday } from '@/services/taskService';
 import { completeTaskForToday } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
-import { TaskDetailDTO } from '../task-list/models/task-detail-dto';
 import AddTaskCard from './components/add-task-card';
 import { CompletedTaskViewer } from './components/completed-task-viewer';
 import Divider from './components/divider';
+import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDetailDTO[]>([]); // Store all tasks here

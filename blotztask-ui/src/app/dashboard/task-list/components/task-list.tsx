@@ -1,4 +1,4 @@
-import TaskCard from '@/app/today/components/task-card';
+import TaskCard from "../../today/components/task-card";
 
 export function TaskList({ tasks, handleCheckboxChange }) {
   return (
