@@ -10,7 +10,6 @@ export function Categories() {
 
   return (
     <div>
-    <h2 className="text-lg font-semibold mb-2">Task Categories</h2>
       <ul className="space-y-2">
         {categories.map((category) => (
           <li key={category.name} className="flex items-center space-x-2">
