@@ -1,4 +1,4 @@
-import BrandingSection from "../components/branding-section";
+import BrandingSection from "./components/branding-section";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
