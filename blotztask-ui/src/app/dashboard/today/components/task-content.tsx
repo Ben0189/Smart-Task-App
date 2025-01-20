@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
-import { TaskDetailDTO } from '@/app/task-list/models/task-detail-dto';
+import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);

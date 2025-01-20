@@ -1,4 +1,4 @@
-import { TaskDetailDTO } from '@/app/task-list/models/task-detail-dto';
+import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
 import { TaskListItemDTO } from '@/model/task-list-Item-dto';
 import { fetchWithAuth } from '@/utils/fetch-with-auth';
 import { AddTaskItemDTO } from '@/model/add-task-item-dto';
