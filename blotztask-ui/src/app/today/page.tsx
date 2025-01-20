@@ -8,6 +8,7 @@ import TaskCard from './components/task-card';
 import { TaskDetailDTO } from '../task-list/models/task-detail-dto';
 import AddTaskCard from './components/add-task-card';
 import { CompletedTaskViewer } from './components/completed-task-viewer';
+import Divider from './components/divider';
 
 export default function Today() {
   const [tasks, setTasks] = useState<TaskDetailDTO[]>([]); // Store all tasks here
@@ -62,6 +63,7 @@ export default function Today() {
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader tasks={tasks} />
+        <Divider text="To do" />
         <AddTaskCard onAddTask={handleAddTask} />
         <div className="flex flex-col gap-6 w-full">
           {incompleteTasks.length > 0 ? (
@@ -72,7 +74,7 @@ export default function Today() {
             <p>No incomplete tasks for today!</p>
           )}
         </div>
-
+        <Divider text="Done" />
         <CompletedTaskViewer
           completedTasks={completedTasks}
           handleCompletedCheckboxChange={handleCompletedCheckboxChange}
