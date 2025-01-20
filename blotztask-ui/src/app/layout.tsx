@@ -33,7 +33,6 @@ export default function RootLayout({
                 <section className="container mx-auto px-12 pt-8 h-5/6">{children}</section>  
               </div>
             </SidebarProvider> */}
-            <p>Testing</p>
             <Toaster />
             {children}
           </ThemeProvider>
