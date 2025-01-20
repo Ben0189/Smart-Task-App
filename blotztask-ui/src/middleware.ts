@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest) {
 }
 
 // config path no need to check auth
-const excludeAuthPath = ['/', '/signin', '/signup'];
+const excludeAuthPath = ['/auth', '/auth/signin', '/auth/signup'];
 
 // customize auth redirect strategy
 async function withAuth(req) {
