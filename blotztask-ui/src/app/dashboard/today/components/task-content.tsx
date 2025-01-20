@@ -1,4 +1,3 @@
-import { TaskDetailDTO } from '../../task-list/models/task-detail-dto';
 import DueDateTag from './due-date-tag';
 import TaskSeparator from '../shared/task-separator';
 import { Pencil, Trash2, CalendarDays, Tag } from 'lucide-react';
@@ -7,6 +6,7 @@ import { format } from 'date-fns';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
+import { TaskDetailDTO } from '@/app/task-list/models/task-detail-dto';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);

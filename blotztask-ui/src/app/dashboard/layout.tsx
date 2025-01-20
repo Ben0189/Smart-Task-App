@@ -8,12 +8,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
        <SidebarProvider> 
         <AppSidebar />
         <div className="flex-1 flex flex-col">
-            <header className="flex justify-between items-center p-4 border-b">
-            <SidebarTrigger />
-            </header>
-            <main className="container mx-auto px-6 py-4 flex-1">
-            {children}
-            </main>
+          <SidebarTrigger />
+          <main className="container mx-auto px-6 py-4 flex-1">
+          {children}
+          </main>
         </div>
       </SidebarProvider> 
     </div>
