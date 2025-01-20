@@ -41,7 +41,7 @@ const LoginPage = () => {
           message: 'Login Failed. Please check you credential',
         });
       } else {
-        router.push('/today');
+        router.push('/dashboard');
       }
     } catch (error) {
       console.error('Login failed:', error);
@@ -83,7 +83,7 @@ const LoginPage = () => {
         </form>
         <p className={styles.registerPrompt}>
           Don’t have an account?
-          <a href="/signup" className={styles.registerLink}>
+          <a href="/auth/signup" className={styles.registerLink}>
             Register here
           </a>
         </p>
