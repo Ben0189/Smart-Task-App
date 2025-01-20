@@ -1,6 +1,6 @@
 'use client';
 
-import { CalendarDays, Home, Inbox, Search, Settings } from 'lucide-react';
+import { CalendarDays, Home, Inbox } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -18,9 +18,7 @@ import { cn } from '@/lib/utils';
 
 const authenticatedItems = [
   { title: 'Today', url: 'today', icon: CalendarDays },
-  { title: 'Task List', url: 'task-list', icon: Inbox },
-  { title: 'Monthly Stats', url: 'monthly-stats', icon: Search },
-  { title: 'Test Connection', url: 'test-connection', icon: Settings },
+  { title: 'Task List', url: 'task-list', icon: Inbox }
 ];
 
 const guestItems = [{ title: 'Home', url: '/home', icon: Home }];
