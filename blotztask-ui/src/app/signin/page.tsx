@@ -53,7 +53,7 @@ const LoginPage = () => {
 
   return (
     <div className="h-full justify-center flex flex-col items-center">
-      <div className="flex flex-col gap-4 bg-white p-5 rounded-lg shadow-md w-4/12">
+      <div className="flex flex-col gap-4 bg-white p-5 rounded-lg shadow-md w-96">
         <h1 className={styles.title}>User Login</h1>
         {errors.root && <AlertDestructive title="Error" description={errors.root.message} />}
         <form onSubmit={handleSubmit(onSubmit)}>
