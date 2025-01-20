@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes';
 import '../styles/globals.css';
 import Provider from './provider';
 import { Toaster } from '@/components/ui/sonner';
+import BrandingSection from './components/branding-section';
 // import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 // import { AppSidebar } from './navbar/side-nav';
 // import AuthButton from '@/components/auth-button';
@@ -34,7 +35,14 @@ export default function RootLayout({
               </div>
             </SidebarProvider> */}
             <Toaster />
-            {children}
+            <main className="flex h-full">
+            <div className="flex-[2]">
+              <BrandingSection />
+            </div>
+            <div className="flex-[3]">
+              {children}
+            </div>
+            </main>
           </ThemeProvider>
         </Provider>
       </body>
