@@ -37,7 +37,7 @@ export const fetchTaskItemsDueToday = async (): Promise<TaskDetailDTO[]> => {
 export const completeTaskForToday = async (taskId: number): Promise<string> => {
   try {
     const result = await fetchWithAuth<string>(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/CompleteTask/${taskId}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/task-completion-status/${taskId}`,
       {
         method: 'PUT',
         headers: {
@@ -76,7 +76,7 @@ export const AddTaskItem = async (addTaskForm: AddTaskItemDTO): Promise<TaskDeta
 export const updateTaskStatus = async (taskId: number): Promise<string> => {
   try {
     const result = await fetchWithAuth<string>(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/CompleteTask/${taskId}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL_WITH_API}/Task/task-completion-status/${taskId}`,
       {
         method: 'PUT',
         headers: {
