@@ -19,28 +19,28 @@ namespace BlotzTask.Data
                 {
                     LabelId = 6,
                     Name = "Work",
-                    Color = "#CDB2FF",
+                    Color = "#7758FF",
                     Description = "Work related tasks"
                 },
                 new Label
                 {
                     LabelId = 7,
                     Name = "Personal",
-                    Color = "#FBFAC2",
+                    Color = "#FFDE23",
                     Description = "Personal tasks"
                 },
                 new Label
                 {
                     LabelId = 8,
                     Name = "Academic",
-                    Color = "#278291",
+                    Color = "#FF4747",
                     Description = "Academic tasks"
                 },
                 new Label
                 {
                     LabelId = 9,
                     Name = "Others",
-                    Color = "#1458C6",
+                    Color = "#09F1D6",
                     Description = "Other tasks"
                 }
             );
