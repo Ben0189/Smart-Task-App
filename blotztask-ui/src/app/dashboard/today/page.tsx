@@ -52,10 +52,6 @@ export default function Today() {
     }
   };
 
-  // const uncompleteTask = async (taskId: number) => {
-  //   // waiting to finish the implementation
-  // };
-
   const handleAddTask = (taskTitle) => {
     console.log('Adding task:', taskTitle);
     // Implement add task logic here , going to api to add task
