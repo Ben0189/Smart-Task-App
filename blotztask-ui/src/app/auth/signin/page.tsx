@@ -53,32 +53,31 @@ const LoginPage = () => {
 
   return (
     <div className="h-full justify-center flex flex-col items-center">
-      <div className="flex flex-col gap-4 bg-white p-5 rounded-lg shadow-md w-96">
-        <h1 className={styles.title}>User Login</h1>
+      <div className="flex flex-col gap-4 bg-white p-5 rounded-lg w-96">
+        <h1 className={styles.title}> Welcome to Blotz</h1>
+        <p className={styles.subtitle}>Enter your email and password to start</p>
         {errors.root && <AlertDestructive title="Error" description={errors.root.message} />}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.input_group}>
-            <label className={styles.label}>Email:</label>
             <input
               type="email"
               {...register('email')}
               className={styles.input}
-              placeholder="Enter your email"
+              placeholder="Email"
             />
           </div>
           {errors.email && <div className="text-warn mb-3">{errors.email.message}</div>}
           <div className={styles.input_group}>
-            <label className={styles.label}>Password:</label>
             <input
               type="password"
               {...register('password')}
               className={styles.input}
-              placeholder="Enter your password"
+              placeholder="Password"
             />
           </div>
           {errors.password && <div className="text-warn mb-3">{errors.password.message}</div>}
-          <Button className="w-full" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? <Spinner /> : 'Sign In'}
+          <Button className={styles.submitButton} type="submit" disabled={isSubmitting}>
+            {isSubmitting ? <Spinner /> : 'Log in'}
           </Button>
         </form>
         <p className={styles.registerPrompt}>
