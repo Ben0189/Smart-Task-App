@@ -7,16 +7,11 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
+import PopContentToggle from '../shared/pop-content-toggle';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [showLabel, setShowLabel] = useState(false);
-
   const handleEditState = () => setIsEditing(!isEditing);
-
-  const handleCalendarClose = () => setShowCalendar(false);
-  const handleLabelClose = () => setShowLabel(false);
 
   return (
     <div className="flex flex-col w-full">
@@ -62,43 +57,23 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
           {isEditing && (
             <div className="flex flex-row inline-block justify-between mt-4 mb-2">
               <div className="flex flex-row items-center">
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <button
-                      className={`flex flex-row
-                                items-center mr-4 bg-blue-100 rounded-full px-3 py-1 
-                                ${showCalendar ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
-                      onClick={() => setShowCalendar((prev) => !prev)}
-                    >
-                      <CalendarDays className="mr-1" size={16} />
-                      <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent onCloseAutoFocus={handleCalendarClose}>
-                    <Calendar
-                      classNames={{
-                        caption_label: 'bg-blue-100 px-2 py-1 rounded-md',
-                        row: 'flex w-full',
-                      }}
-                    />
-                  </PopoverContent>
-                </Popover>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <button
-                      className={`flex flex-row items-center 
-                            rounded-full px-3 py-1 
-                            ${showLabel ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
-                      onClick={() => setShowLabel((prev) => !prev)}
-                    >
-                      <Tag className="mr-1" size={16} />
-                      <span className="text-xs">{task.label?.name || 'No label name'}</span>
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent onCloseAutoFocus={handleLabelClose} className="w-32">
-                    <LabelGroup />
-                  </PopoverContent>
-                </Popover>
+                <PopContentToggle
+                  buttonIcon={<CalendarDays className="mr-1" size={16} />}
+                  buttonText={<span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>}
+                >
+                  <Calendar
+                    classNames={{
+                      caption_label: 'bg-blue-100 px-2 py-1 rounded-md',
+                      row: 'flex w-full',
+                    }}
+                  />
+                </PopContentToggle>
+                <PopContentToggle
+                  buttonIcon={<Tag className="mr-1" size={16} />}
+                  buttonText={<span className="text-xs">{task.label?.name || 'No label name'}</span>}
+                >
+                  <LabelGroup />
+                </PopContentToggle>
               </div>
               <div className="flex flex-row ">
                 <button
