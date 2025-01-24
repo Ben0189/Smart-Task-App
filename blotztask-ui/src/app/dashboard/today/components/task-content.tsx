@@ -3,7 +3,6 @@ import TaskSeparator from '../shared/task-separator';
 import { Pencil, Trash2, CalendarDays, Tag } from 'lucide-react';
 import { useState } from 'react';
 import { format } from 'date-fns';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
@@ -20,14 +19,13 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
 
         <div className="flex flex-col w-full bg-transparent px-6">
           <div className="flex flex-row justify-between w-full">
-            <p className="font-bold">{task?.title}</p>
-
-            <DueDateTag task={task} />
+            {isEditing ? <textarea className="h-8"></textarea> : <p className="font-bold">{task?.title}</p>}
+            {!isEditing && <DueDateTag task={task} />}
           </div>
 
           <div className="flex w-full text-base text-gray-500 mt-2">
             <div className="flex flex-col w-full">
-              <p>{task?.description}</p>
+              {isEditing ? <textarea className="h-8"></textarea> : <p>{task?.description}</p>}
             </div>
 
             <div className="flex items-start ml-4 w-32 group-hover:hidden">
