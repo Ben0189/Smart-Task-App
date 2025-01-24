@@ -50,28 +50,28 @@ namespace BlotzTask.Migrations
                         new
                         {
                             LabelId = 6,
-                            Color = "#CDB2FF",
+                            Color = "#7758FF",
                             Description = "Work related tasks",
                             Name = "Work"
                         },
                         new
                         {
                             LabelId = 7,
-                            Color = "#FBFAC2",
+                            Color = "#FFDE23",
                             Description = "Personal tasks",
                             Name = "Personal"
                         },
                         new
                         {
                             LabelId = 8,
-                            Color = "#278291",
+                            Color = "#FF4747",
                             Description = "Academic tasks",
                             Name = "Academic"
                         },
                         new
                         {
                             LabelId = 9,
-                            Color = "#1458C6",
+                            Color = "#09F1D6",
                             Description = "Other tasks",
                             Name = "Others"
                         });

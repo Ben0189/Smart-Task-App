@@ -81,13 +81,29 @@ namespace BlotzTask.Controllers
             return Ok($"Task {result} is successfully updated");
         }
 
-        [HttpPut("CompleteTask/{id}")]
-        public async Task<IActionResult> CompleteTask(int id)
+        [HttpPut("task-completion-status/{id}")]
+        public async Task<IActionResult> TaskStatusUpdate(int id)
         {
-            var result = await _taskService.CompleteTask(id);
 
-            return Ok($"Task {result} is done");
+            try{
+                var taskStatusResultDTO = await _taskService.TaskStatusUpdate(id);
+
+                if (taskStatusResultDTO == null)
+                {
+                    throw new InvalidOperationException($"Task status update failed: no valid data returned for task ID {id}.");
+                }
+                
+
+                var message = taskStatusResultDTO.Message;
+                return Ok(new ResponseWrapper<int>(id, message, true));
+            }catch(Exception){
+                throw;
+            }
+
+
         }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTaskByID(int id)
         {

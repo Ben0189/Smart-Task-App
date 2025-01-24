@@ -1,4 +1,4 @@
-export interface AddTaskTtemDTO {
+export interface AddTaskItemDTO {
   title: string;
   description: string;
   dueDate: string;
