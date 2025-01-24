@@ -8,7 +8,7 @@ namespace BlotzTask.Services;
 
 public interface IUserInfoService
 {
-    public Task<UserInfoDTO> GetCurrentUserInfoAsync(string? userID = null);
+    public Task<UserInfoDTO> GetCurrentUserInfoAsync();
 }
 
 public class UserInfoService : IUserInfoService
@@ -22,28 +22,18 @@ public class UserInfoService : IUserInfoService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<UserInfoDTO> GetCurrentUserInfoAsync(string? userID = null)
+    public async Task<UserInfoDTO> GetCurrentUserInfoAsync()
     {
         try
         {
-            string resolvedUserId;
-
-            // Judge if userID is empty, if it is then use HttpContext to get userId
-            if (!string.IsNullOrEmpty(userID))
-            {
-                resolvedUserId = userID;
-            }
-            else
-            {
-                resolvedUserId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) 
+            var resolvedUserId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) 
              ?? string.Empty;
 
-                if (string.IsNullOrEmpty(resolvedUserId))
-                {
-                    throw new NotFoundException($"User Not Founded");
-                }
+            if (string.IsNullOrEmpty(resolvedUserId))
+            {
+                throw new NotFoundException($"User Not Founded");
             }
-
+            
             var user = await _userManager.FindByIdAsync(resolvedUserId);
             if (user == null)
             {
