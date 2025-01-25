@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using BlotzTask.Services;
 using BlotzTask.Models;
+using System.Security.Claims;
 
 namespace BlotzTask.Controllers;
 
@@ -12,7 +12,6 @@ namespace BlotzTask.Controllers;
 public class UserInfoController : ControllerBase
 {
     private readonly IUserInfoService _userInfoService;
-
     public UserInfoController(IUserInfoService userInfoService)
     {
         _userInfoService = userInfoService;
@@ -23,7 +22,14 @@ public class UserInfoController : ControllerBase
     {
         // Use UserInfoService to get User info.
         try{
-            var userInfo = await _userInfoService.GetCurrentUserInfoAsync();
+            // Extract user ID from claims
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized(new { message = "User not authenticated or missing required claims" });
+            }
+
+            var userInfo = await _userInfoService.GetCurrentUserInfoAsync(userId);
             if (userInfo == null)
             {
                 return Unauthorized(new { message = "User not authenticated or not found" });
