@@ -41,7 +41,7 @@ builder.Services.AddScoped<ILabelService, LabelService>();
 
 // add httpcontext and identitycore for UserInforService
 builder.Services.AddHttpContextAccessor(); 
-builder.Services.AddIdentityCore<IdentityUser>()
+builder.Services.AddIdentityCore<User>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BlotzTaskDbContext>()
     .AddDefaultTokenProviders();
