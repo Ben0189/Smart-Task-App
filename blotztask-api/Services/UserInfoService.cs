@@ -13,7 +13,6 @@ public interface IUserInfoService
 public class UserInfoService : IUserInfoService
 {
     private readonly UserManager<User> _userManager;
-    private readonly IHttpContextAccessor _httpContextAccessor;
 
     public UserInfoService(UserManager<User> userManager)
     {
