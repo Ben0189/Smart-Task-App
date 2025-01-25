@@ -37,10 +37,6 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddApplicationInsightsTelemetry();
 
 // add httpcontext and identitycore for UserInforService
-<<<<<<< HEAD
-=======
-builder.Services.AddHttpContextAccessor(); 
->>>>>>> beaf2b6378e0c4cf0c9e1eabd92eabd722004b2c
 builder.Services.AddIdentityCore<User>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<BlotzTaskDbContext>()
