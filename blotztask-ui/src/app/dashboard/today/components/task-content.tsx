@@ -7,7 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
-
+import SectionSepreator from './section-seperator';
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -29,7 +29,6 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
 
             <DueDateTag task={task} />
           </div>
-
           <div className="flex w-full text-base text-gray-500 mt-2">
             <div className="flex flex-col w-full">
               <p>{task?.description}</p>
@@ -118,6 +117,8 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
           )}
         </div>
       </div>
+      <div className="h-2"></div>
+      <SectionSepreator />
     </div>
   );
 }
