@@ -13,10 +13,13 @@ export function DeleteDialog({
 }) {
   
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
+    <Dialog open={isDialogOpen} onOpenChange={(isOpen) => {
+      console.log("Dialog visibility changed:", isOpen);
+      setDialogOpen(isOpen);
+    }}>
       <DialogContent className="sm:max-w-[370px] bg-white">
         <DialogHeader>
-          <DialogDescription>Are you sure you want to delete the Task?</DialogDescription>
+          <DialogDescription>  Are you sure you want to delete the Task?</DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-between">
           <Button
