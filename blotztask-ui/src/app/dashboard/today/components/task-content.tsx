@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
+import { DeleteDialog } from "./delete-confirmation-dialog";
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -17,6 +18,9 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
 
   const handleCalendarClose = () => setShowCalendar(false);
   const handleLabelClose = () => setShowLabel(false);
+
+  const [isDialogOpen, setDialogOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<TaskDetailDTO | null>(null);
 
   return (
     <div className="flex flex-col w-full">
@@ -74,6 +78,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                       <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
                     </button>
                   </PopoverTrigger>
+
                   <PopoverContent onCloseAutoFocus={handleCalendarClose}>
                     <Calendar
                       classNames={{
@@ -86,6 +91,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                 <Popover>
                   <PopoverTrigger asChild>
                     <button
+                    
                       className={`flex flex-row items-center 
                             rounded-full px-3 py-1 
                             ${showLabel ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
@@ -93,8 +99,8 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                     >
                       <Tag className="mr-1" size={16} />
                       <span className="text-xs">{task.label?.name || 'No label name'}</span>
-                    </button>
-                  </PopoverTrigger>
+                    </button>                 
+                  </PopoverTrigger>                
                   <PopoverContent onCloseAutoFocus={handleLabelClose} className="w-32">
                     <LabelGroup />
                   </PopoverContent>

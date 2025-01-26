@@ -23,9 +23,6 @@ export default function Page() {
       console.error('Failed to update task status:', error);
     }
   };
-  /**
-   * Fetch the tasks once and set the hook on the first rendering
-   */
   useEffect(() => {
     loadTasks();
   }, []);
