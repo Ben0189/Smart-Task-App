@@ -61,6 +61,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                       <Trash2 className="text-primary" size={20} />
                     </button>
                   </DialogTrigger>
+                {/* You can put the dialog content into a separate component */}
                   <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                       <DialogTitle>Delete This Task</DialogTitle>
