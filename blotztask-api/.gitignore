@@ -43,3 +43,6 @@ msbuild.err
 msbuild.wrn
 
 *.Development.json
+
+# .config
+blotztask-api/.config/dotnet-tools.json
