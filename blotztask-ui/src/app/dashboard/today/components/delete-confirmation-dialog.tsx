@@ -1,6 +1,5 @@
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { boolean } from 'zod';
 
 export function DeleteDialog({ 
   isDialogOpen, 
