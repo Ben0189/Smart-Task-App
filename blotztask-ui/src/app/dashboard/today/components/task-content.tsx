@@ -1,6 +1,6 @@
 import DueDateTag from './due-date-tag';
 import TaskSeparator from '../shared/task-separator';
-import { Pencil, Trash2, CalendarDays, Tag } from 'lucide-react';
+import { Pencil, Trash2, Tag } from 'lucide-react';
 import { useState } from 'react';
 import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
@@ -70,7 +70,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                       <span className="text-xs">{task.label?.name || 'No label name'}</span>
                     </button>
                   </PopoverTrigger>
-                  <PopoverContent onCloseAutoFocus={handleLabelClose} className="w-32">
+                  <PopoverContent onCloseAutoFocus={handleLabelClose} className="w-30 rounded-lg p-0">
                     <LabelGroup />
                   </PopoverContent>
                 </Popover>

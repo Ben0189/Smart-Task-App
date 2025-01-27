@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const LabelGroupButton = ({ LabelColor, LabelText }) => {
+const LabelGroupButton = ({ LabelColor, LabelText, className = '' }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -9,7 +9,7 @@ const LabelGroupButton = ({ LabelColor, LabelText }) => {
 
   return (
     <button
-      className={`flex flex-row px-4 py-2 ${isClicked ? 'bg-primary' : 'bg-white'}`}
+      className={`flex flex-row px-4 py-2 ${isClicked ? 'bg-primary' : 'bg-white'} ${className}`}
       onClick={handleClick}
     >
       <div className={`h-4 w-4 rounded-full ${LabelColor} mr-2`}></div>
@@ -20,11 +20,11 @@ const LabelGroupButton = ({ LabelColor, LabelText }) => {
 
 const LabelGroup = () => {
   return (
-    <div className="flex flex-col text-xs place-items-center bg-transparent rounded-2xl w-32 px-0">
-      <LabelGroupButton LabelColor="bg-amber-400" LabelText="Personal" />
+    <div className="flex flex-col text-xs place-items-center bg-transparent rounded-2xl">
+      <LabelGroupButton LabelColor="bg-amber-400" LabelText="Personal" className="rounded-t-lg" />
       <LabelGroupButton LabelColor="bg-rose-500" LabelText="Personal" />
       <LabelGroupButton LabelColor="bg-cyan-300" LabelText="Personal" />
-      <LabelGroupButton LabelColor="bg-blue-700" LabelText="Personal" />
+      <LabelGroupButton LabelColor="bg-blue-700" LabelText="Personal" className="rounded-b-lg" />
     </div>
   );
 };
