@@ -30,10 +30,6 @@ public class UserInfoController : ControllerBase
             }
 
             var userInfo = await _userInfoService.GetCurrentUserInfoAsync(userId);
-            if (userInfo == null)
-            {
-                return Unauthorized(new { message = "User not authenticated or not found" });
-            }
             var message = userInfo.Message;
             // return result
             return Ok(new ResponseWrapper<UserInfoDTO>(userInfo, message, true));
