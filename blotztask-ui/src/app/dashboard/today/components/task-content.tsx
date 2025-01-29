@@ -6,6 +6,8 @@ import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
 import PopoverCalendar from '../shared/popover-calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -20,13 +22,17 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
 
         <div className="flex flex-col w-full bg-transparent px-6">
           <div className="flex flex-row justify-between w-full">
-            {isEditing ? <input value={task.title}></input> : <p className="font-bold">{task?.title}</p>}
+            {isEditing ? (
+              <Input placeholder={task?.title}></Input>
+            ) : (
+              <p className="font-bold">{task?.title}</p>
+            )}
             {!isEditing && <DueDateTag task={task} />}
           </div>
 
           <div className="flex w-full text-base text-gray-500 mt-2">
             <div className="flex flex-col w-full">
-              {isEditing ? <textarea className="h-8"></textarea> : <p>{task?.description}</p>}
+              {isEditing ? <Textarea placeholder={task?.description}></Textarea> : <p>{task?.description}</p>}
             </div>
 
             <div className="flex items-start ml-4 w-32 group-hover:hidden">
