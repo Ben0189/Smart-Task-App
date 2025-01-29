@@ -3,11 +3,13 @@ import { useState } from 'react';
 const LabelGroupButton = ({ LabelColor, LabelText, className = '', isActive, onClick }) => {
   return (
     <button
-      className={`flex flex-row px-4 py-2 ${isActive ? 'bg-primary' : 'bg-white'} ${className}`}
+      className={`group flex flex-row px-4 py-2 hover:bg-primary ${isActive ? 'bg-primary' : 'bg-white'} ${className}`}
       onClick={onClick}
     >
       <div className={`h-4 w-4 rounded-full ${LabelColor} mr-2`}></div>
-      <span className={`${isActive ? 'text-white' : 'text-gray-500'}`}>{LabelText}</span>
+      <span className={`group-hover:text-white ${isActive ? 'text-white' : 'text-gray-500'}`}>
+        {LabelText}
+      </span>
     </button>
   );
 };
