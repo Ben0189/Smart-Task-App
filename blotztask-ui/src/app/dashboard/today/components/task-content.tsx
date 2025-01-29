@@ -48,7 +48,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
             </div>
 
             {!isEditing && (
-              <div className="flex justify-end hidden ml-4 w-32 group-hover:flex">
+              <div className="justify-end hidden ml-4 w-32 group-hover:flex">
                 <button className="px-4" onClick={handleEditState}>
                   <Pencil className="text-primary" size={20} />
                 </button>
