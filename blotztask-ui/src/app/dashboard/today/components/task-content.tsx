@@ -7,7 +7,7 @@ import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto'
 import PopoverCalendar from '../shared/popover-calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/task-card-input';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,7 +23,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
         <div className="flex flex-col w-full bg-transparent px-6">
           <div className="flex flex-row justify-between w-full">
             {isEditing ? (
-              <Input placeholder={task?.title} className="w-80"></Input>
+              <Input placeholder={task?.title} className="font-bold"></Input>
             ) : (
               <p className="font-bold">{task?.title}</p>
             )}
@@ -52,7 +52,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
             </div>
 
             {!isEditing && (
-              <div className="flex justify-end hidden ml-4 w-32 group-hover:flex">
+              <div className="justify-end hidden ml-4 w-32 group-hover:flex">
                 <button className="px-4" onClick={handleEditState}>
                   <Pencil className="text-primary" size={20} />
                 </button>
