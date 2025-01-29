@@ -7,7 +7,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
-import { DeleteDialog } from "./delete-confirmation-dialog";
+import { Dialog, DialogTrigger } from '@/components/ui/dialog';
+import DeleteDialog from "./DeleteDialog";
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -22,10 +23,9 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
 
   const handleCalendarClose = () => setShowCalendar(false);
   const handleLabelClose = () => setShowLabel(false);
-
-  const [isDialogOpen, setDialogOpen] = useState(false);
+  const TaskContent = () => {}
   
-  const [selectedTask, setSelectedTask] = useState<TaskDetailDTO | null>(null);
+  const [selectedTask] = useState<TaskDetailDTO | null>(null);
   if (selectedTask) {
     console.log("Selected Task:", selectedTask);
   }
@@ -64,31 +64,17 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                 <button className="px-4" onClick={handleEditState}>
                   <Pencil className="text-primary" size={20} />
                 </button>
-                <button
-                  onClick={() => {
-                  //console.log("Trash2 clicked, task:", task); 
-                  setSelectedTask(task);
-                  setDialogOpen(true);
-                  }}
-                >
-                  <Trash2 className="text-primary" size={20} />
-                </button>
+                <Dialog>
+                  <DialogTrigger asChild>              
+                    <button onClick={() => console.log("Trash2 clicked!")}>                 
+                      <Trash2 className="text-primary" size={20} />
+                    </button>
+                  </DialogTrigger>
+                  <DeleteDialog />
+                </Dialog>
               </div>
             )}
           </div>
-          <DeleteDialog
-            isDialogOpen={isDialogOpen} 
-            setDialogOpen={(isOpen) => {
-            //console.log("Dialog visibility changed:", isOpen); 
-            setDialogOpen(isOpen);
-          }}
-          onClose={() => {
-            //console.log("Dialog closed, clearing selected task"); 
-            setDialogOpen(false);
-            setSelectedTask(null); 
-          }}
-        />
-
           {isEditing && (
             <div className="flex flex-row inline-block justify-between mt-4 mb-2">
               <div className="flex flex-row items-center">
@@ -116,7 +102,15 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                 </Popover>
                 <Popover>
                   <PopoverTrigger asChild>
-
+                    <button
+                      className={`flex flex-row items-center 
+                            rounded-full px-3 py-1 
+                            ${showLabel ? 'bg-primary text-white' : 'bg-gray-300 text-neutral-700'}`}
+                      onClick={() => setShowLabel((prev) => !prev)}
+                    >
+                      <Tag className="mr-1" size={16} />
+                      <span className="text-xs">{task.label?.name || 'No label name'}</span>
+                    </button>
                   </PopoverTrigger>                
                   <PopoverContent onCloseAutoFocus={handleLabelClose} className="w-32">
                     <LabelGroup />
