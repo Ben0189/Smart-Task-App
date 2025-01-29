@@ -12,7 +12,11 @@ import { DeleteDialog } from "./delete-confirmation-dialog";
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
+
   const [showLabel, setShowLabel] = useState(false);
+  if (showLabel) {
+    console.log("Label is currently visible");
+  }
 
   const handleEditState = () => setIsEditing(!isEditing);
 
@@ -20,7 +24,11 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const handleLabelClose = () => setShowLabel(false);
 
   const [isDialogOpen, setDialogOpen] = useState(false);
+  
   const [selectedTask, setSelectedTask] = useState<TaskDetailDTO | null>(null);
+  if (selectedTask) {
+    console.log("Selected Task:", selectedTask);
+  }
 
   return (
     <div className="flex flex-col w-full">
