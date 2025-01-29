@@ -1,19 +1,18 @@
 import DueDateTag from './due-date-tag';
 import TaskSeparator from '../shared/task-separator';
-import { Pencil, Trash2, Tag } from 'lucide-react';
+import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
-import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
 import PopoverCalendar from '../shared/popover-calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/task-card-input';
+import { LabelSelect } from '../shared/label-select';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
   const handleEditState = () => setIsEditing(!isEditing);
-  const [showLabel, setShowLabel] = useState(false);
-  const handleLabelClose = () => setShowLabel(false);
+  // const [showLabel, setShowLabel] = useState(false);
+  // const handleLabelClose = () => setShowLabel(false);
 
   return (
     <div className="flex flex-col w-full">
@@ -64,7 +63,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
               <div className="flex flex-row items-center">
                 <PopoverCalendar task={task} />
 
-                <Popover>
+                {/* <Popover>
                   <PopoverTrigger>
                     <button
                       className={`flex flex-row
@@ -77,9 +76,10 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                     </button>
                   </PopoverTrigger>
                   <PopoverContent onCloseAutoFocus={handleLabelClose} className="w-30 rounded-lg p-0">
-                    <LabelGroup />
+                    <SelectLabel />
                   </PopoverContent>
-                </Popover>
+                </Popover> */}
+                <LabelSelect/>
               </div>
               <div className="flex flex-row ">
                 <button
