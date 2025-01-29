@@ -23,8 +23,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
 
   const handleCalendarClose = () => setShowCalendar(false);
   const handleLabelClose = () => setShowLabel(false);
-  const TaskContent = () => {}
-  
+
   const [selectedTask] = useState<TaskDetailDTO | null>(null);
   if (selectedTask) {
     console.log("Selected Task:", selectedTask);
