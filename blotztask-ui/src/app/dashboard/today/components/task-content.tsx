@@ -23,7 +23,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
         <div className="flex flex-col w-full bg-transparent px-6">
           <div className="flex flex-row justify-between w-full">
             {isEditing ? (
-              <Input placeholder={task?.title}></Input>
+              <Input placeholder={task?.title} className="w-80"></Input>
             ) : (
               <p className="font-bold">{task?.title}</p>
             )}
@@ -32,7 +32,11 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
 
           <div className="flex w-full text-base text-gray-500 mt-2">
             <div className="flex flex-col w-full">
-              {isEditing ? <Textarea placeholder={task?.description}></Textarea> : <p>{task?.description}</p>}
+              {isEditing ? (
+                <Textarea placeholder={task?.description} className="w-96"></Textarea>
+              ) : (
+                <p>{task?.description}</p>
+              )}
             </div>
 
             <div className="flex items-start ml-4 w-32 group-hover:hidden">

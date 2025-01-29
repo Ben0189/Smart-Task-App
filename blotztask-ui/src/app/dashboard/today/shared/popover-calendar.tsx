@@ -27,7 +27,6 @@ const PopoverCalendar = ({ task }) => {
           classNames={{
             caption_label: 'bg-blue-50 px-2 py-1 rounded-md font-semibold',
             row: 'flex w-full',
-            day_today: 'focus:bg-primary focus:text-white',
           }}
           className="bg-white border-2 border-gray rounded-lg"
         />
