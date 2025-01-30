@@ -11,6 +11,7 @@ import { Tag } from 'lucide-react';
 import { Input } from '@/components/ui/task-card-input';
 import { Textarea } from '@/components/ui/textarea';
 import { CalendarForm } from '../shared/calendar-form';
+import { LabelSelect } from '../shared/label-select';
 
 const taskSchema = z.object({
   title: z.string(), // Simple string without validation rules
@@ -44,16 +45,9 @@ const AddTaskForm = ({ onSubmit }) => {
           {...register('description')}
         />
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center">
         <CalendarForm></CalendarForm>
-
-        <Button
-          variant="secondary"
-          className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200"
-        >
-          <Tag className="mr-2" />
-          <span>Add Label</span>
-        </Button>
+        <LabelSelect></LabelSelect>
       </div>
     </form>
   );
