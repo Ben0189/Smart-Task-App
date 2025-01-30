@@ -8,27 +8,18 @@ import { Calendar } from '@/components/ui/calendar';
 import LabelGroup from '../shared/label-group';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
-import DeleteDialog from "./DeleteDialog";
+import DeleteDialogContent from "./delete-dialog-content";
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
 
   const [showLabel, setShowLabel] = useState(false);
-  if (showLabel) {
-    console.log("Label is currently visible");
-  }
-
   const handleEditState = () => setIsEditing(!isEditing);
 
   const handleCalendarClose = () => setShowCalendar(false);
   const handleLabelClose = () => setShowLabel(false);
-
-  const [selectedTask] = useState<TaskDetailDTO | null>(null);
-  if (selectedTask) {
-    console.log("Selected Task:", selectedTask);
-  }
-
+  
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-row w-full bg-transparent group">
@@ -65,11 +56,11 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
                 </button>
                 <Dialog>
                   <DialogTrigger asChild>              
-                    <button onClick={() => console.log("Trash2 clicked!")}>                 
+                    <button>                 
                       <Trash2 className="text-primary" size={20} />
                     </button>
                   </DialogTrigger>
-                  <DeleteDialog />
+                  <DeleteDialogContent/>
                 </Dialog>
               </div>
             )}
