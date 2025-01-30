@@ -8,6 +8,8 @@ import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { Tag } from 'lucide-react';
+import { Input } from '@/components/ui/task-card-input';
+import { Textarea } from '@/components/ui/textarea';
 
 const taskSchema = z.object({
   title: z.string(), // Simple string without validation rules
@@ -32,19 +34,12 @@ const AddTaskForm = ({ onSubmit }) => {
 
   const [date, setDate] = React.useState<Date>();
   return (
-    <form className="flex flex-col space-y-2" onSubmit={handleSubmit(handleFormSubmit)}>
-      <div className="flex flex-col space-y-0 ">
-        <input
-          type="text"
-          className="border-0 font-bold p-2 focus:ring-0 focus:outline-none"
-          placeholder="Enter task title"
-          {...register('title')} // React Hook Form integration
-        />
-
-        <input
-          type="text"
-          className="border-0 p-2 text-sm focus:ring-0 focus:outline-none"
+    <form className="flex flex-col w-full space-y-2" onSubmit={handleSubmit(handleFormSubmit)}>
+      <div className="flex flex-col w-full">
+        <Input placeholder="Enter task title" className="font-bold text-base" {...register('title')} />
+        <Textarea
           placeholder="Fill in the detailed information"
+          className="w-full"
           {...register('description')}
         />
       </div>
@@ -67,7 +62,7 @@ const AddTaskForm = ({ onSubmit }) => {
           variant="secondary"
           className="bg-gray-100 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-200"
         >
-          <Tag className="mr-2"/>
+          <Tag className="mr-2" />
           <span>Add Label</span>
         </Button>
       </div>
