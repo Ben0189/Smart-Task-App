@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
-import { CalendarDays, CalendarIcon } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Calendar } from '@/components/ui/calendar';
