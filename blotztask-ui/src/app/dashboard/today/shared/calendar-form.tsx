@@ -44,7 +44,7 @@ export function CalendarForm({ task }) {
                     {field.value ? (
                       format(field.value, 'MM/dd')
                     ) : (
-                      <span className="text-xs font-light">{format(new Date(task.dueDate), 'MM/dd')}</span>
+                      <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
                     )}
                   </button>
                 </FormControl>
