@@ -28,7 +28,6 @@ const AddTaskForm = ({ onSubmit }) => {
     reset();
   };
 
-  const [date, setDate] = React.useState<Date>();
   return (
     <form className="flex flex-col w-full space-y-2" onSubmit={handleSubmit(handleFormSubmit)}>
       <div className="flex flex-col w-full">
