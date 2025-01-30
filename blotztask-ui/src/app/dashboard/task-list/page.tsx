@@ -31,7 +31,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="flex flex-col items-end mt-5">
+    <div className="flex flex-col w-full items-end mt-5">
       <div className="text-primary-dark flex w-full justify-between">
         <H1>All Tasks</H1>
       </div>
