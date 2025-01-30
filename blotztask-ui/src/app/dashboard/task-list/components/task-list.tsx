@@ -1,5 +1,4 @@
 import TaskCard from "../../today/components/task-card";
-import { Trash2 } from 'lucide-react';
 
 export function TaskList({ tasks, handleCheckboxChange }) {
   return (
