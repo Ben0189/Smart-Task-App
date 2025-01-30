@@ -9,6 +9,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useState } from 'react';
+import { TaskDetailDTO } from '../../task-list/models/task-detail-dto';
 
 const FormSchema = z.object({
   deadline: z.date({
@@ -16,7 +17,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function CalendarForm({ task }) {
+export function CalendarForm({ task }: { task?: TaskDetailDTO }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const handleCalendarClose = () => setShowCalendar(false);
 
@@ -43,8 +44,10 @@ export function CalendarForm({ task }) {
                     <CalendarDays className="mr-1" size={16} />
                     {field.value ? (
                       format(field.value, 'MM/dd')
-                    ) : (
+                    ) : task ? (
                       <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
+                    ) : (
+                      <span>Add Date</span>
                     )}
                   </button>
                 </FormControl>

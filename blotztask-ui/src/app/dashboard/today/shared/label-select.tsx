@@ -21,7 +21,7 @@ export function LabelSelect() {
 
   return (
     <Select>
-      <SelectLabelTrigger className={`flex flex-row items-center rounded-full px-3 py-1 text-xs`}>
+      <SelectLabelTrigger className={`flex flex-row w-30 items-center rounded-full px-3 py-1 text-xs`}>
         <Tag className="mr-1" size={16} />
         <SelectValue placeholder="Select Label" />
       </SelectLabelTrigger>
@@ -31,7 +31,7 @@ export function LabelSelect() {
             <LabelSelectItem
               key={label.id}
               value={label.name}
-              className="flex flex-rowitems-center px-2 py-1"
+              className="flex flex-row items-center px-2 py-1"
             >
               <div className="flex flex-row">
                 <div className={`h-4 w-4 rounded-full mr-2 ${label.color}`}></div>
