@@ -36,8 +36,16 @@ builder.Services.AddSwaggerGen(options =>
 });
 builder.Services.AddApplicationInsightsTelemetry();
 
+// add httpcontext and identitycore for UserInforService
+builder.Services.AddIdentityCore<User>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<BlotzTaskDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IUserInfoService, UserInfoService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<ILabelService, LabelService>();
+
 
 builder.Services.AddIdentityApiEndpoints<User>()
     .AddRoles<IdentityRole>()
