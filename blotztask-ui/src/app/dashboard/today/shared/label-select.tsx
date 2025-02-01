@@ -25,7 +25,7 @@ export function LabelSelect({ labelPickerRef }: { labelPickerRef?: React.RefObje
         <Tag className="mr-1" size={16} />
         <SelectValue placeholder="Select Label" />
       </SelectLabelTrigger>
-      <SelectContent ref={labelPickerRef?.current ? labelPickerRef : undefined}>
+      <SelectContent ref={labelPickerRef ?? undefined}>
         <SelectGroup>
           {labels.map((label) => (
             <LabelSelectItem

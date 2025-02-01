@@ -59,7 +59,7 @@ export function CalendarForm({
                 </FormControl>
               </PopoverTrigger>
               <PopoverContent
-                ref={datePickerRef?.current ? datePickerRef : undefined}
+                ref={datePickerRef ?? undefined}
                 className="w-auto p-0"
                 align="start"
                 onCloseAutoFocus={handleCalendarClose}
