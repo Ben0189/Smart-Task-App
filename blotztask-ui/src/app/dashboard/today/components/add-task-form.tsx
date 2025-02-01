@@ -39,8 +39,8 @@ const AddTaskForm = ({ onSubmit, datePickerRef, labelPickerRef }) => {
         />
       </div>
       <div className="flex items-center">
-        <CalendarForm datePickerRef={datePickerRef} /> // Pass ref into Date Pick components
-        <LabelSelect labelPickerRef={labelPickerRef} /> // Pass ref into Label Pick components
+        <CalendarForm datePickerRef={datePickerRef} />
+        <LabelSelect labelPickerRef={labelPickerRef} />
       </div>
     </form>
   );
