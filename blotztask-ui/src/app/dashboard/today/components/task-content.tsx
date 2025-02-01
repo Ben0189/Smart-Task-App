@@ -14,8 +14,8 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const handleEditState = () => setIsEditing(!isEditing);
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex flex-row w-full bg-transparent group">
+    <div className="flex flex-col w-full ">
+      <div className="flex flex-row w-full bg-transparent group mb-2">
         <TaskSeparator color={task.label.color} />
 
         <div className="flex flex-col w-full bg-transparent px-6">
@@ -80,7 +80,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
           )}
         </div>
       </div>
-      <div className="h-2"></div>
+
       <SectionSepreator />
     </div>
   );
