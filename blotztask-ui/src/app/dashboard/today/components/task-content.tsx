@@ -37,7 +37,10 @@ export default function TaskContent({
         <TaskSeparator color={task.label.color} />
         <Form {...form}>
           <form
-              onSubmit={form.handleSubmit(onSubmit)}
+              onSubmit={form.handleSubmit((data) => {
+                onSubmit(data);
+                handleEditState(); 
+              })}
               className="flex flex-col w-full bg-transparent px-6"
             >
             <div className="flex flex-col w-full bg-transparent px-6">
@@ -106,7 +109,6 @@ export default function TaskContent({
                     <button
                       type='submit'
                       className="bg-primary rounded-lg px-3 py-1 text-xs text-white w-20"
-                      onClick={handleEditState}
                     >
                       Save
                     </button>
