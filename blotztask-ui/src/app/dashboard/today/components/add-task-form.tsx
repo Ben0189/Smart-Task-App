@@ -13,7 +13,7 @@ const taskSchema = z.object({
   date: z.date().optional(),
 });
 
-const AddTaskForm = ({ onSubmit }) => {
+const AddTaskForm = ({ onSubmit, datePickerRef, labelPickerRef }) => {
   const { register, handleSubmit, reset } = useForm({
     resolver: zodResolver(taskSchema),
     defaultValues: {
@@ -38,9 +38,13 @@ const AddTaskForm = ({ onSubmit }) => {
           {...register('description')}
         />
       </div>
-      <div className="flex items-center">
-        <CalendarForm></CalendarForm>
-        <LabelSelect></LabelSelect>
+      <div className="flex items-center" >
+        <CalendarForm 
+          datePickerRef={datePickerRef}
+        />
+        <LabelSelect
+          labelPickerRef={labelPickerRef}
+        />
       </div>
     </form>
   );
