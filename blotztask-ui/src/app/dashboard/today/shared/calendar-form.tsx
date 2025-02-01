@@ -17,7 +17,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function CalendarForm({ task }: { task?: TaskDetailDTO }) {
+export function CalendarForm({ task, datePickerRef }: { task?: TaskDetailDTO, datePickerRef: React.RefObject<HTMLDivElement> }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const handleCalendarClose = () => setShowCalendar(false);
 
@@ -26,7 +26,7 @@ export function CalendarForm({ task }: { task?: TaskDetailDTO }) {
   });
 
   return (
-    <Form {...form}>
+    <Form {...form} >
       <FormField
         control={form.control}
         name="deadline"
@@ -52,7 +52,7 @@ export function CalendarForm({ task }: { task?: TaskDetailDTO }) {
                   </button>
                 </FormControl>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start" onCloseAutoFocus={handleCalendarClose}>
+              <PopoverContent ref={datePickerRef} className="w-auto p-0" align="start" onCloseAutoFocus={handleCalendarClose}>
                 <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
               </PopoverContent>
             </Popover>
