@@ -11,7 +11,7 @@ import {
 import { Tag } from 'lucide-react';
 import { LabelDTO } from '@/model/label-dto';
 
-export function LabelSelect() {
+export function LabelSelect({labelPickerRef}: {labelPickerRef: React.RefObject<HTMLDivElement>}) {
   const labels: LabelDTO[] = [
     { id: 1, name: 'Personal', color: 'bg-amber-400' },
     { id: 2, name: 'Academic', color: 'bg-rose-500' },
@@ -25,7 +25,7 @@ export function LabelSelect() {
         <Tag className="mr-1" size={16} />
         <SelectValue placeholder="Select Label" />
       </SelectLabelTrigger>
-      <SelectContent>
+      <SelectContent ref={labelPickerRef}>
         <SelectGroup>
           {labels.map((label) => (
             <LabelSelectItem
