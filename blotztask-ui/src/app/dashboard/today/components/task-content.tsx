@@ -80,7 +80,6 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
           )}
         </div>
       </div>
-
       <SectionSepreator />
     </div>
   );
