@@ -20,6 +20,7 @@ export default function TaskContent({
   task: TaskDetailDTO;
   onSubmit: (data: z.infer<typeof taskFormSchema>) => void;
 }) {
+
   const form = useForm<z.infer<typeof taskFormSchema>>({
     resolver: zodResolver(taskFormSchema),
     defaultValues: {
@@ -40,6 +41,7 @@ export default function TaskContent({
               onSubmit={form.handleSubmit((data) => {
                 onSubmit(data);
                 handleEditState(); 
+                console.log("call me")
               })}
               className="flex flex-col w-full bg-transparent px-6"
             >
@@ -54,7 +56,9 @@ export default function TaskContent({
                         <FormControl>
                           <Input className="font-bold" {...field}></Input>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage>
+                          {form.formState.errors.title?.message}
+                        </FormMessage>
                       </FormItem>
                     )}
                   />
@@ -107,7 +111,7 @@ export default function TaskContent({
                       Cancel
                     </button>
                     <button
-                      type='submit'
+                      type="submit"
                       className="bg-primary rounded-lg px-3 py-1 text-xs text-white w-20"
                     >
                       Save
