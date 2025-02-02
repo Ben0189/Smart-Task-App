@@ -6,11 +6,6 @@ import { SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { NavUser, User } from './nav-user';
 import { fetchCurrentUserInfo } from '@/services/userInfoService';
 
-// const mockusers = {
-//   name: 'Alice Johnson',
-//   email: 'alice.johnson@example.com',
-//   avatar: '../../../assets/images/profileImage.png',
-// };
 
 export function SidebarAuthButton({ session, onSignOut }) {
   const [userInfo, setUserInfo] = useState<User>();
