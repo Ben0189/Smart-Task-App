@@ -2,14 +2,13 @@ import DueDateTag from './due-date-tag';
 import TaskSeparator from '../shared/task-separator';
 import { CalendarDays, Pencil, Tag, Trash2 } from 'lucide-react';
 import { useState } from 'react';
-import DeleteDialogContent from './delete-dialog-content';
-import { LabelSelect } from '../shared/label-select';
-import { CalendarForm } from '../shared/calendar-form';
-import { TaskDetailDTO } from '../../task-list/models/task-detail-dto';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/task-card-input';
-import { Dialog, DialogTrigger } from '@/components/ui/dialog';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import DeleteDialogContent from './delete-dialog-content'; 
+import LabelSelect from '../shared/label-select'; 
+import CalendarForm from '../shared/calendar-form'; 
+import TaskDetailDTO from '../task-list/models/task-detail-dto'; 
+import Input from '@components/ui/task-card-input';
+import Dialog, { DialogTrigger } from '@components/ui/dialog';
+import Popover, { PopoverContent, PopoverTrigger } from '@components/ui/popover';
 import { format } from 'date-fns';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
@@ -22,8 +21,8 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const handleLabelClose = () => setShowLabel(false);
   
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex flex-row w-full bg-transparent group">
+    <div className="flex flex-col w-full ">
+      <div className="flex flex-row w-full bg-transparent group mb-2">
         <TaskSeparator color={task.label.color} />
 
         <div className="flex flex-col w-full bg-transparent px-6">
@@ -35,7 +34,6 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
             )}
             {!isEditing && <DueDateTag task={task} />}
           </div>
-
           <div className="flex w-full text-base text-gray-500 mt-2">
             <div className="flex flex-col w-full">
               {isEditing ? <Textarea placeholder={task?.description}></Textarea> : <p>{task?.description}</p>}
@@ -93,6 +91,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
           )}
         </div>
       </div>
+      <SectionSepreator />
     </div>
   );
 }
