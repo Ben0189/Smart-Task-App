@@ -6,8 +6,7 @@ import { SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { NavUser, User } from './nav-user';
 import { fetchCurrentUserInfo } from '@/services/userInfoService';
 
-
-export function SidebarAuthButton({ session, onSignOut }) {
+export function ProfileSectionButton({ session, onSignOut }) {
   const [userInfo, setUserInfo] = useState<User>();
 
   const loadUserInfo = async () => {
