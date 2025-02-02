@@ -13,12 +13,7 @@ import { Dialog, DialogTrigger } from 'src/components/ui/dialog';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [showLabel, setShowLabel] = useState(false);
-
   const handleEditState = () => setIsEditing(!isEditing);
-  const handleCalendarClose = () => setShowCalendar(false);
-  const handleLabelClose = () => setShowLabel(false);
   
   return (
     <div className="flex flex-col w-full ">
