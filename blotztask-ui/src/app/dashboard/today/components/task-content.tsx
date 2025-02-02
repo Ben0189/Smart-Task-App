@@ -1,15 +1,15 @@
 import DueDateTag from './due-date-tag';
 import TaskSeparator from '../shared/task-separator';
-import { CalendarDays, Pencil, Tag, Trash2 } from 'lucide-react';
+import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import SectionSepreator from './section-seperator';
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from 'src/components/ui/task-card-input';
+import { LabelSelect } from '../shared/label-select';
 import DeleteDialogContent from './delete-dialog-content'; 
-import LabelSelect from '../shared/label-select'; 
-import CalendarForm from '../shared/calendar-form'; 
-import TaskDetailDTO from '../task-list/models/task-detail-dto'; 
-import Input from '@components/ui/task-card-input';
-import Dialog, { DialogTrigger } from '@components/ui/dialog';
-import Popover, { PopoverContent, PopoverTrigger } from '@components/ui/popover';
-import { format } from 'date-fns';
+import { CalendarForm } from '../shared/calendar-form'; 
+import { TaskDetailDTO } from 'src/app/dashboard/task-list/models/task-detail-dto'; 
+import { Dialog, DialogTrigger } from 'src/components/ui/dialog';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
