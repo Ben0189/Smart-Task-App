@@ -3,6 +3,7 @@ import TaskSeparator from '../shared/task-separator';
 import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
+import SectionSepreator from './section-seperator';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/task-card-input';
 import { LabelSelect } from '../shared/label-select';
@@ -13,8 +14,8 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const handleEditState = () => setIsEditing(!isEditing);
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex flex-row w-full bg-transparent group">
+    <div className="flex flex-col w-full ">
+      <div className="flex flex-row w-full bg-transparent group mb-2">
         <TaskSeparator color={task.label.color} />
 
         <div className="flex flex-col w-full bg-transparent px-6">
@@ -26,7 +27,6 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
             )}
             {!isEditing && <DueDateTag task={task} />}
           </div>
-
           <div className="flex w-full text-base text-gray-500 mt-2">
             <div className="flex flex-col w-full">
               {isEditing ? <Textarea placeholder={task?.description}></Textarea> : <p>{task?.description}</p>}
@@ -80,6 +80,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
           )}
         </div>
       </div>
+      <SectionSepreator />
     </div>
   );
 }

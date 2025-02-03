@@ -6,23 +6,21 @@ import { Input } from '@/components/ui/task-card-input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { CalendarForm } from '../shared/calendar-form';
-// import { LabelSelect } from '../shared/label-select';
+import { LabelSelect } from '../shared/label-select';
 
 const taskSchema = z.object({
   title: z.string().min(1, 'Title is required'),
-  // description: z.string().optional(),
-  // date: z.date(),
+  date: z.date().optional(),
 });
 
 type FormField = z.infer<typeof taskSchema>;
 
-const AddTaskForm = () => {
+const AddTaskForm = ({ datePickerRef, labelPickerRef }) => {
   const form = useForm<FormField>({
     resolver: zodResolver(taskSchema),
     defaultValues: {
       title: '',
-      // description: '',
-      // date: undefined,
+      date: null,
     },
   });
 
@@ -53,13 +51,10 @@ const AddTaskForm = () => {
           <Textarea placeholder="Fill in the detailed information" className="w-full" />
         </div>
         <div className="flex items-center">
-          <CalendarForm           
+          <CalendarForm             
             control={form.control}
-          >
-            <span>Add Date</span>
-          </CalendarForm>
-
-          {/* <LabelSelect></LabelSelect> */}
+            datePickerRef={datePickerRef} />
+          <LabelSelect labelPickerRef={labelPickerRef} />
         </div>
         <button type="submit">Test Submit</button>
       </form>  
