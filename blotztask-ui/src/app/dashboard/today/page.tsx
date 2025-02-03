@@ -52,11 +52,6 @@ export default function Today() {
     }
   };
 
-  const handleAddTask = (taskTitle) => {
-    console.log('Adding task:', taskTitle);
-    // Implement add task logic here , going to api to add task
-  };
-
   return (
     <>
       <div className="flex flex-col gap-5">
