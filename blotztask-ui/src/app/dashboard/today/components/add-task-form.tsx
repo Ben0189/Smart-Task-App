@@ -9,7 +9,10 @@ import { CalendarForm } from '../shared/calendar-form';
 import { LabelSelect } from '../shared/label-select';
 
 const taskSchema = z.object({
-  title: z.string().min(1, 'Title is required'),
+  title: z.string().min(1, {
+    message: 'Title is required.',
+  }),
+  description: z.string().optional(),
   date: z.date().optional(),
 });
 
@@ -20,21 +23,18 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef }) => {
     resolver: zodResolver(taskSchema),
     defaultValues: {
       title: '',
+      description: '',
       date: null,
     },
   });
 
   const handleAddTask: SubmitHandler<FormField> = async (data) => {
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
   };
 
   return (
     <Form {...form}>
-      <form 
-        className="flex flex-col w-full space-y-2"
-        onSubmit={form.handleSubmit(handleAddTask)}
-      >
+      <form className="flex flex-col w-full space-y-2" onSubmit={form.handleSubmit(handleAddTask)}>
         <div className="flex flex-col w-full">
           <FormField
             control={form.control}
@@ -48,16 +48,25 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef }) => {
               </FormItem>
             )}
           />
-          <Textarea placeholder="Fill in the detailed information" className="w-full" />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Textarea placeholder="Fill in the detailed information" className="w-full" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
         <div className="flex items-center">
-          <CalendarForm             
-            control={form.control}
-            datePickerRef={datePickerRef} />
+          <CalendarForm control={form.control} datePickerRef={datePickerRef} />
           <LabelSelect labelPickerRef={labelPickerRef} />
         </div>
         <button type="submit">Test Submit</button>
-      </form>  
+      </form>
     </Form>
   );
 };
