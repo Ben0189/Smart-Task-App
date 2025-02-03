@@ -54,8 +54,8 @@ const LoginPage = () => {
   return (
     <div className="h-full justify-center flex flex-col items-center">
       <div className="flex flex-col gap-4 bg-white p-5 rounded-lg w-96">
-        <h1 className={styles.title}> Welcome to Blotz</h1>
-        <p className={styles.subtitle}>Enter your email and password to start</p>
+      <h1 className="text-2xl text-center font-medium text-blue-500">Welcome to Blotz</h1> 
+      <p className = "text-center text-gray-600 text-sm" > Enter your email and password to start </p>
         {errors.root && <AlertDestructive title="Error" description={errors.root.message} />}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.input_group}>
@@ -80,12 +80,6 @@ const LoginPage = () => {
             {isSubmitting ? <Spinner /> : 'Log in'}
           </Button>
         </form>
-        <p className={styles.registerPrompt}>
-          Don’t have an account?
-          <a href="/auth/signup" className={styles.registerLink}>
-            Register here
-          </a>
-        </p>
       </div>
     </div>
   );
