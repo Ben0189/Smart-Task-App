@@ -9,17 +9,15 @@ import { useState } from 'react';
 import { TaskDetailDTO } from '../../task-list/models/task-detail-dto';
 import { Control } from 'react-hook-form';
 
-export function CalendarForm({ 
+export function CalendarForm({
   task,
-  datePickerRef, 
-  control, 
-}
-:{    
+  datePickerRef,
+  control,
+}: {
   task?: TaskDetailDTO;
   datePickerRef?: React.RefObject<HTMLDivElement>;
   control: Control;
-}
-) {
+}) {
   const [showCalendar, setShowCalendar] = useState(false);
   const handleCalendarClose = () => setShowCalendar(false);
 
@@ -39,27 +37,23 @@ export function CalendarForm({
                   onClick={() => setShowCalendar((prev) => !prev)}
                 >
                   <CalendarDays className="mr-1" size={16} />
-                    {field.value ? (
-                      format(field.value, 'MM/dd')
-                    ) : task ? (
-                      <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
-                    ) : (
-                      <span>Add Date</span>
-                    )}
+                  {field.value ? (
+                    format(field.value, 'MM/dd')
+                  ) : task ? (
+                    <span className="text-xs">{format(new Date(task.dueDate), 'MM/dd')}</span>
+                  ) : (
+                    <span>Add Date</span>
+                  )}
                 </button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent 
+            <PopoverContent
               ref={datePickerRef ?? undefined}
-              className="w-auto p-0" 
-              align="start" 
+              className="w-auto p-0"
+              align="start"
               onCloseAutoFocus={handleCalendarClose}
             >
-              <Calendar 
-                mode="single" 
-                selected={field.value} 
-                onSelect={field.onChange} 
-                initialFocus />
+              <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
             </PopoverContent>
           </Popover>
         </FormItem>
