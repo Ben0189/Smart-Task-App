@@ -61,11 +61,17 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef }) => {
             )}
           />
         </div>
-        <div className="flex items-center">
-          <CalendarForm control={form.control} datePickerRef={datePickerRef} />
-          <LabelSelect labelPickerRef={labelPickerRef} />
+        <div className="flex flex-row inline-block justify-between mt-4 mb-2">
+          <div className="flex flex-row items-center">
+            <CalendarForm control={form.control} datePickerRef={datePickerRef} />
+            <LabelSelect labelPickerRef={labelPickerRef} />
+          </div>
+          <div className="flex flex-row h-8 mr-6">
+            <button type="submit" className="bg-primary rounded-lg px-3 py-1 text-xs text-white w-20">
+              Save
+            </button>
+          </div>
         </div>
-        <button type="submit">Test Submit</button>
       </form>
     </Form>
   );
