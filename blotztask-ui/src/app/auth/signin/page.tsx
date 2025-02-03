@@ -80,6 +80,12 @@ const LoginPage = () => {
             {isSubmitting ? <Spinner /> : 'Log in'}
           </Button>
         </form>
+        <p className={styles.registerPrompt}>
+          Don’t have an account?
+          <a href="/auth/signup" className={styles.registerLink}>
+            Register here
+          </a>
+        </p>
       </div>
     </div>
   );
