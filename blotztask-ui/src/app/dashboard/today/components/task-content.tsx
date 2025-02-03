@@ -6,7 +6,7 @@ import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto'
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/task-card-input';
 import { LabelSelect } from '../shared/label-select';
-import { CalendarForm } from '../shared/calendar-form';
+// import { CalendarForm } from '../shared/calendar-form';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -59,7 +59,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
           {isEditing && (
             <div className="flex flex-row inline-block justify-between mt-4 mb-2">
               <div className="flex flex-row items-center">
-                <CalendarForm task={task} />
+                {/* <CalendarForm task={task} /> */}
                 <LabelSelect />
               </div>
               <div className="flex flex-row ">
