@@ -54,7 +54,7 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef }) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea placeholder="Fill in the detailed information" className="w-full" />
+                  <Textarea placeholder="Fill in the detailed information" className="w-full" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

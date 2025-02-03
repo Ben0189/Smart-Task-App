@@ -3,7 +3,7 @@ import AddTaskForm from './add-task-form';
 import { PlusIcon } from '@radix-ui/react-icons';
 import useClickOutside from '@/utils/use-multiple-click-away';
 
-const AddTaskCard = ({ onAddTask }) => {
+const AddTaskCard = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const datePickerRef = useRef<HTMLDivElement>(null);
