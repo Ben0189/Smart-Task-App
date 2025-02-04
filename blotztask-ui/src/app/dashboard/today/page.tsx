@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchTaskItemsDueToday } from '@/services/taskService';
-import { completeTaskForToday } from '@/services/taskService';
+import { updateTaskStatus } from '@/services/taskService';
 import TodayHeader from './components/today-header';
 import TaskCard from './components/task-card';
 import AddTaskCard from './components/add-task-card';
@@ -34,25 +34,23 @@ export default function Today() {
   };
 
   const handleCheckboxChange = async (taskId: number) => {
-    await completeTask(taskId);
-    loadTasks();
+    console.log('Completing task:', taskId);
+    await completeTask(taskId); 
   };
 
   const handleCompletedCheckboxChange = async (taskId: number) => {
     console.log('Uncompleting task:', taskId);
+    await completeTask(taskId);
   };
 
   const completeTask = async (taskId: number) => {
     try {
-      await completeTaskForToday(taskId);
+      await updateTaskStatus(taskId);
+      await loadTasks();  
     } catch (error) {
-      console.error('Error completing task:', error);
+      console.error('Error updating task status:', error);
     }
   };
-
-  // const uncompleteTask = async (taskId: number) => {
-  //   // waiting to finish the implementation
-  // };
 
   const handleAddTask = (taskTitle) => {
     console.log('Adding task:', taskTitle);

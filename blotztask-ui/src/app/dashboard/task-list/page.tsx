@@ -23,15 +23,12 @@ export default function Page() {
       console.error('Failed to update task status:', error);
     }
   };
-  /**
-   * Fetch the tasks once and set the hook on the first rendering
-   */
   useEffect(() => {
     loadTasks();
   }, []);
 
   return (
-    <div className="flex flex-col items-end mt-5">
+    <div className="flex flex-col w-full items-end mt-5">
       <div className="text-primary-dark flex w-full justify-between">
         <H1>All Tasks</H1>
       </div>
