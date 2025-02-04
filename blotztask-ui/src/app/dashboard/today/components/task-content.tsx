@@ -58,10 +58,10 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
 
           {isEditing && (
             <div className="flex flex-row inline-block justify-between mt-4 mb-2">
-              <div className="flex flex-row items-center">
-                {/* <CalendarForm task={task} /> */}
-                {/* <LabelSelect /> */}
-              </div>
+              {/* <div className="flex flex-row items-center">
+                <CalendarForm task={task} />
+                <LabelSelect />
+              </div> */}
               <div className="flex flex-row ">
                 <button
                   className="bg-neutral-300 rounded-lg px-3 py-2 text-xs text-gray-700 mx-2 w-20"

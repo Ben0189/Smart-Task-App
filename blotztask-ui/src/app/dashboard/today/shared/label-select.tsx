@@ -33,7 +33,7 @@ export function LabelSelect({
       name="label"
       render={({ field }) => (
         <FormItem>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select onValueChange={field.onChange}>
             <FormControl>
               <SelectLabelTrigger
                 className={`flex flex-row w-30 items-center rounded-full px-3 py-1 text-xs`}

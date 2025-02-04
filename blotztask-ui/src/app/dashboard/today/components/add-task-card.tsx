@@ -9,10 +9,6 @@ const AddTaskCard = () => {
   const datePickerRef = useRef<HTMLDivElement>(null);
   const labelPickerRef = useRef<HTMLDivElement>(null);
 
-  const handleCancelForm = () => {
-    setIsFormVisible(false);
-  };
-
   useClickOutside([cardRef, datePickerRef, labelPickerRef], () => {
     setIsFormVisible(false);
   });
@@ -31,7 +27,7 @@ const AddTaskCard = () => {
           <AddTaskForm
             datePickerRef={datePickerRef}
             labelPickerRef={labelPickerRef}
-            onCancel={handleCancelForm}
+            onCancel={() => setIsFormVisible(false)}
           />
         )}
       </div>
