@@ -1,4 +1,4 @@
-import { H1, H2, H3, H4, H5, H6, P}  from '@/components/ui/heading-with-anchor';
+import { H1 }  from '@/components/ui/heading-with-anchor';
 import React from 'react';
 import { Progress } from '@/components/ui/progress';
 import { format } from 'date-fns';
