@@ -3,7 +3,7 @@ import TaskSeparator from '../shared/task-separator';
 import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
-import SectionSepreator from './section-seperator';
+import SectionSepreator from './section-separator';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/task-card-input';
 // import { LabelSelect } from '../shared/label-select';
