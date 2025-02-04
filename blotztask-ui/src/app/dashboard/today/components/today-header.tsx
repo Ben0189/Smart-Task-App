@@ -31,4 +31,4 @@ const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
   );
 };
 
-export default TodayHeader;
+export default TodayHeader
