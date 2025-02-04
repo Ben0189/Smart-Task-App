@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import AddTaskForm from './add-task-form';
 import { PlusIcon } from '@radix-ui/react-icons';
 import useClickOutside from '@/utils/use-multiple-click-away';
