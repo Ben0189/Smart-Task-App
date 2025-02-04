@@ -52,10 +52,7 @@ export function LabelSelect({
                     value={label.id.toString()}
                     className="flex flex-row items-center px-2 py-1"
                   >
-                    <div className="flex flex-row">
-                      <div className={`h-4 w-4 rounded-full mr-2 ${label.color}`}></div>
-                      {label.name}
-                    </div>
+                    <div className="flex flex-row">{label.name}</div>
                   </LabelSelectItem>
                 ))}
               </SelectGroup>
