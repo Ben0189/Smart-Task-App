@@ -1,4 +1,4 @@
-import { H1, H5 } from '@/components/ui/heading-with-anchor';
+import { H1 }  from '@/components/ui/heading-with-anchor';
 import React from 'react';
 import { Progress } from '@/components/ui/progress';
 import { format } from 'date-fns';
@@ -16,15 +16,21 @@ const TodayHeader: React.FC<TodayHeaderProps> = ({ tasks }) => {
 
   return (
     <div className="flex flex-col gap-5">
-      <H1 className="text-primary-dark flex items-center">Today</H1>
-      <div className="flex justify-between items-center">
-        <H5 className="text-gray-500 text-sm">{todayDate}</H5>
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium">Completed</span>
+      <div className='flex justify-between item-start'>
+
+      <div className="flex items-center gap-2">
+        <H1 className="text-primary-dark text-5xl font-bold">Today</H1>
+        <span className="text-lg text-gray-800 mt-8">{todayDate}</span>
+      </div>
+
+      <div className="flex flex-col items-end justify-center mt-8">
+          <div className="flex items-center gap-2 ">
+          <span className="text-sm font-medium ">Completed</span>     
           <Progress value={progressValue} className="w-[200px]" />
           <span className="text-gray-500 text-sm font-medium">
             {completed} / {total}
-          </span>
+           </span>
+          </div>         
         </div>
       </div>
     </div>
