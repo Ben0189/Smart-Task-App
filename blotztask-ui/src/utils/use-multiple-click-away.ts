@@ -19,7 +19,7 @@ function useClickOutside(refs, onClickAway, events = ['mousedown', 'touchstart']
 
   useEffect(() => {
     const handler = (event) => {
-      const clickedOutside = savedRefs.current.every(ref => {
+      const clickedOutside = savedRefs.current.every((ref) => {
         const { current: el } = ref;
         // If ref is null, consider it as outside click
         if (!el) {

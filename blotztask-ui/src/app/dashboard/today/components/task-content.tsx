@@ -2,9 +2,9 @@ import DueDateTag from './due-date-tag';
 import TaskSeparator from '../shared/task-separator';
 import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
-import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
+import SectionSepreator from './section-separator';
 import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/task-card-input';
+import { Input } from 'src/components/ui/task-card-input';
 import { LabelSelect } from '../shared/label-select';
 import { CalendarForm } from '../shared/calendar-form';
 import { useForm } from 'react-hook-form';
@@ -12,6 +12,9 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { taskFormSchema } from '../forms/task-form-schema';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { TaskDetailDTO } from '../../task-list/models/task-detail-dto';
+import { Dialog, DialogTrigger } from '@/components/ui/dialog';
+import DeleteDialogContent from './delete-dialog-content';
 
 export default function TaskContent({ 
   task,
@@ -30,11 +33,10 @@ export default function TaskContent({
 
   const [isEditing, setIsEditing] = useState(false);
   const handleEditState = () => setIsEditing(!isEditing);
-
+  
   return (
-
-    <div className="flex flex-col w-full">
-      <div className="flex flex-row w-full bg-transparent group">
+    <div className="flex flex-col w-full ">
+      <div className="flex flex-row w-full bg-transparent group mb-2">
         <TaskSeparator color={task.label.color} />
         <Form {...form}>
           <form
@@ -90,9 +92,14 @@ export default function TaskContent({
                     <button className="px-4" onClick={handleEditState}>
                       <Pencil className="text-primary" size={20} />
                     </button>
-                    <button>
-                      <Trash2 className="text-primary" size={20} />
-                    </button>
+                    <Dialog>
+                      <DialogTrigger asChild>              
+                        <button>                 
+                          <Trash2 className="text-primary" size={20} />
+                        </button>
+                      </DialogTrigger>
+                      <DeleteDialogContent/>
+                    </Dialog>
                   </div>
                 )}
               </div>
@@ -123,6 +130,7 @@ export default function TaskContent({
           </form>
         </Form>
       </div>
+      <SectionSepreator />
     </div>
   );
 }
