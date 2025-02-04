@@ -2,7 +2,6 @@ import React from "react";
 import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 const DeleteTaskDialog = () => {
-  console.log("DeleteDialog is rendering!"); 
   return (
     <DialogContent className="sm:max-w-[425px] bg-white rounded-lg shadow-lg p-6 z-50">
       <DialogHeader>
