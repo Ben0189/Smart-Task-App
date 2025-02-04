@@ -65,6 +65,7 @@ export default function TaskContent({ task }: { task: TaskDetailDTO }) {
           {isEditing && (
             <div className="flex flex-row inline-block justify-between mt-4 mb-2">
               <div className="flex flex-row items-center">
+                {/* Wait to be done in edit TaskCard React hook form */}
                 {/* <CalendarForm task={task} />
               <LabelSelect /> */}
               </div>
