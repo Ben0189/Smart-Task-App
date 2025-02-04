@@ -32,7 +32,7 @@ export function LabelSelect({
       control={control}
       name="label"
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="relative">
           <Select onValueChange={(value) => field.onChange(Number(value))}>
             <FormControl>
               <SelectLabelTrigger
@@ -61,8 +61,7 @@ export function LabelSelect({
               </SelectGroup>
             </SelectContent>
           </Select>
-
-          <FormMessage />
+          <FormMessage className="absolute" />
         </FormItem>
       )}
     />

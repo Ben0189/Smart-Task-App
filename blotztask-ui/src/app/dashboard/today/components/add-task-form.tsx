@@ -26,7 +26,7 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef, onCancel }) => {
       title: '',
       description: '',
       date: null,
-      label: null,
+      label: undefined,
     },
   });
 
