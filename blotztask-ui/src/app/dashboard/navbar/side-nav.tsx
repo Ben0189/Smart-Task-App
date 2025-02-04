@@ -13,13 +13,13 @@ import {
   SidebarMenuButton,
 } from '@/components/ui/sidebar';
 import { useSession } from 'next-auth/react';
-import { SidebarAuthButton } from './components/side-auth-button';
+import { ProfileSectionButton } from './components/profile-section-button';
 import { Categories } from './categories';
 import { cn } from '@/lib/utils';
 
 const authenticatedItems = [
   { title: 'Today', url: 'today', icon: CalendarDays },
-  { title: 'Task List', url: 'task-list', icon: Inbox }
+  { title: 'Task List', url: 'task-list', icon: Inbox },
 ];
 
 const guestItems = [{ title: 'Home', url: '/home', icon: Home }];
@@ -68,7 +68,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarAuthButton session={session} onSignOut={handleSignOut} />
+          <ProfileSectionButton session={session} onSignOut={handleSignOut} />
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
