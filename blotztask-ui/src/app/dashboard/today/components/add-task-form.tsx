@@ -18,7 +18,7 @@ const taskSchema = z.object({
 
 type FormField = z.infer<typeof taskSchema>;
 
-const AddTaskForm = ({ datePickerRef, labelPickerRef }) => {
+const AddTaskForm = ({ datePickerRef, labelPickerRef, onCancel }) => {
   const form = useForm<FormField>({
     resolver: zodResolver(taskSchema),
     defaultValues: {
@@ -67,6 +67,13 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef }) => {
             <LabelSelect labelPickerRef={labelPickerRef} />
           </div>
           <div className="flex flex-row h-8 mr-6">
+            <button
+              className="bg-neutral-300 rounded-lg px-3 py-2 text-xs text-gray-700 mx-2 w-20"
+              type="button"
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
             <button type="submit" className="bg-primary rounded-lg px-3 py-1 text-xs text-white w-20">
               Save
             </button>
