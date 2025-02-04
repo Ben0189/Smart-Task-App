@@ -8,7 +8,7 @@ import { Input } from 'src/components/ui/task-card-input';
 import { LabelSelect } from '../shared/label-select';
 import DeleteDialogContent from './delete-dialog-content'; 
 import { CalendarForm } from '../shared/calendar-form'; 
-import { TaskDetailDTO } from 'src/app/dashboard/task-list/models/task-detail-dto'; 
+import { TaskDetailDTO } from '@/app/dashboard/task-list/models/task-detail-dto';
 import { Dialog, DialogTrigger } from 'src/components/ui/dialog';
 
 export default function TaskContent({ task }: { task: TaskDetailDTO }) {
