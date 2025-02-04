@@ -19,7 +19,7 @@ const taskSchema = z.object({
 
 type FormField = z.infer<typeof taskSchema>;
 
-const AddTaskForm = ({ datePickerRef, labelPickerRef, onCancel }) => {
+const AddTaskForm = ({ onSubmit, datePickerRef, labelPickerRef, onCancel }) => {
   const form = useForm<FormField>({
     resolver: zodResolver(taskSchema),
     defaultValues: {
@@ -31,6 +31,7 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef, onCancel }) => {
   });
 
   const handleAddTask: SubmitHandler<FormField> = async (data) => {
+    onSubmit(data);
     console.log(data);
   };
 

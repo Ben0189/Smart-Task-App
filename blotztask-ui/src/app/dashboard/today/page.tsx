@@ -52,12 +52,17 @@ export default function Today() {
     }
   };
 
+  const handleAddTask = (taskTitle) => {
+    console.log('Adding task:', taskTitle);
+    // Implement add task logic here , going to api to add task
+  };
+
   return (
     <>
       <div className="flex flex-col gap-5">
         <TodayHeader tasks={tasks} />
         <Divider text="To do" />
-        <AddTaskCard />
+        <AddTaskCard onAddTask={handleAddTask} />
         <div className="flex flex-col gap-6 w-full">
           {incompleteTasks.length > 0 ? (
             incompleteTasks.map((task) => (
