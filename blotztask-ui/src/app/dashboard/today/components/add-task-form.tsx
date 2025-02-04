@@ -14,6 +14,7 @@ const taskSchema = z.object({
   }),
   description: z.string().optional(),
   date: z.date().optional(),
+  label: z.string(),
 });
 
 type FormField = z.infer<typeof taskSchema>;
@@ -25,6 +26,7 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef, onCancel }) => {
       title: '',
       description: '',
       date: null,
+      label: null,
     },
   });
 
@@ -64,7 +66,7 @@ const AddTaskForm = ({ datePickerRef, labelPickerRef, onCancel }) => {
         <div className="flex flex-row inline-block justify-between mt-4 mb-2">
           <div className="flex flex-row items-center">
             <CalendarForm control={form.control} datePickerRef={datePickerRef} />
-            <LabelSelect labelPickerRef={labelPickerRef} />
+            <LabelSelect control={form.control} labelPickerRef={labelPickerRef} />
           </div>
           <div className="flex flex-row h-8 mr-6">
             <button
