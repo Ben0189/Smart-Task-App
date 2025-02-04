@@ -14,7 +14,7 @@ const taskSchema = z.object({
   }),
   description: z.string().optional(),
   date: z.date().optional(),
-  label: z.string(),
+  label: z.number(),
 });
 
 type FormField = z.infer<typeof taskSchema>;

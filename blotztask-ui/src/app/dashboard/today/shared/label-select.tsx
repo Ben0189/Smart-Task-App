@@ -33,13 +33,15 @@ export function LabelSelect({
       name="label"
       render={({ field }) => (
         <FormItem>
-          <Select onValueChange={field.onChange}>
+          <Select onValueChange={(value) => field.onChange(Number(value))}>
             <FormControl>
               <SelectLabelTrigger
                 className={`flex flex-row w-30 items-center rounded-full px-3 py-1 text-xs`}
               >
                 <Tag className="mr-1" size={16} />
-                <SelectValue placeholder="Select Label" />
+                <SelectValue placeholder="Select Label">
+                  {labels.find((label) => label.id === field.value)?.name || 'Select Label'}
+                </SelectValue>
               </SelectLabelTrigger>
             </FormControl>
             <SelectContent ref={labelPickerRef ?? undefined}>
@@ -47,7 +49,7 @@ export function LabelSelect({
                 {labels.map((label) => (
                   <LabelSelectItem
                     key={label.id}
-                    value={label.name}
+                    value={label.id.toString()}
                     className="flex flex-row items-center px-2 py-1"
                   >
                     <div className="flex flex-row">
