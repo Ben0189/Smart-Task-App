@@ -35,7 +35,7 @@ export default function Today() {
 
   const handleCheckboxChange = async (taskId: number) => {
     console.log('Completing task:', taskId);
-    await completeTask(taskId); 
+    await completeTask(taskId);
   };
 
   const handleCompletedCheckboxChange = async (taskId: number) => {
@@ -46,7 +46,7 @@ export default function Today() {
   const completeTask = async (taskId: number) => {
     try {
       await updateTaskStatus(taskId);
-      await loadTasks();  
+      await loadTasks();
     } catch (error) {
       console.error('Error updating task status:', error);
     }
